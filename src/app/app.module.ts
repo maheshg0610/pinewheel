@@ -1,55 +1,49 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
-import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
-import { ToastrModule } from 'ngx-toastr';
-import { TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import { TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { SharedModule } from './shared/shared.module';
+import { NgModule } from '@angular/core';
+
 import { AppRoutingModule } from './app-routing.module';
-
 import { AppComponent } from './app.component';
-import { ShopComponent } from './shop/shop.component';
-import { PagesComponent } from './pages/pages.component';
-import { ElementsComponent } from './elements/elements.component';
 
-
-// AoT requires an exported function for factories
-export function HttpLoaderFactory(http: HttpClient) {
-   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
-}
+import { DashboardModule } from './components/dashboard/dashboard.module';
+import { SharedModule } from './shared/shared.module';
+import { ProductsModule } from './components/products/products.module';
+import { SalesModule } from './components/sales/sales.module';
+import { CouponsModule } from './components/coupons/coupons.module';
+import { PagesModule } from './components/pages/pages.module';
+import { MediaModule } from './components/media/media.module';
+import { MenusModule } from './components/menus/menus.module';
+import { VendorsModule } from './components/vendors/vendors.module';
+import { UsersModule } from './components/users/users.module';
+import { LocalizationModule } from './components/localization/localization.module';
+import { InvoiceModule } from './components/invoice/invoice.module';
+import { SettingModule } from './components/setting/setting.module';;
+import { ReportsModule } from './components/reports/reports.module';
+import { AuthModule } from './components/auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ShopComponent,
-    PagesComponent,
-    ElementsComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
-    HttpClientModule,
-    NgbModule,
-    LoadingBarHttpClientModule,
-    LoadingBarRouterModule,
-    ToastrModule.forRoot({
-      timeOut: 3000,
-      progressBar: false,
-      enableHtml: true,
-    }),
-    TranslateModule.forRoot({
-        loader: {
-            provide: TranslateLoader,
-            useFactory: HttpLoaderFactory,
-            deps: [HttpClient]
-        }
-    }),
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    AppRoutingModule,
+    DashboardModule,
+    InvoiceModule,
+    SettingModule,
+    ReportsModule,
+    AuthModule,
     SharedModule,
-    AppRoutingModule
+    LocalizationModule,
+    ProductsModule,
+    SalesModule,
+    VendorsModule,
+    CouponsModule,
+    PagesModule,
+    MediaModule,
+    MenusModule,
+    UsersModule
   ],
   providers: [],
   bootstrap: [AppComponent]
