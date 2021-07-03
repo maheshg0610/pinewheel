@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './components/auth/auth.module';
 import { RequisitionModule } from './components/requisition/requisition.module';
 import { ProfileModule } from './components/profile/profile.module';
+import { InstallSealModule } from './components/install-seal/install-seal.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { ProfileModule } from './components/profile/profile.module';
     AppRoutingModule,
     DashboardModule,
     ProfileModule,
+    InstallSealModule,
     AuthModule,
     SharedModule,
     RequisitionModule

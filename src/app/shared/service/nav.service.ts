@@ -44,8 +44,29 @@ export class NavService {
       active: false
     },
     {
+      path: '/self-stuffing/selfstuffing',
+      title: 'Self Stuffing',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
       path: '/requisition/requisition',
       title: 'Requisition',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
+      path: '/install-seal/installseal',
+      title: 'Install Seal',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
+      path: '/draft-seal/draftseal',
+      title: 'Draft Seal',
       icon: 'box',
       type: 'link',
       active: false

@@ -62,7 +62,8 @@
                         <div class="media-body">
                             <h2 class="mb-0">Self Stuffing</h2>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting</p>
-                            <button type="button" class="btn btn-primary">Click to Install</button>
+                            <button type="button" class="btn btn-primary"
+                                [routerLink]="'/self-stuffing/selfstuffing'">Click to Install</button>
                         </div>
                         <div class="bg-secondary b-r-8">
                             <div class="small-box">
@@ -80,7 +81,8 @@
                         <div class="media-body">
                             <h2 class="mb-0">Installed Seal</h2>
                             <p>Please click below button to view installed seal details</p>
-                            <button type="button" class="btn btn-primary">View Installed Seals</button>
+                            <button type="button" class="btn btn-primary"
+                                [routerLink]="'/install-seal/installseal'">View Installed Seals</button>
                         </div>
                         <div class="bg-warning b-r-8">
                             <div class="small-box">
@@ -98,7 +100,8 @@
                         <div class="media-body">
                             <h2 class="mb-0">Draft Seal</h2>
                             <p>Please click below button to view draft seal details</p>
-                            <button type="button" class="btn btn-primary">View Draft Seals</button>
+                            <button type="button" class="btn btn-primary" [routerLink]="'/draft-seal/draftseal'">View
+                                Draft Seals</button>
                         </div>
                         <div class="bg-primary b-r-8">
                             <div class="small-box">
