@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard.component';
+import { RequisitionComponent } from './requisition.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
       {
-        path: 'default',
-        component: DashboardComponent,
+        path: 'requisition',
+        component: RequisitionComponent,
         data: {
-          title: 'Dashboard',
-          breadcrumb: 'Dashboard'
+          title: 'Requisition Details',
+          breadcrumb: ''
         }
       }
     ]
@@ -22,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class DashboardRoutingModule {}
+export class RequisitionRoutingModule {}

@@ -7,7 +7,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   public loginForm: FormGroup;
   public registerForm: FormGroup;
 
@@ -17,19 +16,20 @@ export class LoginComponent implements OnInit {
   }
 
   owlcarousel = [
+    // {
+    //   title: "Welcome to PinWheel",
+    //   desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+    // },
+    // {
+    //   title: "Welcome to PinWheel",
+    //   desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+    // },
     {
-      title: "Welcome to Multikart",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
-    },
-    {
-      title: "Welcome to Multikart",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
-    },
-    {
-      title: "Welcome to Multikart",
-      desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.",
+      title: 'Welcome to PinWheel',
+      desc:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy."
     }
-  ]
+  ];
   owlcarouselOptions = {
     loop: true,
     items: 1,
@@ -39,23 +39,18 @@ export class LoginComponent implements OnInit {
   createLoginForm() {
     this.loginForm = this.formBuilder.group({
       userName: [''],
-      password: [''],
-    })
+      password: ['']
+    });
   }
   createRegisterForm() {
     this.registerForm = this.formBuilder.group({
       userName: [''],
       password: [''],
-      confirmPassword: [''],
-    })
+      confirmPassword: ['']
+    });
   }
 
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  onSubmit() {
-    
-  }
-
+  onSubmit() {}
 }

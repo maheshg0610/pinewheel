@@ -496,20 +496,22 @@ ng2-smart-table {
     }
     .bg-primary {
       padding: 50px;
-      background-image: url(../../images/dashboard/login-bg.png);
+      //background-image: url(../../images/dashboard/login-bg.png);
       background-position: center;
       box-shadow: 1px 5px 24px 0 rgba(255,128,132,0.8);
     }
     .svg-icon {
-      padding: 24px;
+      padding: 24px 24px 24px 30px;
       margin: 0 auto;
       border: 2px dashed $white;
       border-radius: 100%;
       height: 130px;
       width: 130px;
+      text-align: center;
       margin-bottom: 40px;
-      svg {
-        height: 80px;
+      background: #fff;
+      svg, img {
+        height: 75px;
       }
     }
   }
@@ -683,6 +685,13 @@ ng2-smart-table {
   }
 }
 .sales-carousel {
+  h2{
+    font-size: 20px;
+    letter-spacing: normal;
+  }
+  p{
+    min-height: 50px;
+  }
   .value-graph {
     h3 {
       color: $theme-body-font-color;
@@ -698,6 +707,10 @@ ng2-smart-table {
       justify-content: center;
     }
   }
+}
+.sales-carousel.card{
+  min-height: 180px;
+  border:1px solid rgba(0, 0, 0, 0.125);
 }
 .small-chartjs {
   canvas {
@@ -1726,9 +1739,9 @@ div{
 
 .btn{
   font-size: $btn-font-size;
-  padding: $btn-padding;
+  padding: 0.4rem 1rem/*$btn-padding*/;
   border-radius: 5px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   line-height: 20px;
   text-transform: uppercase;
   font-size: 14px;
@@ -2765,6 +2778,10 @@ ul.notification-dropdown.onhover-show-div{
           height: 100%;
           display: flex;
           align-items: center;
+          justify-content: center;
+          img{
+            height: 40px;
+          }
         }
       }
       .sidebar-user{
