@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { categoryDB } from '../../shared/tables/category';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { DatatableComponent } from "@swimlane/ngx-datatable";
+import { requisitionDB } from '../../shared/tables/requisition';
 
 @Component({
   selector: 'app-requisition',
@@ -8,11 +10,26 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./requisition.component.scss']
 })
 export class RequisitionComponent implements OnInit {
-  public closeResult: string;
-  public categories = [];
+  public order = [];
+  public temp = [];
+  public closeResult:string;
+
+
+  counter = 0;
+  increment() {
+    this.counter++;
+  }
+  decrement() {
+    this.counter--;
+  }
+
+
+
+
+  @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
   constructor(private modalService: NgbModal) {
-    this.categories = categoryDB.category;
+    this.order = requisitionDB.list_order;
   }
 
   open(content) {
@@ -37,30 +54,19 @@ export class RequisitionComponent implements OnInit {
     }
   }
 
-  public settings = {
-    actions: {
-      position: 'right'
-    },
-    columns: {
-      img: {
-        title: 'Image',
-        type: 'html'
-      },
-      product_name: {
-        title: 'Name'
-      },
-      price: {
-        title: 'Price'
-      },
-      status: {
-        title: 'Status',
-        type: 'html'
-      },
-      category: {
-        title: 'Category'
-      }
-    }
-  };
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function (d) {
+      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.order = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
+  }
 
   ngOnInit() {}
 }

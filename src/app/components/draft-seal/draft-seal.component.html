@@ -4,10 +4,24 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h5>Seal Details (Last 45 days)</h5>
-                    <div id="batchDelete" class="category-table custom-datatable">
-                        <div class="table-responsive">
-                            <ng2-smart-table [settings]="settings" [source]="categories"></ng2-smart-table>
+                    <div class="table-responsive">
+                        <div class="custom-datatable">
+                            <input type='text' class="filter-ngx form-control" placeholder='Search...'
+                                (keyup)='updateFilter($event)' />
+                            <ngx-datatable class="bootstrap" [rows]="order" [columnMode]="'force'" [headerHeight]="50"
+                                [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
+                                <ngx-datatable-column prop="Seal No."></ngx-datatable-column>
+                                <ngx-datatable-column prop="Shipping Bill No."></ngx-datatable-column>
+                                <ngx-datatable-column prop="Shipping Bill Date"></ngx-datatable-column>
+                                <ngx-datatable-column prop="Sealing Date"></ngx-datatable-column>
+                                <ngx-datatable-column prop="Sealing Time"></ngx-datatable-column>
+                                <ngx-datatable-column prop="Port/ICD"></ngx-datatable-column>
+                                <ngx-datatable-column prop="Loading Port"></ngx-datatable-column>
+                                <ngx-datatable-column prop="Trailor No."></ngx-datatable-column>
+                                <ngx-datatable-column prop="Container No."></ngx-datatable-column>
+                                <ngx-datatable-column prop="Type of Seal"></ngx-datatable-column>
+                                <ngx-datatable-column prop="Action"></ngx-datatable-column>
+                            </ngx-datatable>
                         </div>
                     </div>
                 </div>

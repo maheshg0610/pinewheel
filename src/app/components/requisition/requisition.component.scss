@@ -1,0 +1,25 @@
+h4{
+    text-align: center;
+}
+.form-group{
+    display: flex;
+    width: 250px;
+    margin:auto;
+}
+.form-group button{
+    border: 0;    
+    padding: 15px;
+    border-radius: 100%;
+    margin: 0 20px;
+}
+.form-group button.up-arrow{
+    background: url("../../../assets/fonts/feather/arrow-up.svg") no-repeat center center #ffbc58;
+    background-size: 60%;
+}
+.form-group button.down-arrow{
+    background: url("../../../assets/fonts/feather/arrow-down.svg") no-repeat center center #ffbc58;
+    background-size: 60%;
+}
+.form-group input{
+    text-align: center;
+}

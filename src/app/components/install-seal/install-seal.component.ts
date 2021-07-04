@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { categoryDB } from '../../shared/tables/category';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { DatatableComponent } from "@swimlane/ngx-datatable";
+import { orderDB } from '../../shared/tables/order-list';
+import { NgbDateStruct, NgbDate, NgbCalendar, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-installseal',
@@ -8,11 +12,34 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./install-seal.component.scss']
 })
 export class InstallSealComponent implements OnInit {
-  public closeResult: string;
-  public categories = [];
+  public order = [];
+  public temp = [];
+  public closeResult:string;
+  public generalForm: FormGroup;
+  public model: NgbDateStruct;
+  public date: { year: number, month: number };
 
-  constructor(private modalService: NgbModal) {
-    this.categories = categoryDB.category;
+  @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
+
+  constructor(private formBuilder: FormBuilder, private calendar: NgbCalendar, private modalService: NgbModal) {
+    this.order = orderDB.list_order;
+  }
+
+
+  selectToday() {
+    this.model = this.calendar.getToday();
+  }
+  createGeneralForm() {
+    this.generalForm = this.formBuilder.group({
+      name: [''],
+      code: [''],
+      start_date: [''],
+      end_date: [''],
+      free_shipping: [''],
+      quantity: [''],
+      discount_type: [''],
+      status: [''],
+    });
   }
 
   open(content) {
@@ -37,30 +64,19 @@ export class InstallSealComponent implements OnInit {
     }
   }
 
-  public settings = {
-    actions: {
-      position: 'right'
-    },
-    columns: {
-      img: {
-        title: 'Image',
-        type: 'html'
-      },
-      product_name: {
-        title: 'Name'
-      },
-      price: {
-        title: 'Price'
-      },
-      status: {
-        title: 'Status',
-        type: 'html'
-      },
-      category: {
-        title: 'Category'
-      }
-    }
-  };
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function (d) {
+      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.order = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
+  }
 
   ngOnInit() {}
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CKEditorModule } from 'ngx-ckeditor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -30,6 +31,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     CKEditorModule,
     RequisitionRoutingModule,
     Ng2SmartTableModule,
+    NgxDatatableModule,
     NgbModule,
     DropzoneModule,
     GalleryModule.forRoot()

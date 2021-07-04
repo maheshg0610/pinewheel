@@ -1,0 +1,25 @@
+::ng-deep{
+    ngx-datatable {
+        &.bootstrap {
+            .datatable-header, .datatable-body {
+            overflow: visible;
+            }
+        }
+  }
+  .visible{
+    min-height: 350px;
+    overflow: auto;
+  }
+  .datatable-header-inner, .datatable-header, .datatable-body, .ngx-datatable .datatable-body .datatable-scroll, .datatable-body-row, .datatable-row-center{
+    width: 1850px !important;
+  }
+  .ngx-datatable .datatable-footer .datatable-footer-inner{
+    position: absolute;
+    bottom: 30px;
+    right: 15px;
+    width: calc(100% - 15px) !important;
+  }
+  .datatable-header-cell, .ngx-datatable .datatable-body-cell{
+    width:140px !important;
+  }
+}
