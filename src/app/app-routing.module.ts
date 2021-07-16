@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { content } from './shared/routes/content-routes';
 import { ContentLayoutComponent } from './shared/layout/content-layout/content-layout.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterExporterRegistrationComponent } from './components/auth/register-exporter-registration/register-exporter-registration.component';
 
 const routes: Routes = [
   {
@@ -17,15 +18,21 @@ const routes: Routes = [
   },
   {
     path: 'auth/login',
-    component: LoginComponent,
+    component: LoginComponent
+  },
+  {
+    path: 'auth/register-exporter-registration',
+    component: RegisterExporterRegistrationComponent
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    scrollPositionRestoration: 'enabled',
-    relativeLinkResolution: 'legacy'
-})],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+      relativeLinkResolution: 'legacy'
+    })
+  ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
