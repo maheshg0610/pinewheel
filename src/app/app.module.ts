@@ -13,9 +13,7 @@ import { AuthModule } from './components/auth/auth.module';
 import { RequisitionModule } from './components/requisition/requisition.module';
 import { ProfileModule } from './components/profile/profile.module';
 import { InstallSealModule } from './components/install-seal/install-seal.module';
-import { MatSelectModule} from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,10 +27,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AuthModule,
     SharedModule,
     RequisitionModule,
-    HttpClientModule,
-    MatSelectModule,
-    MatInputModule,
-    MatFormFieldModule
+    HttpClientModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],

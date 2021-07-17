@@ -5,7 +5,13 @@ export const endPoints = {
     install_eseal: baseUrl + '/api/install-eseal',
     logout: baseUrl + '/logout',
     IDC_LIST: baseUrl + "/api/icd-list",
-    POST_LIST: baseUrl +'/api/port-list'
+    POST_LIST: baseUrl +'/api/port-list',
+    CHA_LIST: baseUrl + '/api/cha-list',
+    CFS_LIST: baseUrl + '/api/cfs-list',
+    ESEAL_REGISTER: baseUrl + '/api/eseal-registration',
+    vendor_LIST: baseUrl + '/api/vendorlist',
+    activate: baseUrl + '/api/activate-vendor',
+    health_status: baseUrl + '/api/eseal-healthstatus-update',  
 }
 
 export const status = {

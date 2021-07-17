@@ -112,22 +112,14 @@
                                 <div class="col-md-7 pr-0">
                                     <div class="row">
                                         <div class="col-md-6 pl-0">
-                                            <!-- <input class="form-control " formControlName="sendToICDs" id="validationCustom6" type="number"> -->
-                                            <!-- <mat-form-field appearance="fill">
-                                                <mat-label>ICD List</mat-label>
-                                                     <mat-select formControlName ="sendToICDs" multiple >
-                                                    <mat-option *ngFor="let item of icdList" value="item.icdValue">{{item.icdValue}}</mat-option>
-                                                </mat-select> 
-                                            </mat-form-field> -->
+                                            <ng-multiselect-dropdown formControlName="sendToICDs" placeholder="Select" [data]="icdList"
+                                               [settings]="dropdownSettingICD">
+                                            </ng-multiselect-dropdown>
                                         </div>
-                                        <div class="col-md-6 pl-0">
-                                            <input class="form-control" formControlName="sendToPorts" id="validationCustom6" type="number">
-                                             <!-- <mat-form-field appearance="fill">
-                                                <mat-label>ICD List</mat-label>
-                                                     <mat-select formControlName ="sendToICDs" multiple >
-                                                    <mat-option *ngFor="let item of postList" value="item.icdValue">{{item.portValue}}</mat-option>
-                                                </mat-select> 
-                                            </mat-form-field>-->
+                                        <div class="col-md-6 pl-0" > 
+                                            <ng-multiselect-dropdown formControlName="sendToPorts" placeholder="Select" [data]="postList"
+                                               [settings]="dropdownSettingPOST">
+                                            </ng-multiselect-dropdown>
                                         </div>
                                     </div>
                                 </div>

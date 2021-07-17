@@ -5,6 +5,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateStruct, NgbDate, NgbCalendar, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
 import { status } from 'src/app/shared/config/endpoint.config';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-selfstuffing',
@@ -19,8 +20,26 @@ export class SelfStuffingComponent implements OnInit {
   public model: NgbDateStruct;
   public date: { year: number, month: number };
   public modelFooter: NgbDateStruct;
-  icdList: string[];
-  postList: string[];
+  icdList: string[] = [];
+  postList: string[] = [];
+  icdListtrue: boolean = false;
+  postListtrue: boolean = false
+  dropdownSettingPOST: IDropdownSettings = {
+    singleSelection: false,
+    idField: 'portValue',
+    textField: 'portValue',
+    itemsShowLimit: 4,
+    enableCheckAll: false,
+    searchPlaceholderText: 'Select',
+  };
+  dropdownSettingICD: IDropdownSettings = {
+    singleSelection: false,
+    idField: 'icdValue',
+    textField: 'icdValue',
+    itemsShowLimit: 4,
+    enableCheckAll: false,
+    searchPlaceholderText: 'Select',
+  };
 
   constructor(private formBuilder: FormBuilder, private calendar: NgbCalendar, private modalService: NgbModal,
     private service: PinwheelService) {
@@ -120,8 +139,8 @@ export class SelfStuffingComponent implements OnInit {
       "sealNo": this.generalForm.value.sealNo,
       "sealingDate": this.restrictionForm.value.sealingDate,
       "sealingTime": this.calculateTime(),
-      "sendToICDs": [1, 2],
-      "sendToPorts": [1, 2],
+      "sendToICDs": this.restrictionForm.value.sendToICDs,
+      "sendToPorts": this.restrictionForm.value.sendToPorts,
       "shippingBillDetails": [{
         "ewayBillNo": this.restrictionForm.value.ewayBillNo,
         "shippingBillDate": this.restrictionForm.value.shippingBillDate,
