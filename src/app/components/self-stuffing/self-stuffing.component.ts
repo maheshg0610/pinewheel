@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { categoryDB } from '../../shared/tables/category';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateStruct, NgbDate, NgbCalendar, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
+import { status } from 'src/app/shared/config/endpoint.config';
 
 @Component({
   selector: 'app-selfstuffing',
@@ -17,13 +19,39 @@ export class SelfStuffingComponent implements OnInit {
   public model: NgbDateStruct;
   public date: { year: number, month: number };
   public modelFooter: NgbDateStruct;
+  icdList: string[];
+  postList: string[];
 
-  constructor(private formBuilder: FormBuilder, private calendar: NgbCalendar, private modalService: NgbModal) {
+  constructor(private formBuilder: FormBuilder, private calendar: NgbCalendar, private modalService: NgbModal,
+    private service: PinwheelService) {
     this.createGeneralForm();
     this.createRestrictionForm();
     this.createUsageForm();
   }
   
+  ngOnInit() {
+    this.getDropdownList() 
+   }
+
+   getDropdownList() {
+     this.service.getIDCList().subscribe((res) => {
+       if (res) {
+         this.icdList = res;
+       }
+     },
+       (err) => {
+         console.log(err)
+       })
+
+     this.service.getPOSTList().subscribe((res) => {
+       if (res) {
+         this.postList = res;
+       }
+     },
+       (err) => {
+         console.log(err)
+       })
+   }
 
   open(content) {
     this.modalService
@@ -53,23 +81,23 @@ export class SelfStuffingComponent implements OnInit {
 
   createGeneralForm() {
     this.generalForm = this.formBuilder.group({
-      name: [''],
-      code: [''],
-      start_date: [''],
-      end_date: [''],
-      free_shipping: [''],
-      quantity: [''],
-      discount_type: [''],
-      status: [''],
+      sealNo: [''],
     });
   }
 
   createRestrictionForm() {
     this.restrictionForm = this.formBuilder.group({
-      products: [''],
-      category: [''],
-      min: [''],
-      max: ['']
+      shippingBillDate: [''],
+      shippingBilllNo: [''],
+      ewayBillNo: [''],
+      sealingDate: [],
+      sealingTime: [],
+      min:[],
+      max:[],
+      containerNo: [],
+      trailerNo: [],
+      sendToICDs:[Validators.required],
+      sendToPorts: [Validators.required]
     })
   }
 
@@ -80,5 +108,36 @@ export class SelfStuffingComponent implements OnInit {
     })
   }
 
-  ngOnInit() {}
+  calculateTime(){
+    let time = this.restrictionForm.value.max - this.restrictionForm.value.min;
+    return time;
+  }
+
+  submit() {
+    let payload = {
+      "vendorId": 2,
+      "containerNo": this.restrictionForm.value.containerNo,
+      "sealNo": this.generalForm.value.sealNo,
+      "sealingDate": this.restrictionForm.value.sealingDate,
+      "sealingTime": this.calculateTime(),
+      "sendToICDs": [1, 2],
+      "sendToPorts": [1, 2],
+      "shippingBillDetails": [{
+        "ewayBillNo": this.restrictionForm.value.ewayBillNo,
+        "shippingBillDate": this.restrictionForm.value.shippingBillDate,
+        "shippingBilllNo": this.restrictionForm.value.shippingBilllNo,
+      }],
+      "status": "Installed",
+      "trailerNo": this.restrictionForm.value.trailerNo
+    }
+    this.service.saveSelfStuffing(payload).subscribe((res) => {
+      if (res.status === status.SUCCESS) {
+        //TODO:pop-up
+      }
+     }, 
+    (err) =>{
+      console.log(err)
+    })
+  }
+ 
 }

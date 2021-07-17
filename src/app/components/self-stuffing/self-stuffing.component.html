@@ -47,7 +47,7 @@
                                     <div class="form-group row">
                                         <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>
                                             Seal No.</label>
-                                        <input class="form-control col-md-7" formControlName="name"
+                                        <input class="form-control col-md-7" formControlName="sealNo"
                                             id="validationCustom0" type="text" required="">
                                     </div>
                                     
@@ -63,7 +63,7 @@
                             <h4>Restriction</h4>
                             <div class="form-group row">
                                 <label for="validationCustom3" class="col-xl-3 col-md-4">Shipping Bill No.                                </label>
-                                <input class="form-control col-md-7" formControlName="products" id="validationCustom3"
+                                <input class="form-control col-md-7" formControlName="shippingBillNo" id="validationCustom3"
                                     type="text" required="">
                                 <div class="valid-feedback">Please Provide a Bill No.</div>
                             </div>
@@ -71,7 +71,7 @@
                                 <label class="col-xl-3 col-md-4">Shipping Bill Date</label>
                                 <div class="input-group col-md-7 input-grp-p">
                                     <input class="datepicker-here form-control digits" ngbDatepicker
-                                        formControlName="shipping_date" #f="ngbDatepicker">
+                                        formControlName="shippingBillDate" #f="ngbDatepicker">
                                     <div class="input-group-append">
                                         <button class="btn calendar" (click)="f.toggle()" type="button"><i
                                                 class="fa fa-calendar"></i></button>
@@ -80,14 +80,14 @@
                             </div>
                             <div class="form-group row">
                                 <label for="validationCustom4" class="col-xl-3 col-md-4">E-way Bill No.</label>
-                                <input class="form-control col-md-7" formControlName="ewaybill" type="text" id="validationCustom4" />
+                                <input class="form-control col-md-7" formControlName="ewayBillNo" type="text" id="validationCustom4" />
                             </div>
                             <hr />
                             <div class="form-group row">
                                 <label class="col-xl-3 col-md-4">Sealing Date</label>
                                 <div class="input-group col-md-7 input-grp-p">
                                     <input class="datepicker-here form-control digits" ngbDatepicker
-                                        formControlName="sealing_date" #c="ngbDatepicker">
+                                        formControlName="sealingDate" #c="ngbDatepicker">
                                     <div class="input-group-append">
                                         <button class="btn calendar" (click)="c.toggle()" type="button"><i
                                                 class="fa fa-calendar"></i></button>
@@ -108,12 +108,37 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="validationCustom6" class="col-xl-3 col-md-4">Send To</label>
+                                <div class="col-md-7 pr-0">
+                                    <div class="row">
+                                        <div class="col-md-6 pl-0">
+                                            <!-- <input class="form-control " formControlName="sendToICDs" id="validationCustom6" type="number"> -->
+                                            <!-- <mat-form-field appearance="fill">
+                                                <mat-label>ICD List</mat-label>
+                                                     <mat-select formControlName ="sendToICDs" multiple >
+                                                    <mat-option *ngFor="let item of icdList" value="item.icdValue">{{item.icdValue}}</mat-option>
+                                                </mat-select> 
+                                            </mat-form-field> -->
+                                        </div>
+                                        <div class="col-md-6 pl-0">
+                                            <input class="form-control" formControlName="sendToPorts" id="validationCustom6" type="number">
+                                             <!-- <mat-form-field appearance="fill">
+                                                <mat-label>ICD List</mat-label>
+                                                     <mat-select formControlName ="sendToICDs" multiple >
+                                                    <mat-option *ngFor="let item of postList" value="item.icdValue">{{item.portValue}}</mat-option>
+                                                </mat-select> 
+                                            </mat-form-field>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="validationCustom7" class="col-xl-3 col-md-4">Container No.</label>
-                                <input class="form-control col-md-7" formControlName="containerno" type="text" id="validationCustom7" />
+                                <input class="form-control col-md-7" formControlName="containerNo" type="text" id="validationCustom7" />
                             </div>
                             <div class="form-group row">
                                 <label for="validationCustom8" class="col-xl-3 col-md-4">Trailor No.</label>
-                                <input class="form-control col-md-7" formControlName="trailorno" type="text" id="validationCustom78" />
+                                <input class="form-control col-md-7" formControlName="trailerNo" type="text" id="validationCustom78" />
                             </div>
                         </form>
                     </ng-template>
@@ -121,7 +146,7 @@
                 
             </ngb-tabset>
             <div class="pull-right">
-                <button type="button" class="btn btn-primary mr-2">Submit</button>
+                <button type="button" class="btn btn-primary mr-2" (click)="submit()">Submit</button>
                 <button type="button" class="btn btn-secondary mr-2">Save as draft</button>
                 <button type="button" class="btn btn-danger">Cancel</button>
             </div>
@@ -134,7 +159,7 @@
 
 
 
-
+ 
 
 
 

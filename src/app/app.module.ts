@@ -13,6 +13,9 @@ import { AuthModule } from './components/auth/auth.module';
 import { RequisitionModule } from './components/requisition/requisition.module';
 import { ProfileModule } from './components/profile/profile.module';
 import { InstallSealModule } from './components/install-seal/install-seal.module';
+import { MatSelectModule} from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,9 +29,13 @@ import { InstallSealModule } from './components/install-seal/install-seal.module
     AuthModule,
     SharedModule,
     RequisitionModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule {}
