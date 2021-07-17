@@ -35,12 +35,12 @@
                                                 novalidate="">
                                                 <div class="form-group">
                                                     <input required="" name="login[username]" type="email"
-                                                        class="form-control" placeholder="Username"
+                                                        class="form-control" placeholder="Username" formControlName="loginId" 
                                                         id="exampleInputEmail1">
                                                 </div>
                                                 <div class="form-group">
                                                     <input required="" name="login[password]" type="password"
-                                                        class="form-control" placeholder="Password">
+                                                        class="form-control" placeholder="Password"  formControlName="password" >
                                                 </div>
                                                 <div class="form-terms">
                                                     <div class="custom-control custom-checkbox mr-sm-2">
@@ -54,7 +54,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-button">
-                                                    <button class="btn btn-primary" type="submit"
+                                                    <button class="btn btn-primary" type="submit" (click) ="onSubmit()"
                                                         [routerLink]="'/dashboard/default'">Login</button>
                                                     <button class="btn btn-primary" type="button"
                                                         [routerLink]="'/register-exporter-registration'">Register as
