@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-register-exporter-registration',
@@ -8,7 +8,16 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class RegisterExporterRegistrationComponent implements OnInit {
   public registerForm: FormGroup;
+  toppings = new FormControl();
 
+  toppingList: string[] = [
+    'Extra cheese',
+    'Mushroom',
+    'Onion',
+    'Pepperoni',
+    'Sausage',
+    'Tomato'
+  ];
   constructor(private formBuilder: FormBuilder) {
     this.createRegisterForm();
   }
