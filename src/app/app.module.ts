@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 
-import { DashboardModule } from './components/dashboard/dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthInterceptor } from './components/auth/auth.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -14,6 +13,8 @@ import { RequisitionModule } from './components/requisition/requisition.module';
 import { ProfileModule } from './components/profile/profile.module';
 import { InstallSealModule } from './components/install-seal/install-seal.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { MainDashboardModule } from './components/main-dashboards/main-dashboard.module';
+import { VendorManagementModule } from './components/vendor-management/vendor-management.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
-    DashboardModule,
+    MainDashboardModule,
+    VendorManagementModule,
     ProfileModule,
     InstallSealModule,
     AuthModule,
@@ -29,7 +31,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     RequisitionModule,
     HttpClientModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent],
   exports: []
 })

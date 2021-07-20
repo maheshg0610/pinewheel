@@ -4,9 +4,16 @@ export const content: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
-      import('../../components/dashboard/dashboard.module').then(
-        m => m.DashboardModule
+      import('../../components/main-dashboards/main-dashboard.module').then(
+        m => m.MainDashboardModule
       )
+  },
+  {
+    path: 'vendor-management',
+    loadChildren: () =>
+      import(
+        '../../components/vendor-management/vendor-management.module'
+      ).then(m => m.VendorManagementModule)
   },
   {
     path: 'requisition',

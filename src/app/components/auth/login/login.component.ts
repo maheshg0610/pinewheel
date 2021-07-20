@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { status } from 'src/app/shared/config/endpoint.config';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,7 +13,11 @@ export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.createLoginForm();
     this.createRegisterForm();
   }
@@ -57,22 +60,22 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    if (this.loginForm.controls['loginId'].value == "" || this.loginForm.controls['password'].value == "") {
-      return;
-    }
-    let paylod = this.loginForm.value
-    this.authService.login(paylod).subscribe((response)=>{
-      if (response.StatusText === status.SUCCESS){
-          this.router.navigate(['/dashboard/default'])
-      } else {
-        //TODO:pop-up
-      }
-    }, (error) => {
-      //TODO:pop-up
-    })
+    // if (this.loginForm.controls['loginId'].value == "" || this.loginForm.controls['password'].value == "") {
+    //   return;
+    // }
+    // let paylod = this.loginForm.value
+    // this.authService.login(paylod).subscribe((response)=>{
+    //   if (response.StatusText === status.SUCCESS){
+    this.router.navigate(['/dashboard/superadmin']);
+    //   } else {
+    //     //TODO:pop-up
+    //   }
+    // }, (error) => {
+    //   //TODO:pop-up
+    // })
   }
 
   forgotPassword() {
-    this.router.navigate(['auth/forgotpassword'])
+    this.router.navigate(['auth/forgotpassword']);
   }
 }

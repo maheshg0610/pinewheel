@@ -44,6 +44,13 @@ export class NavService {
       active: false
     },
     {
+      path: '/vendor-management/vendormanagement',
+      title: 'Vendor Management',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
       path: '/self-stuffing/selfstuffing',
       title: 'Self Stuffing',
       icon: 'box',
