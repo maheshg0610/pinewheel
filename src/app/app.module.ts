@@ -29,7 +29,8 @@ import { VendorManagementModule } from './components/vendor-management/vendor-ma
     AuthModule,
     SharedModule,
     RequisitionModule,
-    HttpClientModule
+    HttpClientModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

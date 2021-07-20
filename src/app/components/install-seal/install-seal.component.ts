@@ -5,6 +5,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DatatableComponent } from "@swimlane/ngx-datatable";
 import { orderDB } from '../../shared/tables/order-list';
 import { NgbDateStruct, NgbDate, NgbCalendar, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
+import { status } from 'src/app/shared/config/endpoint.config';
 
 @Component({
   selector: 'app-installseal',
@@ -18,10 +20,12 @@ export class InstallSealComponent implements OnInit {
   public generalForm: FormGroup;
   public model: NgbDateStruct;
   public date: { year: number, month: number };
+  public sealNo: number = 1;
 
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
-  constructor(private formBuilder: FormBuilder, private calendar: NgbCalendar, private modalService: NgbModal) {
+  constructor(private formBuilder: FormBuilder, private calendar: NgbCalendar, private modalService: NgbModal,
+    private service: PinwheelService) {
     this.order = orderDB.list_order;
   }
 
@@ -79,4 +83,23 @@ export class InstallSealComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  submit() {
+    let payload = {
+      "vendorId": 6,
+      "noOfEsealRequested": this.sealNo
+    }
+    this.service.newRequisition(payload).subscribe((res) => {
+      if (res.status === status.SUCCESS) {
+        //TODO:pop-up
+        alert(res.statusText)
+      } else {
+        alert(res.statusText)
+      }
+    },
+      (err) => {
+        console.log(err)
+      })
+
+  }
 }

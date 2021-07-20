@@ -47,7 +47,7 @@ export class PinwheelService {
   }
 
   registerEseal(payload) {
-    return this.httpService.get(endPoints.ESEAL_REGISTER, payload)
+    return this.httpService.post(endPoints.ESEAL_REGISTER, payload)
       .pipe(map((response: any) => {
         return response;
       }));
@@ -69,6 +69,13 @@ export class PinwheelService {
 
   healthStatusCheck(payload) {
     return this.httpService.put(endPoints.health_status, payload)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+
+  newRequisition(payload) {
+    return this.httpService.post(endPoints.VENDOR_REQUEST, payload)
       .pipe(map((response: any) => {
         return response;
       }));

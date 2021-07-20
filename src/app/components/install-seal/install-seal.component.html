@@ -68,9 +68,9 @@
                         <div class="modal-body">
                             <form class="needs-validation">
                                 <div class="form">
-                                    <h4>Enter Seal Quantity</h4>
+                                    <!-- <h4>Enter Seal Quantity</h4> -->
                                     <div class="form-group row">
-                                        <label class="col-xl-3 col-md-4">Installation Date Range</label>
+                                        <!-- <label class="col-xl-3 col-md-4">Installation Date Range</label> -->
                                         <!-- <div class="col-md-7 row">
                                             <div class="input-group col-md-6 input-grp-p">
                                                 <input class="datepicker-here form-control digits" ngbDatepicker
@@ -89,12 +89,16 @@
                                                 </div>
                                             </div>
                                         </div> -->
+                                        <div class="form-group p-3">
+                                            <label> Enter Required Seal number<span>*</span></label>
+                                            <input name="" type="number" class="form-control" [(ngModel)]="sealNo"  [ngModelOptions]="{standalone: true}" placeholder="" />
+                                        </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Confirm</button>
+                            <button type="button" class="btn btn-primary" (click)="submit()">Confirm</button>
                             <button class="btn btn-secondary" type="button" data-dismiss="modal"
                                 (click)="modal.dismiss('Cross click')">Close</button>
                         </div>
