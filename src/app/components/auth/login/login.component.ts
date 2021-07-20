@@ -60,19 +60,25 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit() {
-    // if (this.loginForm.controls['loginId'].value == "" || this.loginForm.controls['password'].value == "") {
-    //   return;
-    // }
-    // let paylod = this.loginForm.value
-    // this.authService.login(paylod).subscribe((response)=>{
-    //   if (response.StatusText === status.SUCCESS){
-    this.router.navigate(['/dashboard/superadmin']);
-    //   } else {
-    //     //TODO:pop-up
-    //   }
-    // }, (error) => {
-    //   //TODO:pop-up
-    // })
+    if (
+      this.loginForm.controls['loginId'].value == '' ||
+      this.loginForm.controls['password'].value == ''
+    ) {
+      return;
+    }
+    let paylod = this.loginForm.value;
+    this.authService.login(paylod).subscribe(
+      response => {
+        if (response.StatusText === status.SUCCESS) {
+          this.router.navigate(['/dashboard/default']);
+        } else {
+          //TODO:pop-up
+        }
+      },
+      error => {
+        //TODO:pop-up
+      }
+    );
   }
 
   forgotPassword() {
