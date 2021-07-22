@@ -2,13 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { endPoints } from 'src/app/shared/config/endpoint.config';
 import { map, catchError, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PinwheelService {
+  public updateSearchResults: BehaviorSubject<any>;
+  public updateSearchResults$: Observable<any>
 
-  constructor(private httpService: HttpClient) { }
+  constructor(private httpService: HttpClient) { 
+    this.updateSearchResults = new BehaviorSubject<any>({ loadTerms: false });
+    this.updateSearchResults$ = this.updateSearchResults.asObservable();
+  }
 
   saveSelfStuffing(payload) {
     return this.httpService.post(endPoints.install_eseal, payload)

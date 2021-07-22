@@ -3,6 +3,8 @@ import { categoryDB } from '../../shared/tables/category';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DatatableComponent } from "@swimlane/ngx-datatable";
 import { vendorlistDB } from '../../shared/tables/vendor-list';
+import { Router } from '@angular/router';
+import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
 
 @Component({
   selector: 'app-vendor-list',
@@ -17,8 +19,26 @@ export class VendorListComponent implements OnInit {
 
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
-  constructor(private modalService: NgbModal) {
-    this.order = vendorlistDB.list_order;
+  constructor(private modalService: NgbModal, private router: Router, private service:PinwheelService) {
+    //this.order = vendorlistDB.list_order;
+  }
+  
+
+  ngOnInit() {
+    this.getVendorList()
+  }
+
+  getVendorList() {
+    this.service.vendorList().subscribe((res) => {
+      if (res) {
+       this.order = res.data;
+      } else {
+        alert(res.statusText);
+      }
+    },
+      (err) => {
+        console.log(err)
+      })
   }
 
   open(content) {
@@ -57,5 +77,10 @@ export class VendorListComponent implements OnInit {
     this.table.offset = 0;
   }
 
-  ngOnInit() {}
+  openDetails(event) {
+    this.service.updateSearchResults.next(event);
+    this.router.navigate(['/vendor-registration/vendorregistration']);
+  }
+
+
 }

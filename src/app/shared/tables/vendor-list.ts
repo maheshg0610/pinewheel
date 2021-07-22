@@ -11,8 +11,8 @@ export class vendorlistDB {
             "ICD":"58974",
             "Distributor":"asdwer",
             "No. of seal":"57894",
-            "CHA":"25487",
-            "CFS":"254879",
+            "CHA":"254800",
+            "CFS":"25487911",
             "Action":"<button type='button'>View Details</button>",
         },
         {

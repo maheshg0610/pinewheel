@@ -29,7 +29,7 @@ export class RegisterExporterRegistrationComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       mobileNumber: ['', Validators.required],
-      emailId: ['',Validators.required, Validators.email],
+      emailId: ['',Validators.required],
       portIds: ['', Validators.required],
       icdIds: ['', Validators.required],
       noOfSeal: ['', Validators.required],
@@ -57,7 +57,6 @@ export class RegisterExporterRegistrationComponent implements OnInit {
     }
     if (this.registerForm.value.agree){
       let payload = { 
-        "userId": 2,  //Here userId is super adminuserid
         "vendorType": "Exporter",
         "companyName": this.registerForm.value.companyName,
         "iec": this.registerForm.value.iec,
