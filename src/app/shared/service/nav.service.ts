@@ -44,8 +44,30 @@ export class NavService {
       active: false
     },
     {
+      path: '/dashboard/superadmin',
+      title: 'Super Admin Dashboard',
+      icon: 'home',
+      type: 'link',
+      badgeType: 'primary',
+      active: false
+    },
+    {
       path: '/vendor-management/vendormanagement',
       title: 'Vendor Management',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
+      path: '/vendor-registration/vendorregistration',
+      title: 'Vendor Registration',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
+      path: '/vendor-list/vendorlist',
+      title: 'Vendor Requested List',
       icon: 'box',
       type: 'link',
       active: false

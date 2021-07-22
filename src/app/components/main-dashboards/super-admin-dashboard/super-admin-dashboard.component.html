@@ -52,10 +52,35 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
+
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Vendor Eseal Request</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="custom-datatable">
+                            <input type='text' class="filter-ngx form-control" placeholder='Search...'
+                                (keyup)='updateFilter($event)' />
+                            <ngx-datatable class="bootstrap" [rows]="order" [columnMode]="'force'" [headerHeight]="50"
+                                [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
+                                <ngx-datatable-column prop="Vendor name"></ngx-datatable-column>
+                                <ngx-datatable-column prop="No. of Seals"></ngx-datatable-column>
+                                <ngx-datatable-column prop="Requested Date"></ngx-datatable-column>
+                                <ngx-datatable-column prop="Status"></ngx-datatable-column>
+                                <ngx-datatable-column prop="Action"></ngx-datatable-column>
+                            </ngx-datatable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 <!-- Container-fluid Ends-->

@@ -7,11 +7,11 @@
         }
   }
   .visible{
-    min-height: 350px;
+    padding-bottom: 80px;
     overflow: auto;
   }
   .datatable-header-inner, .datatable-header, .datatable-body, .ngx-datatable .datatable-body .datatable-scroll, .datatable-body-row, .datatable-row-center{
-    width: 1850px !important;
+    width: 2350px !important;
   }
   .ngx-datatable .datatable-footer .datatable-footer-inner{
     position: absolute;
@@ -20,6 +20,6 @@
     width: calc(100% - 15px) !important;
   }
   .datatable-header-cell, .ngx-datatable .datatable-body-cell{
-    width:140px !important;
+    min-width:180px !important;
   }
 }

@@ -19,7 +19,11 @@
     right: 15px;
     width: calc(100% - 15px) !important;
   }
-  .datatable-header-cell, .ngx-datatable .datatable-body-cell{
-    min-width:190px !important;
+  .datatable-header-cell:first-child, .ngx-datatable .datatable-body-cell:first-child,
+  .datatable-header-cell:nth-child(6), .ngx-datatable .datatable-body-cell:nth-child(6){
+    min-width:210px !important;
+   
   }
+  
+  
 }

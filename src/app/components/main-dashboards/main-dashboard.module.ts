@@ -5,6 +5,9 @@ import { CountToModule } from 'angular-count-to';
 import { ChartsModule } from 'ng2-charts';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+
 import { ChartistModule } from 'ng-chartist';
 import { SharedModule } from '../../shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -21,7 +24,9 @@ import { SuperAdminDashboardComponent } from './super-admin-dashboard/super-admi
     ChartsModule,
     Ng2GoogleChartsModule,
     NgxChartsModule,
-    ChartistModule
+    ChartistModule,
+    NgxDatatableModule,
+    Ng2SmartTableModule
   ]
 })
 export class MainDashboardModule {}

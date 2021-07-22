@@ -15,6 +15,8 @@ import { InstallSealModule } from './components/install-seal/install-seal.module
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MainDashboardModule } from './components/main-dashboards/main-dashboard.module';
 import { VendorManagementModule } from './components/vendor-management/vendor-management.module';
+import { VendorRegistrationModule } from './components/vendor-registration/vendor-registration.module';
+import { VendorListModule } from './components/vendor-list/vendor-list.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +26,8 @@ import { VendorManagementModule } from './components/vendor-management/vendor-ma
     AppRoutingModule,
     MainDashboardModule,
     VendorManagementModule,
+    VendorRegistrationModule,
+    VendorListModule,
     ProfileModule,
     InstallSealModule,
     AuthModule,

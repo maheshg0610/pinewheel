@@ -16,6 +16,20 @@ export const content: Routes = [
       ).then(m => m.VendorManagementModule)
   },
   {
+    path: 'vendor-registration',
+    loadChildren: () =>
+      import(
+        '../../components/vendor-registration/vendor-registration.module'
+      ).then(m => m.VendorRegistrationModule)
+  },
+  {
+    path: 'vendor-list',
+    loadChildren: () =>
+      import(
+        '../../components/vendor-list/vendor-list.module'
+      ).then(m => m.VendorListModule)
+  },
+  {
     path: 'requisition',
     loadChildren: () =>
       import('../../components/requisition/requisition.module').then(
