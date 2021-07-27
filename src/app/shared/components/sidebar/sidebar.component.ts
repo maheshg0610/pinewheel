@@ -13,6 +13,7 @@ export class SidebarComponent {
   public menuItems: Menu[];
   public url: any;
   public fileurl: any;
+  public user:any
 
   constructor(private router: Router, public navServices: NavService) {
     this.navServices.items.subscribe(menuItems => {
@@ -36,6 +37,10 @@ export class SidebarComponent {
         }
       })
     })
+  }
+
+  ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   // Active Nave state

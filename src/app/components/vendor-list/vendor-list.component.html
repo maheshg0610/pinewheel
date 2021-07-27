@@ -10,8 +10,6 @@
                                 (keyup)='updateFilter($event)' />
                             <ngx-datatable *ngIf="order" class="bootstrap" [rows]="order" [columnMode]="'force'" [headerHeight]="50"
                                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
-                                <ngx-datatable-column prop="userId"></ngx-datatable-column>
-                                <ngx-datatable-column prop="vendorId"></ngx-datatable-column>
                                 <ngx-datatable-column prop="vendorName"></ngx-datatable-column>
                                 <ngx-datatable-column prop="vendortype"></ngx-datatable-column>
                                 <ngx-datatable-column prop="phoneNumber"></ngx-datatable-column>
@@ -20,11 +18,13 @@
                                 <ngx-datatable-column prop="noOfSealRequired"></ngx-datatable-column>
                                 <ngx-datatable-column prop="distributor"></ngx-datatable-column>
                                 <ngx-datatable-column prop="iecNumber"></ngx-datatable-column>
-                                <ngx-datatable-column prop="createdDate"></ngx-datatable-column>
+                                <ngx-datatable-column prop="createdDate">
+                                    <!-- requested date -->
+                                </ngx-datatable-column>
                                 <ngx-datatable-column prop="status"></ngx-datatable-column>
                                 <ngx-datatable-column prop="Action"  (click)='openDetails($event)'>
                                 <ng-template ngx-datatable-cell-template let-row="row">
-                                        <button style="background-color:rgb(38, 47, 61);border-radius : 4px;" (click)='openDetails(row)'> View Details</button>
+                                        <button class="btn btn-primary" (click)='openDetails(row)'> View Details</button>
                                 </ng-template>
                                 </ngx-datatable-column>
                             </ngx-datatable>

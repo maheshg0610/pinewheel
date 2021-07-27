@@ -28,8 +28,9 @@ export class AuthInterceptor implements HttpInterceptor {
     } 
       this.authReq = req.clone({
         setHeaders: {
-         // Authorization: this.currentUser.token, 
+          Authorization:'Bearer ' + this.currentUser.token, 
           "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
         }
       });
 
