@@ -38,7 +38,7 @@ export class RegisterExporterRegistrationComponent implements OnInit {
       chaIds: ['', Validators.required],
       cfsIds: ['', Validators.required],
       agree: [false, Validators.required],
-      isDistributer: []
+      isDistributer: ['']
     });
   }
 

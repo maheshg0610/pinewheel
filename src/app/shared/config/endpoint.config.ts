@@ -12,7 +12,8 @@ export const endPoints = {
     vendor_LIST: baseUrl + '/api/vendorlist',
     activate: baseUrl + '/api/activate-vendor',
     health_status: baseUrl + '/api/eseal-healthstatus-update',
-    VENDOR_REQUEST:baseUrl+'/api/vendor-eseal-request'  
+    VENDOR_REQUEST:baseUrl+'/api/vendor-eseal-request' ,
+    userList: baseUrl+"/api/eseal-request-list" 
 }
 
 export const status = {

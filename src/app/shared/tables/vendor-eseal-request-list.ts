@@ -61,21 +61,21 @@ export class orderDB {
       'No. of Seals': '56543',
       'Requested Date': '02/06/2021',
       'Status': '<span class="badge badge-danger">Reject</span>',
-      'Action': 'Accept | Reject',
+      'Action': 'new',
     },
     {
       'Vendor name': '#51249',
       'No. of Seals': '56543',
       'Requested Date': '02/06/2021',
-      'Status': '<span class="badge badge-danger">Reject</span>',
-      'Action': 'Accept | Reject',
+      'Status': '<span class="badge badge-danger">transfer35577fj</span>',
+      'Action': 'transfer',
     },
     {
       'Vendor name': '#51250',
       'No. of Seals': '56543',
       'Requested Date': '02/06/2021',
       'Status': '<span class="badge badge-warning">New</span>',
-      'Action': 'Accept | Reject',
+      'Action': 'accepted',
     },
   ];
 }

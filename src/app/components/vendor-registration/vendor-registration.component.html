@@ -35,20 +35,31 @@
                                     <label>Email ID <span>*</span></label>
                                     <input name="" type="text" class="form-control" formControlName="emailId" placeholder="" />
                                 </div>
+                                <div class="form-group">
+                                    <label>Password <span>*</span></label>
+                                    <input name="" type="password" class="form-control" formControlName="password" placeholder="" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm Password <span>*</span></label>
+                                    <input name="" type="password" class="form-control" formControlName="confirmPassword" placeholder="" />
+                                </div>
                             </section>
                             <section>
                                 <h4>Select Ports and ICD's that you will ship from</h4>
                                 <div class="form-group">
                                     <label>Port <span>*</span></label>
-                                    <input name="" type="number" class="form-control" formControlName="userId" placeholder="" />
+                                    <input name="" type="number" class="form-control" formControlName="portList" placeholder="" />
                                 </div>
                                 <div class="form-group">
                                     <label>ICD <span>*</span></label>
-                                    <input name="" type="number" class="form-control" formControlName="userId" placeholder="" />
+                                    <input name="" type="number" class="form-control" formControlName="icdsList" placeholder="" />
                                 </div>
                                 <div class="form-group">
                                     <label>Distributor (optional) <span>*</span></label>
-                                    <input name="" type="text" class="form-control" formControlName="distributor" placeholder="" />
+                                    <select class="form-control" name="distributor" formControlName="distributor">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label>No. of seal required / month <span>*</span></label>
@@ -67,7 +78,7 @@
                                 </div>
                             </section>
                             <div class="form-button text-align">
-                                <button class="btn btn-primary" type="submit">Activate</button>
+                                <button class="btn btn-primary" type="submit" (click)="onSumbit()">Activate</button>
                             </div>
                         </form>
                     </div>

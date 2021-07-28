@@ -67,7 +67,7 @@ export class PinwheelService {
   }
 
   activateVendor(payload) {
-    return this.httpService.put(endPoints.activate, payload)
+    return this.httpService.post(endPoints.activate, payload)
       .pipe(map((response: any) => {
         return response;
       }));
@@ -82,6 +82,13 @@ export class PinwheelService {
 
   newRequisition(payload) {
     return this.httpService.post(endPoints.VENDOR_REQUEST, payload)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+
+  vendoeListForActivation() {
+    return this.httpService.get(endPoints.userList)
       .pipe(map((response: any) => {
         return response;
       }));

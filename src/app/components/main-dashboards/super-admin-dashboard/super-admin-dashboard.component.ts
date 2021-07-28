@@ -3,6 +3,7 @@ import * as chartData from '../../../shared/data/chart';
 import { doughnutData, pieData } from '../../../shared/data/chart';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { orderDB } from '../../../shared/tables/vendor-eseal-request-list';
+import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
 
 @Component({
   selector: 'app-super-admin-dashboard',
@@ -14,7 +15,7 @@ export class SuperAdminDashboardComponent implements OnInit {
   public temp = [];
 
   @ViewChild(DatatableComponent, { static: true }) table: DatatableComponent;
-  constructor() {
+  constructor(private service:PinwheelService) {
     this.order = orderDB.list_order;
   }
 
@@ -32,5 +33,24 @@ export class SuperAdminDashboardComponent implements OnInit {
     this.table.offset = 0;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getVendorList()
+  }
+
+  onAction(row, type) {
+
+  }
+
+  getVendorList() {
+    this.service.vendoeListForActivation().subscribe((res) => {
+      if (res) {
+        this.order = res.data;
+      } else {
+        alert(res.statusText);
+      }
+    },
+      (err) => {
+        console.log(err)
+      })
+  }
 }

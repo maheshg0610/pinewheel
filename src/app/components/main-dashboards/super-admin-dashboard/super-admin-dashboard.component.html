@@ -73,7 +73,14 @@
                                 <ngx-datatable-column prop="No. of Seals"></ngx-datatable-column>
                                 <ngx-datatable-column prop="Requested Date"></ngx-datatable-column>
                                 <ngx-datatable-column prop="Status"></ngx-datatable-column>
-                                <ngx-datatable-column prop="Action"></ngx-datatable-column>
+                                <ngx-datatable-column prop="Action">
+                                <ng-template ngx-datatable-cell-template let-row="row">
+                                    <button *ngIf="row.Status === 'new'" class="btn btn-primary" (click)="onAction(row, 'sucess')">Accept</button>
+                                    <button *ngIf="row.Status === 'new'" class="btn btn-secondary" (click)="onAction(row, 'reject')">Reject</button>
+                                    <button *ngIf="row.Status === 'accepted'" class="btn btn-primary" (click)="onAction(row, 'transfer')">Transfer</button>
+                                    <span  *ngIf="row.Status === 'trasnsfer'">No action required</span>
+                                </ng-template>
+                                </ngx-datatable-column>
                             </ngx-datatable>
                         </div>
                     </div>
