@@ -87,8 +87,15 @@ export class PinwheelService {
       }));
   }
 
-  vendoeListForActivation() {
-    return this.httpService.get(endPoints.userList)
+  vendoeListForActivation(param) {
+    return this.httpService.get(endPoints.userList+param)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+
+  adminAccept(param) {
+    return this.httpService.post(endPoints.superAdminAccept, param)
       .pipe(map((response: any) => {
         return response;
       }));
