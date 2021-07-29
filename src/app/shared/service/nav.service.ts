@@ -87,6 +87,27 @@ export class NavService {
       active: false
     },
     {
+      path: '/install-seal-list/installseallist',
+      title: 'Install Seal List',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
+      path: '/eseal-track/esealtrack',
+      title: 'Eseal Track',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
+      path: '/tamped-seal/tampedseal',
+      title: 'Tamped Seal',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
       path: '/draft-seal/draftseal',
       title: 'Draft Seal',
       icon: 'box',

@@ -12,11 +12,14 @@ import { AuthModule } from './components/auth/auth.module';
 import { RequisitionModule } from './components/requisition/requisition.module';
 import { ProfileModule } from './components/profile/profile.module';
 import { InstallSealModule } from './components/install-seal/install-seal.module';
+import { InstallSealListModule } from './components/install-seal-list/install-seal-list.module';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MainDashboardModule } from './components/main-dashboards/main-dashboard.module';
 import { VendorManagementModule } from './components/vendor-management/vendor-management.module';
 import { VendorRegistrationModule } from './components/vendor-registration/vendor-registration.module';
 import { VendorListModule } from './components/vendor-list/vendor-list.module';
+import { TampedSealModule } from './components/tamped-seal/tamped-seal.module';
+import { EsealTrackModule } from './components/eseal-track/eseal-track.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +33,9 @@ import { VendorListModule } from './components/vendor-list/vendor-list.module';
     VendorListModule,
     ProfileModule,
     InstallSealModule,
+    InstallSealListModule,
+    EsealTrackModule,
+    TampedSealModule,
     AuthModule,
     SharedModule,
     RequisitionModule,

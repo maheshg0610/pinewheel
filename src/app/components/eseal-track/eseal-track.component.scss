@@ -1,0 +1,71 @@
+::ng-deep{
+    ngx-datatable {
+        &.bootstrap {
+            .datatable-header, .datatable-body {
+            overflow: visible;
+            }
+        }
+  }
+  .visible{
+    padding-bottom: 80px;
+    overflow: auto;
+  }
+  .datatable-header-inner, .datatable-header, .datatable-body, .ngx-datatable .datatable-body .datatable-scroll, .datatable-body-row, .datatable-row-center{
+    width: 950px !important;
+  }
+  .ngx-datatable .datatable-footer .datatable-footer-inner{
+    position: absolute;
+    bottom: 30px;
+    right: 15px;
+    width: calc(100% - 15px) !important;
+  }
+  // .datatable-header-cell:first-child, .ngx-datatable .datatable-body-cell:first-child,
+  // .datatable-header-cell:nth-child(6), .ngx-datatable .datatable-body-cell:nth-child(6){
+  //   min-width:210px !important;
+   
+  // }
+  
+  
+}
+
+
+$width100: 100vw;
+$height100: 100vh;
+
+.register-box {
+  min-width: 100%;
+  // display: flex;
+  // align-items: flex-start;
+  // justify-content: flex-start;
+  .row {
+    margin: 0;
+    width: $width100;
+    height: $height100;
+  }
+  
+  
+    section {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 25px;
+      margin-bottom: 30px;
+      .form-group {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        width: 70%;
+        margin: auto;
+        label {
+          width: 20vw;
+          padding-right: 20px;
+          text-align: right;
+          margin-bottom: 0;
+        }
+        span {
+          color: red;
+        }
+      }
+    }
+    
+  
+  
+}

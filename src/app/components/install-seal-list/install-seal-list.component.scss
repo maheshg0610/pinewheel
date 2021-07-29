@@ -1,0 +1,29 @@
+::ng-deep{
+    ngx-datatable {
+        &.bootstrap {
+            .datatable-header, .datatable-body {
+            overflow: visible;
+            }
+        }
+  }
+  .visible{
+    padding-bottom: 80px;
+    overflow: auto;
+  }
+  .datatable-header-inner, .datatable-header, .datatable-body, .ngx-datatable .datatable-body .datatable-scroll, .datatable-body-row, .datatable-row-center{
+    width: 1100px !important;
+  }
+  .ngx-datatable .datatable-footer .datatable-footer-inner{
+    position: absolute;
+    bottom: 30px;
+    right: 15px;
+    width: calc(100% - 15px) !important;
+  }
+  // .datatable-header-cell:first-child, .ngx-datatable .datatable-body-cell:first-child,
+  // .datatable-header-cell:nth-child(6), .ngx-datatable .datatable-body-cell:nth-child(6){
+  //   min-width:210px !important;
+   
+  // }
+  
+  
+}

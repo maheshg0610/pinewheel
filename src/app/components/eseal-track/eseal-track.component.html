@@ -1,0 +1,39 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            
+            <div class="card">
+                <div class="card-body">
+                    <div class="register-box">
+                    <form class="form-horizontal auth-form">
+                        <section>
+                            <div class="form-group">
+                                <label>eSeal Number  <span>*</span></label>
+                                <input name="" type="text" class="form-control" placeholder="" />
+                                <button type="button" class="btn btn-primary ml-2">Track</button>
+                            </div>
+                        </section>
+                    </form>
+                </div>
+                    <div class="table-responsive">
+                        <div class="custom-datatable">
+                            <input type='text' class="filter-ngx form-control" placeholder='Search...'
+                                (keyup)='updateFilter($event)' />
+                            <ngx-datatable *ngIf="order" class="bootstrap" [rows]="order" [columnMode]="'force'" [headerHeight]="50"
+                                [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
+                                <ngx-datatable-column prop="sealNo"></ngx-datatable-column>
+                                <ngx-datatable-column prop="latslock"></ngx-datatable-column>
+                                <ngx-datatable-column prop="time"></ngx-datatable-column>
+                                <ngx-datatable-column prop="port"></ngx-datatable-column>
+                                <ngx-datatable-column prop="icd"></ngx-datatable-column>
+                                <ngx-datatable-column prop="status"></ngx-datatable-column>
+                            </ngx-datatable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

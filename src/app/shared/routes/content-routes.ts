@@ -50,6 +50,36 @@ export const content: Routes = [
     }
   },
   {
+    path: 'install-seal-list',
+    loadChildren: () =>
+      import('../../components/install-seal-list/install-seal-list.module').then(
+        m => m.InstallSealListModule
+      ),
+    data: {
+      breadcrumb: 'Install Seal List'
+    }
+  },
+  {
+    path: 'eseal-track',
+    loadChildren: () =>
+      import('../../components/eseal-track/eseal-track.module').then(
+        m => m.EsealTrackModule
+      ),
+    data: {
+      breadcrumb: 'Eseal Track'
+    }
+  },
+  {
+    path: 'tamped-seal',
+    loadChildren: () =>
+      import('../../components/tamped-seal/tamped-seal.module').then(
+        m => m.TampedSealModule
+      ),
+    data: {
+      breadcrumb: 'Tamped Seal'
+    }
+  },
+  {
     path: 'draft-seal',
     loadChildren: () =>
       import('../../components/draft-seal/draft-seal.module').then(
