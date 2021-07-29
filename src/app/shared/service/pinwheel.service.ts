@@ -30,7 +30,7 @@ export class PinwheelService {
       }));
   }
 
-  getPOSTList() {
+  getPORTList() {
     return this.httpService.get(endPoints.POST_LIST)
       .pipe(map((response: any) => {
         return response;

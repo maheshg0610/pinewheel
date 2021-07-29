@@ -21,10 +21,10 @@ export class SelfStuffingComponent implements OnInit {
   public date: { year: number, month: number };
   public modelFooter: NgbDateStruct;
   icdList: string[] = [];
-  postList: string[] = [];
-  icdListtrue: boolean = false;
-  postListtrue: boolean = false
-  dropdownSettingPOST: IDropdownSettings = {
+  portList: string[] = [];
+  icd: string[] = [];
+  port: string[] = [];
+  dropdownSettingPORT: IDropdownSettings = {
     singleSelection: false,
     idField: 'portValue',
     textField: 'portValue',
@@ -62,9 +62,9 @@ export class SelfStuffingComponent implements OnInit {
          console.log(err)
        })
 
-     this.service.getPOSTList().subscribe((res) => {
+     this.service.getPORTList().subscribe((res) => {
        if (res) {
-         this.postList = res;
+         this.portList = res;
        }
      },
        (err) => {
@@ -132,6 +132,14 @@ export class SelfStuffingComponent implements OnInit {
     return time;
   }
 
+  appendData() {
+    let pv = this.restrictionForm.value.sendToPorts
+    pv.map((ele) => { this.port.push(ele.portId) })
+    let ic = this.restrictionForm.value.sendToICDs
+    ic.map((ele) => { this.icd.push(ele.icdId) })
+  }
+  
+
   submit() {
     let payload = {
       "vendorId": 2,
@@ -139,8 +147,8 @@ export class SelfStuffingComponent implements OnInit {
       "sealNo": this.generalForm.value.sealNo,
       "sealingDate": this.restrictionForm.value.sealingDate,
       "sealingTime": this.calculateTime(),
-      "sendToICDs": this.restrictionForm.value.sendToICDs,
-      "sendToPorts": this.restrictionForm.value.sendToPorts,
+      "sendToICDs": this.icd,
+      "sendToPorts": this.port,
       "shippingBillDetails": [{
         "ewayBillNo": this.restrictionForm.value.ewayBillNo,
         "shippingBillDate": this.restrictionForm.value.shippingBillDate,

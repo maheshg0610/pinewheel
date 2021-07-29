@@ -48,17 +48,24 @@
                                 <h4>Select Ports and ICD's that you will ship from</h4>
                                 <div class="form-group">
                                     <label>Port <span>*</span></label>
-                                    <input name="" type="number" class="form-control" formControlName="portIds" placeholder="" />
+                                    <div class="col-9 pr-0">
+                                        <ng-multiselect-dropdown formControlName="portIds" placeholder="Select" [data]="portList"
+                                            [settings]="dropdownSettingPORT">
+                                        </ng-multiselect-dropdown>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>ICD <span>*</span></label>
-                                    <input name="" type="number" class="form-control"  formControlName="icdIds" placeholder="" />
+                                   <div class="col-9 pr-0">
+                                        <ng-multiselect-dropdown formControlName="icdIds" placeholder="Select" [data]="icdList" [settings]="dropdownSettingICD">
+                                        </ng-multiselect-dropdown>
+                                   </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Distributor (optional) <span>*</span></label>
                                     <select class="form-control" name="isDistributer" formControlName="isDistributer">
-                                        <option value="yes">Yes</option>
-                                        <option value="no">No</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -70,11 +77,17 @@
                                 <h4>Select CHA and CFS</h4>
                                 <div class="form-group">
                                     <label>CHA <span>*</span></label>
-                                    <input name="" type="number" class="form-control"  formControlName="chaIds"  placeholder="" />
+                                  <div class="col-9">
+                                        <ng-multiselect-dropdown formControlName="chaIds" placeholder="Select" [data]="chaList" [settings]="dropdownSettingCha">
+                                        </ng-multiselect-dropdown>
+                                  </div>
                                 </div>
                                 <div class="form-group">
                                     <label>CFS <span>*</span></label>
-                                    <input name="" type="number" class="form-control" formControlName="cfsIds" placeholder="" />
+                                    <div class="col-9">
+                                        <ng-multiselect-dropdown formControlName="cfsIds" placeholder="Select" [data]="cfsList" [settings]="dropdownSettingCfs">
+                                        </ng-multiselect-dropdown>
+                                    </div>
                                 </div>
                             </section>
                             <div class="form-terms">

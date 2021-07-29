@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { SharedModule } from '../../shared/shared.module';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [LoginComponent, RegisterExporterRegistrationComponent],
@@ -18,7 +19,9 @@ import { SharedModule } from '../../shared/shared.module';
     ReactiveFormsModule,
     NgbModule,
     CarouselModule,
-    SharedModule
-  ]
+    SharedModule,
+    NgMultiSelectDropDownModule.forRoot()
+  ],
+  exports: [SharedModule]
 })
 export class AuthModule {}
