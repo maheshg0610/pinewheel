@@ -20,14 +20,12 @@
                                 <ngx-datatable-column prop="iecNumber"></ngx-datatable-column>
                                 <ngx-datatable-column prop="icdsList"></ngx-datatable-column>
                                 <ngx-datatable-column prop="portList "></ngx-datatable-column>
-                                <ngx-datatable-column prop="registeredDate">
-                                    <!-- requested date -->
-                                </ngx-datatable-column>
+                                <ngx-datatable-column prop="registeredDate"></ngx-datatable-column>
                                 <ngx-datatable-column prop="status"></ngx-datatable-column>
                                 <ngx-datatable-column prop="Action"  (click)='openDetails($event)'>
-                                <ng-template ngx-datatable-cell-template let-row="row">
+                                    <ng-template ngx-datatable-cell-template let-row="row">
                                         <button class="btn btn-primary btn-sm " (click)='openDetails(row)'> View Details</button>
-                                </ng-template>
+                                    </ng-template>
                                 </ngx-datatable-column>
                             </ngx-datatable>
                         </div>
