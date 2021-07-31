@@ -37,6 +37,7 @@ export class SuperAdminDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
+    this.getVendorList();
     this.getdashboardList();
   }
 
