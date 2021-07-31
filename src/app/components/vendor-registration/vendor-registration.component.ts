@@ -83,7 +83,7 @@ export class VendorRegistrationComponent implements OnInit {
       vendorName: [this.formData.vendorName ? this.formData.vendorName : ''],
       vendortype: [this.formData.vendortype ? this.formData.vendortype : ''],
       createdDate: [this.formData.createdDate ? this.formData.createdDate : ''],
-      distributor: [this.formData.distributor ? this.formData.distributor : ''],
+      isDistributer: [this.formData.distributor ? this.formData.distributor : ''],
       status: [this.formData.status ? this.formData.status : ''],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],

@@ -70,7 +70,7 @@ export const content: Routes = [
     }
   },
   {
-    path: 'tamped-seal',
+    path: 'tampered-seal',
     loadChildren: () =>
       import('../../components/tamped-seal/tamped-seal.module').then(
         m => m.TampedSealModule

@@ -101,4 +101,18 @@ export class PinwheelService {
       }));
   }
 
+  vendorDashboard(param) {
+    return this.httpService.get(endPoints.vendorDashboard+param)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+
+  adminDashboard(param) {
+    return this.httpService.get(endPoints.adminDashboard + param)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+
 }

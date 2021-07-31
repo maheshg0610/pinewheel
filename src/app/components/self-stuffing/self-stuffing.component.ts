@@ -43,13 +43,13 @@ export class SelfStuffingComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private calendar: NgbCalendar, private modalService: NgbModal,
     private service: PinwheelService) {
-    this.createGeneralForm();
-    this.createRestrictionForm();
-    this.createUsageForm();
   }
   
   ngOnInit() {
     this.getDropdownList() 
+    this.createGeneralForm();
+    this.createRestrictionForm();
+    this.createUsageForm();
    }
 
    getDropdownList() {

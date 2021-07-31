@@ -19,7 +19,7 @@ export class VendorManagementComponent implements OnInit {
   port: string[] = [];
   cha: string[] = [];
   cfs: string[] = [];
-
+  user:any;
   dropdownSettingCha: IDropdownSettings = {
     singleSelection: false,
     idField: 'chaId',
@@ -59,6 +59,7 @@ export class VendorManagementComponent implements OnInit {
   ngOnInit() {
     this.getDropdownList()
     this.createVendorRegisterForm()
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   createVendorRegisterForm() {
@@ -66,7 +67,7 @@ export class VendorManagementComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       mobileNumber: ['', Validators.required],
-      emailId: ['', Validators.required, Validators.email],
+      emailId: ['', Validators.required],
       portIds: ['', Validators.required],
       icdIds: ['', Validators.required],
       noOfSeal: ['', Validators.required],
@@ -134,7 +135,7 @@ export class VendorManagementComponent implements OnInit {
     }
     if (this.vendorMangementForm.value.agree) {
       let payload = {
-        "userId": 2,  //Here userId is super adminuserid
+        "userId": this.user.id, 
         "vendorType": "Exporter",
         "companyName": this.vendorMangementForm.value.companyName,
         "iec": this.vendorMangementForm.value.iec,

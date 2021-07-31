@@ -14,7 +14,13 @@ export const endPoints = {
     health_status: baseUrl + '/api/eseal-healthstatus-update',
     VENDOR_REQUEST: baseUrl +'/api/vendor-eseal-request' ,
     userList: baseUrl +"/api/eseal-request-list?userId=" ,
-    superAdminAccept: baseUrl + '/api/update-eseal-request'
+    superAdminAccept: baseUrl + '/api/update-eseal-request',
+    adminDashboard: baseUrl+"/api/admin-dashboard?userId=",
+    vendorDashboard: baseUrl+"/api/vendor-dashboard?userId=",
+    searchEseal: baseUrl + "/api/search-sealno?vendorId=2&sealNo=Seal1",
+    notification: baseUrl + "/api/notifications?userId=6&sealStatus=Tempered&viewStatus=unseen",
+    updateNotification: baseUrl + "/api/update-notification?notificationId=1&userId=2",
+    tackSeal:"/api/track-eseal?sealId=4"
 }
 
 export const status = {

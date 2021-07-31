@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
 import * as chartData from '../../../shared/data/chart';
 import { doughnutData, pieData } from '../../../shared/data/chart';
 
@@ -10,7 +11,9 @@ import { doughnutData, pieData } from '../../../shared/data/chart';
 export class DashboardComponent implements OnInit {
   public doughnutData = doughnutData;
   public pieData = pieData;
-  constructor() {
+  details:any;
+  user:any;
+  constructor(private service: PinwheelService) {
     Object.assign(this, { doughnutData, pieData });
   }
 
@@ -69,5 +72,21 @@ export class DashboardComponent implements OnInit {
   public chartClicked(e: any): void {}
   public chartHovered(e: any): void {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.getdashboardList();
+  }
+
+  getdashboardList() {
+    this.service.vendorDashboard(this.user.userId).subscribe((res) => {
+      if (res) {
+        this.details= res.data;
+      } else {
+        alert(res.statusText);
+      }
+    },
+      (err) => {
+        console.log(err)
+      })
+  }
 }

@@ -13,7 +13,8 @@ import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
 export class SuperAdminDashboardComponent implements OnInit {
   public order = [];
   public temp = [];
-  public user;
+  public user:any;
+  public details:any;
 
   @ViewChild(DatatableComponent, { static: true }) table: DatatableComponent;
   constructor(private service:PinwheelService) {
@@ -36,7 +37,7 @@ export class SuperAdminDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
-    this.getVendorList()
+    this.getdashboardList();
   }
 
   onAction(row, type) {
@@ -57,6 +58,19 @@ export class SuperAdminDashboardComponent implements OnInit {
     this.service.vendoeListForActivation(this.user.userId).subscribe((res) => {
       if (res) {
         this.order = res.data;
+      } else {
+        alert(res.statusText);
+      }
+    },
+      (err) => {
+        console.log(err)
+      })
+  }
+
+  getdashboardList() {
+    this.service.adminDashboard(this.user.userId).subscribe((res) => {
+      if (res) {
+        this.details = res.data;
       } else {
         alert(res.statusText);
       }

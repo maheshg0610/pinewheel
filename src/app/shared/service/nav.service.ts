@@ -101,8 +101,8 @@ export class NavService {
       active: false
     },
     {
-      path: '/tamped-seal/tampedseal',
-      title: 'Tamped Seal',
+      path: '/tampered-seal/tamperedseal',
+      title: 'Tampered Seal List',
       icon: 'box',
       type: 'link',
       active: false

@@ -64,10 +64,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Distributor (optional) <span>*</span></label>
-                                    <select class="form-control" name="distributor" formControlName="distributor">
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
-                                    </select>
+                                    <div class="radio-button col-7">
+                                        <input type="radio" name="isDistributer" formControlName="isDistributer" value=true> Yes
+                                        <input type="radio" name="isDistributer" formControlName="isDistributer" value=false> No
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>No. of seal required / month <span>*</span></label>

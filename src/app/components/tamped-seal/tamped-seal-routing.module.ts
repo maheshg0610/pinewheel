@@ -7,10 +7,10 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'tampedseal',
+        path: 'tamperedseal',
         component: TampedSealComponent,
         data: {
-          title: 'Tamped Seal',
+          title: 'Tampered Seal List',
           breadcrumb: ''
         }
       }
