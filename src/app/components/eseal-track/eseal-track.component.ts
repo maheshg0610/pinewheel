@@ -5,6 +5,9 @@ import { DatatableComponent } from "@swimlane/ngx-datatable";
 import { vendorlistDB } from '../../shared/tables/vendor-list';
 import { Router } from '@angular/router';
 import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
+import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-eseal-track',
@@ -14,8 +17,19 @@ import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
 export class EsealTrackComponent implements OnInit {
   public order = [];
   public temp = [];
+  public eSealList: any = [];
   public closeResult:string;
-
+  searchId: string ="";
+  searchText: string = '';
+  @ViewChild('instance') instance: NgbTypeahead;
+  search = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term === '' ? []
+        : this.eSealList.filter(v => v["3"].toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+    )
+  formatter = (x: { 3: string }) => x['3']
 
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
@@ -27,6 +41,11 @@ export class EsealTrackComponent implements OnInit {
   ngOnInit() {
     this.getVendorList()
   }
+
+  selected(event) {
+    this.searchId = Object.keys(event.item)[0];   
+  }
+
 
   getVendorList() {
     this.service.vendorList().subscribe((res) => {
@@ -82,5 +101,30 @@ export class EsealTrackComponent implements OnInit {
     this.router.navigate(['/vendor-registration/vendorregistration']);
   }
 
+  onChange(val) {
+    this.service.searchEseal(this.searchText).subscribe((response: any) => {
+      if (response) {
+        this.eSealList = response;
+      } else {
+       this.eSealList = []
+      }
+    }, (error: any) => {
+      
+    })
+  }
+
+  onTrack() {
+    if(this.searchId !== "") {
+      this.service.trackEseal(this.searchId).subscribe((response: any) => {
+        if (response) {
+          this.order = response;
+        } else {
+          this.order = []
+        }
+      }, (error: any) => {
+
+      })
+    }
+  }
 
 }

@@ -25,13 +25,13 @@ export class TampedSealComponent implements OnInit {
   
 
   ngOnInit() {
-    this.getVendorList()
+    this.getTemperedList()
   }
 
-  getVendorList() {
-    this.service.vendorList().subscribe((res) => {
+  getTemperedList() {
+    this.service.notificationDetails('Tempered', 'all').subscribe((res) => {
       if (res) {
-       this.order = res.data;
+        this.order = res.data;
       } else {
         alert(res.statusText);
       }

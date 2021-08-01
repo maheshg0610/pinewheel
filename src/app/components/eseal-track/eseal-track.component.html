@@ -1,4 +1,4 @@
-<!-- Container-fluid starts-->
+    <!-- Container-fluid starts-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
@@ -6,15 +6,20 @@
             <div class="card">
                 <div class="card-body">
                     <div class="register-box">
-                    <form class="form-horizontal auth-form">
+                    <!-- <form class="form-horizontal auth-form"> -->
                         <section>
                             <div class="form-group">
                                 <label>eSeal Number  <span>*</span></label>
-                                <input name="" type="text" class="form-control" placeholder="" />
-                                <button type="button" class="btn btn-primary ml-2">Track</button>
+                                <ng-template #rt let-r="result" let-t="term" class="form-control">
+                                    <ngb-highlight style="font-size: 12px;" [result]="r['3']" [term]="t"></ngb-highlight>
+                                </ng-template>
+                                <input #instance="ngbTypeahead" id="typeahead-template" type="text"
+                                    placeholder="Select version" class="form-control search-properties" [ngbTypeahead]="search" [resultTemplate]="rt"
+                                    [inputFormatter]="formatter" (selectItem)="selected($event)" [(ngModel)]="searchText" (keyup)="onChange($event)"/>
+                                <button type="button" class="btn btn-primary ml-2" (click)="onTrack()">Track</button>
                             </div>
                         </section>
-                    </form>
+                    <!-- </form> -->
                 </div>
                     <div class="table-responsive">
                         <div class="custom-datatable">
@@ -23,10 +28,11 @@
                             <ngx-datatable *ngIf="order" class="bootstrap" [rows]="order" [columnMode]="'force'" [headerHeight]="50"
                                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
                                 <ngx-datatable-column prop="sealNo"></ngx-datatable-column>
-                                <ngx-datatable-column prop="latslock"></ngx-datatable-column>
-                                <ngx-datatable-column prop="time"></ngx-datatable-column>
-                                <ngx-datatable-column prop="port"></ngx-datatable-column>
-                                <ngx-datatable-column prop="icd"></ngx-datatable-column>
+                                <ngx-datatable-column prop="Location"></ngx-datatable-column>
+                                <ngx-datatable-column prop="scanTime"></ngx-datatable-column>
+                                <ngx-datatable-column prop="sealTime"></ngx-datatable-column>
+                                <ngx-datatable-column prop="ports"></ngx-datatable-column>
+                                <ngx-datatable-column prop="icds"></ngx-datatable-column>
                                 <ngx-datatable-column prop="status"></ngx-datatable-column>
                             </ngx-datatable>
                         </div>

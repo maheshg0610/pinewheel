@@ -23,45 +23,22 @@
                     </a>
                 </li>
                 <li class="onhover-dropdown">
-                    <span class="badge badge-pill badge-primary pull-right notification-badge">3</span>
+                    <span class="badge badge-pill badge-primary pull-right notification-badge">{{details.length}}</span>
                     <app-feather-icons [icon]="'bell'"></app-feather-icons><span class="dot"></span>
                     <ul class="notification-dropdown onhover-show-div">
-                        <li>Notification <span class="badge badge-pill badge-primary pull-right">3</span></li>
-                        <li>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="mt-0"><span>
-                                            <app-feather-icons class="shopping-color" [icon]="'shopping-bag'">
-                                            </app-feather-icons>
-                                        </span>Notification One
-                                    </h6>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="media">
-                                <div class="media-body">
-                                    <h6 class="mt-0 txt-success"><span>
-                                            <app-feather-icons class="download-color font-success" [icon]="'download'">
-                                            </app-feather-icons>
-                                        </span>Notification Two</h6>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
+                        <li>Notification <span class="badge badge-pill badge-primary pull-right">{{details.length}}</span></li>
+                        <li *ngFor="let ele of details" (click)="updateStatus(ele)">
                             <div class="media">
                                 <div class="media-body">
                                     <h6 class="mt-0 txt-danger"><span>
                                             <app-feather-icons class="alert-color font-danger" [icon]="'alert-circle'">
                                             </app-feather-icons>
-                                        </span>Notification Three</h6>
-                                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetuer.</p>
+                                        </span>{{details.vendorName}}</h6>
+                                    <p class="mb-0">{{details.eSealNumber}}</p>
                                 </div>
                             </div>
                         </li>
-                        <li class="txt-dark"><a href="javascript:void(0)">All</a> notification</li>
+                        <li class="txt-dark" (click)="showAll()"><a href="javascript:void(0)" >All</a> notification</li>
                     </ul>
                 </li>
 

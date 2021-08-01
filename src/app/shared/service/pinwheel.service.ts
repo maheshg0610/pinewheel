@@ -10,10 +10,12 @@ import { BehaviorSubject, Subject, Observable } from 'rxjs';
 export class PinwheelService {
   public updateSearchResults: BehaviorSubject<any>;
   public updateSearchResults$: Observable<any>
+  public user:any;
 
   constructor(private httpService: HttpClient) { 
     this.updateSearchResults = new BehaviorSubject<any>({ loadTerms: false });
     this.updateSearchResults$ = this.updateSearchResults.asObservable();
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   saveSelfStuffing(payload) {
@@ -101,8 +103,8 @@ export class PinwheelService {
       }));
   }
 
-  vendorDashboard(param) {
-    return this.httpService.get(endPoints.vendorDashboard+param)
+  vendorDashboard() {
+    return this.httpService.get(endPoints.vendorDashboard + this.user.userId )
       .pipe(map((response: any) => {
         return response;
       }));
@@ -113,6 +115,34 @@ export class PinwheelService {
       .pipe(map((response: any) => {
         return response;
       }));
+  }
+
+  searchEseal( searchVal){
+    return this.httpService.get(endPoints.searchEseal + this.user.userId +'&sealNo=Seal'+ searchVal)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  } 
+  
+  trackEseal(param) {
+    return this.httpService.get(endPoints.trackSeal+ param)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+  
+  notificationDetails(condition, status) {
+    return this.httpService.get(endPoints.notification + this.user.userId + '&sealStatus=' + condition +'&viewStatus='+ status)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+
+  updateNotificationDetails(notification) {
+    return this.httpService.get(endPoints.updateNotification + notification+"&userId="+ this.user.userId)
+    .pipe(map((response: any) => {
+      return response;
+    }));
   }
 
 }

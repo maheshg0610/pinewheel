@@ -12,7 +12,6 @@ export class DashboardComponent implements OnInit {
   public doughnutData = doughnutData;
   public pieData = pieData;
   details:any;
-  user:any;
   constructor(private service: PinwheelService) {
     Object.assign(this, { doughnutData, pieData });
   }
@@ -73,12 +72,11 @@ export class DashboardComponent implements OnInit {
   public chartHovered(e: any): void {}
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem('user'));
     this.getdashboardList();
   }
 
   getdashboardList() {
-    this.service.vendorDashboard(this.user.userId).subscribe((res) => {
+    this.service.vendorDashboard().subscribe((res) => {
       if (res) {
         this.details= res.data;
       } else {

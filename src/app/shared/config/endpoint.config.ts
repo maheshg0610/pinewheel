@@ -17,10 +17,10 @@ export const endPoints = {
     superAdminAccept: baseUrl + '/api/update-eseal-request',
     adminDashboard: baseUrl+"/api/admin-dashboard?userId=",
     vendorDashboard: baseUrl+"/api/vendor-dashboard?userId=",
-    searchEseal: baseUrl + "/api/search-sealno?vendorId=2&sealNo=Seal1",
-    notification: baseUrl + "/api/notifications?userId=6&sealStatus=Tempered&viewStatus=unseen",
-    updateNotification: baseUrl + "/api/update-notification?notificationId=1&userId=2",
-    tackSeal:"/api/track-eseal?sealId=4"
+    searchEseal: baseUrl + "/api/search-sealno?vendorId=",
+    notification: baseUrl + "/api/notifications?userId=",
+    updateNotification: baseUrl + "/api/update-notification?notificationId=",
+    trackSeal: baseUrl+ "/api/track-eseal?sealId="
 }
 
 export const status = {
