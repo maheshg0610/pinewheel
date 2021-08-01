@@ -10,12 +10,10 @@
                                 (keyup)='updateFilter($event)' />
                             <ngx-datatable *ngIf="order" class="bootstrap" [rows]="order" [columnMode]="'force'"
                                 [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
-                                <ngx-datatable-column prop="sealNo"></ngx-datatable-column>
-                                <ngx-datatable-column prop="Location"></ngx-datatable-column>
-                                <ngx-datatable-column prop="scanTime"></ngx-datatable-column>
-                                <ngx-datatable-column prop="sealTime"></ngx-datatable-column>
-                                <ngx-datatable-column prop="ports"></ngx-datatable-column>
-                                <ngx-datatable-column prop="icds"></ngx-datatable-column>
+                                <ngx-datatable-column prop="vendorName"></ngx-datatable-column>
+                                <ngx-datatable-column prop="eSealNumber"></ngx-datatable-column>
+                                <ngx-datatable-column prop="sealStatus"></ngx-datatable-column>
+                                <ngx-datatable-column prop="viewStatus"></ngx-datatable-column>
                                 <ngx-datatable-column prop="status"></ngx-datatable-column>
                             </ngx-datatable>
                         </div>

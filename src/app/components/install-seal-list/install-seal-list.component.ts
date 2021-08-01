@@ -25,11 +25,11 @@ export class InstallSealListComponent implements OnInit {
   
 
   ngOnInit() {
-    this.getVendorList()
+    this.getinstallSealList()
   }
 
-  getVendorList() {
-    this.service.vendorList().subscribe((res) => {
+  getinstallSealList() {
+    this.service.notificationDetails('installed', 'all').subscribe((res) => {
       if (res) {
        this.order = res.data;
       } else {
