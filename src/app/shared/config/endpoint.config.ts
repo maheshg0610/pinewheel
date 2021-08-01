@@ -20,7 +20,8 @@ export const endPoints = {
     searchEseal: baseUrl + "/api/search-sealno?vendorId=",
     notification: baseUrl + "/api/notifications?userId=",
     updateNotification: baseUrl + "/api/update-notification?notificationId=",
-    trackSeal: baseUrl+ "/api/track-eseal?sealId="
+    trackSeal: baseUrl+ "/api/track-eseal?sealId=",
+    geoloc:'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude='
 }
 
 export const status = {

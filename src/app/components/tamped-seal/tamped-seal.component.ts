@@ -31,6 +31,22 @@ export class TampedSealComponent implements OnInit {
   getTemperedList() {
     this.service.notificationDetails('Tempered', 'all').subscribe((res) => {
       if (res) {
+        this.order = [
+          
+            {
+              "nitificationId": 4,
+              "viewedDate": null,
+              "latitude": null,
+              "longitude": null,
+              "sealStatus": "Tempered",
+              "viewStatus": "unseen",
+              "esealId": 3,
+              "eSealNumber": "Seal123333",
+              "viewerId": 0,
+              "vendorId": 6,
+              "vendorName": "Testxporter"
+            }
+          ]
         this.order = res.data;
       } else {
         alert(res.statusText);

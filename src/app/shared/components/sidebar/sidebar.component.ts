@@ -1,12 +1,11 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { NavService, Menu } from '../../service/nav.service';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
 

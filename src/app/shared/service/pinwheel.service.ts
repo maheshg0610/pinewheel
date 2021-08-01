@@ -145,4 +145,10 @@ export class PinwheelService {
     }));
   }
 
+  getReveserCode(lat, long){
+    return this.httpService.get(endPoints.geoloc +lat+'&longitude='+long+'&localityLanguage=en')
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
 }
