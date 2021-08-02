@@ -40,6 +40,11 @@ export class SidebarComponent {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
+    if (this.user.roleName === 'SuperAdmin') {
+      this.menuItems = this.menuItems.filter(x => x.title !== 'Dashboard')
+    } else {
+      this.menuItems = this.menuItems.filter(x => x.title !== 'Super Admin Dashboard')
+    }
   }
 
   // Active Nave state

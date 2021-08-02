@@ -8,7 +8,7 @@ import { RegisterExporterRegistrationComponent } from './components/auth/registe
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'dashboard/default',
+    redirectTo: 'auth/login',
     pathMatch: 'full'
   },
   {

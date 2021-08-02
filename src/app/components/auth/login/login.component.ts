@@ -70,7 +70,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(paylod).subscribe(
       response => {
         if (response.StatusText === status.SUCCESS) {
-          this.router.navigate(['/dashboard/default']);
+          if (response.roleName === 'SuperAdmin') {
+            this.router.navigate(['/dashboard/superadmin']);
+          } else {
+            this.router.navigate(['/dashboard/default']);
+          }
         } else {
           //TODO:pop-up
         }
