@@ -46,6 +46,7 @@ export class SuperAdminDashboardComponent implements OnInit {
     this.service.adminAccept(payload).subscribe((res) => {
       if (res.status =="success") {
         this.getVendorList()
+        this.getdashboardList()
         alert(res.statusText);
       } else {
         alert(res.statusText);

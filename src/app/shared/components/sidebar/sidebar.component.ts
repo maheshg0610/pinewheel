@@ -43,9 +43,10 @@ export class SidebarComponent {
     if (this.user.roleName === 'SuperAdmin') {
       this.menuItems = this.menuItems.filter(x => x.title !== 'Dashboard' && x.title !== 'Self Stuffing'
         && x.title !== 'Install Seal' && x.title !== 'Install Seal List' && x.title !== 'Eseal Track' &&
-        x.title !== 'Tampered Seal List' && x.title !== 'Draft Seal' && x.title !== 'Requisition')
+        x.title !== 'Tampered Seal List' && x.title !== 'Draft Seal' && x.title !== 'Requisition' && x.title !==  'Vendor Registration')
     } else {
-      this.menuItems = this.menuItems.filter(x => x.title !== 'Super Admin Dashboard')
+      this.menuItems = this.menuItems.filter(x => x.title !== 'Super Admin Dashboard' && x.title !== 'Vendor Registration' && x.title !=='Vendor Management'
+        && x.title !== 'Vendor Requested List')
     }
   }
 
