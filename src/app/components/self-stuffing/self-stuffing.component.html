@@ -37,11 +37,12 @@
             <h5>Seal Details (Last 45 days)</h5>
         </div>
         <div class="card-body tab2-card">
-            <ngb-tabset class="tab-coupon">
-                <ngb-tab title="General">
-                    <ng-template ngbTabContent>
+            <ul ngbNav #nav="ngbNav"  [activeId]="1" class="nav-tabs">
+                <li [ngbNavItem] ="1" title="General">
+                    <a ngbNavLink>General</a>
+                    <ng-template ngbNavContent>
                         <form [formGroup]="generalForm"  class="needs-validation" novalidate="">
-                            <h4>Please Enter Seal Details                            </h4>
+                            <h4>Please Enter Seal Details</h4>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group row">
@@ -55,10 +56,10 @@
                             </div>
                         </form>
                     </ng-template>
-                </ngb-tab>
-                <ngb-tab>
-                    <ng-template ngbTabTitle>Shipping Details</ng-template>
-                    <ng-template ngbTabContent>
+                </li>
+                <li [ngbNavItem]="2">
+                    <a ngbNavLink>Shipping Details</a>
+                    <ng-template ngbNavContent>
                         <form [formGroup]="restrictionForm" class="needs-validation" novalidate="">
                             <h4>Restriction</h4>
                             <div class="form-group row">
@@ -111,15 +112,20 @@
                                 <label for="validationCustom6" class="col-xl-3 col-md-4">Send To</label>
                                 <div class="col-md-7 pr-0">
                                     <div class="row">
-                                        <div class="col-md-6 pl-0">
-                                            <ng-multiselect-dropdown formControlName="sendToICDs" placeholder="Select" [data]="icdList"
-                                               [settings]="dropdownSettingICD">
-                                            </ng-multiselect-dropdown>
+                                        <div *ngIf="icdList" class="col-md-6 pl-0">
+                                            <!-- <ng-multiselect-dropdown formControlName="sendToPorts" placeholder="Select" [data]="icdList" [settings]="dropdownSettingICD">
+                                            </ng-multiselect-dropdown> -->
+                                            <select formControlName="sendToICDs" placeholder="Select" >
+                                                <option *ngFor="let key of icdList" [ngValue]=key.portId> {{key.icdValue}}</option>
+                                            </select>
                                         </div>
-                                        <div class="col-md-6 pl-0" > 
-                                            <ng-multiselect-dropdown formControlName="sendToPorts" placeholder="Select" [data]="portList"
+                                        <div *ngIf="portList"  class="col-md-6 pl-0" > 
+                                            <select formControlName="sendToPorts" placeholder="Select">
+                                                <option *ngFor="let key of portList" [ngValue]=key> {{key.portValue}}</option>
+                                            </select>
+                                            <!-- <ng-multiselect-dropdown formControlName="sendToPorts" placeholder="Select" [data]="portList"
                                                [settings]="dropdownSettingPORT">
-                                            </ng-multiselect-dropdown>
+                                            </ng-multiselect-dropdown> -->
                                         </div>
                                     </div>
                                 </div>
@@ -134,9 +140,10 @@
                             </div>
                         </form>
                     </ng-template>
-                </ngb-tab>
+                </li>
                 
-            </ngb-tabset>
+            </ul>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
             <div class="pull-right">
                 <button type="button" class="btn btn-primary mr-2" (click)="submit()">Submit</button>
                 <button type="button" class="btn btn-secondary mr-2">Save as draft</button>

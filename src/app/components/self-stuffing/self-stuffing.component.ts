@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { categoryDB } from '../../shared/tables/category';
+import {  NgbNav } from '@ng-bootstrap/ng-bootstrap';
+
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDateStruct, NgbDate, NgbCalendar, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
@@ -10,9 +11,13 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 @Component({
   selector: 'app-selfstuffing',
   templateUrl: './self-stuffing.component.html',
-  styleUrls: ['./self-stuffing.component.scss']
+  styleUrls: ['./self-stuffing.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SelfStuffingComponent implements OnInit {
+  @ViewChild('nav', { static: false }) set content(content: NgbNav) {
+   // this.tabSet = content;
+  }
   public closeResult: string;
   public generalForm: FormGroup;
   public restrictionForm: FormGroup;
@@ -26,7 +31,7 @@ export class SelfStuffingComponent implements OnInit {
   port: string[] = [];
   dropdownSettingPORT: IDropdownSettings = {
     singleSelection: false,
-    idField: 'portValue',
+    idField: 'portId',
     textField: 'portValue',
     itemsShowLimit: 4,
     enableCheckAll: false,
@@ -34,7 +39,7 @@ export class SelfStuffingComponent implements OnInit {
   };
   dropdownSettingICD: IDropdownSettings = {
     singleSelection: false,
-    idField: 'icdValue',
+    idField: 'icdId',
     textField: 'icdValue',
     itemsShowLimit: 4,
     enableCheckAll: false,
@@ -107,7 +112,7 @@ export class SelfStuffingComponent implements OnInit {
   createRestrictionForm() {
     this.restrictionForm = this.formBuilder.group({
       shippingBillDate: [''],
-      shippingBilllNo: [''],
+      shippingBillNo: [''],
       ewayBillNo: [''],
       sealingDate: [],
       sealingTime: [],
@@ -147,8 +152,8 @@ export class SelfStuffingComponent implements OnInit {
       "sealNo": this.generalForm.value.sealNo,
       "sealingDate": this.restrictionForm.value.sealingDate,
       "sealingTime": this.calculateTime(),
-      "sendToICDs": this.icd,
-      "sendToPorts": this.port,
+      "sendToICDs": this.restrictionForm.value.sendToICDs.icdId,
+      "sendToPorts": this.restrictionForm.value.sendToPorts.portId,
       "shippingBillDetails": [{
         "ewayBillNo": this.restrictionForm.value.ewayBillNo,
         "shippingBillDate": this.restrictionForm.value.shippingBillDate,

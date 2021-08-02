@@ -13,6 +13,7 @@ import { NavService } from './service/nav.service';
 import { WINDOW_PROVIDERS } from './service/windows.service';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     ContentLayoutComponent,
     BreadcrumbComponent,
   ],
-  imports: [CommonModule, RouterModule, NgMultiSelectDropDownModule.forRoot()],
+  imports: [CommonModule, RouterModule, NgMultiSelectDropDownModule.forRoot(), NgbModule, NgbNavModule],
   providers: [NavService, WINDOW_PROVIDERS],
-  exports: [FeatherIconsComponent, ToggleFullscreenDirective, NgMultiSelectDropDownModule]
+  exports: [FeatherIconsComponent, ToggleFullscreenDirective, NgMultiSelectDropDownModule, NgbModule, NgbNavModule]
 })
 export class SharedModule {}
