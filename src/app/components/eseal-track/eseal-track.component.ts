@@ -29,41 +29,13 @@ export class EsealTrackComponent implements OnInit {
       debounceTime(200),
       distinctUntilChanged(),
       map(term => term === '' ? []
-        : this.eSealList.filter(v => v["3"].toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+        : this.eSealList.filter(v => v['name'].toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
-  formatter = (x: { 3: string }) => x['3']
+  formatter = (x: { name: string }) => x['name']
 
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
   constructor(private modalService: NgbModal, private router: Router, private service:PinwheelService) {
-   // this.order = vendorlistDB.list_order;
-   this.order= [
-      {
-        "esealId": 4,
-        "sealNo": "1000123",
-        "latitude": "17.492390",
-        "longitude": "78.602821",
-        "scanTime": "2021-07-26T15:53:05.000+00:00",
-        "icds": [
-          {
-            "1": "ICD Tarapur"
-          },
-          {
-            "2": "ICD Banglore"
-          }
-        ],
-        "ports": [
-          {
-            "1": "JNCH"
-          },
-          {
-            "2": "CH Cochin"
-          }
-        ],
-        "sealTime": "2021-07-18T12:51:08.000+00:00",
-        "status": "Installed"
-      }
-    ]
   }
   
 
@@ -72,7 +44,7 @@ export class EsealTrackComponent implements OnInit {
   }
 
   selected(event) {
-    this.searchId = Object.keys(event.item)[0];   
+    this.searchId = event.item.id;   
   }
 
 
@@ -118,15 +90,17 @@ export class EsealTrackComponent implements OnInit {
   }
 
   onChange(val) {
-    this.service.searchEseal(this.searchText).subscribe((response: any) => {
-      if (response) {
-        this.eSealList = response;
-      } else {
-       this.eSealList = []
-      }
-    }, (error: any) => {
-      
-    })
+    if (val !== "" && val !== " ") {
+      this.service.searchEseal(this.searchText).subscribe((response: any) => {
+        if (response) {
+          this.eSealList = response;
+        } else {
+          this.eSealList = []
+        }
+      }, (error: any) => {
+
+      })
+    }
   }
 
   onTrack() {

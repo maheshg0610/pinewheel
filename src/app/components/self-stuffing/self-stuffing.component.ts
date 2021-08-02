@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import {  NgbNav } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -111,18 +111,25 @@ export class SelfStuffingComponent implements OnInit {
 
   createRestrictionForm() {
     this.restrictionForm = this.formBuilder.group({
-      shippingBillDate: [''],
-      shippingBillNo: [''],
-      ewayBillNo: [''],
-      sealingDate: [],
-      sealingTime: [],
-      min:[],
-      max:[],
-      containerNo: [],
-      trailerNo: [],
-      sendToICDs:[Validators.required],
-      sendToPorts: [Validators.required]
+      sealingDate: [''],
+      sealingTime: [''],
+      containerNo: [''],
+      shippingBillDetails: this.formBuilder.array([
+      //   {
+      //   shippingBillDate: [''],
+      //   shippingBillNo: [''],
+      //   ewayBillNo: ['']
+      // }
+    ]),
+      trailerNo: [''],
+      sendToICDs:['',Validators.required],
+      sendToPorts: ['',Validators.required]
     })
+    this.addMoreFeild()
+  }
+
+  get shippingBillDetails() {
+    return this.restrictionForm.controls["shippingBillDetails"] as FormArray;
   }
 
   createUsageForm() {
@@ -132,11 +139,6 @@ export class SelfStuffingComponent implements OnInit {
     })
   }
 
-  calculateTime(){
-    let time = this.restrictionForm.value.max - this.restrictionForm.value.min;
-    return time;
-  }
-
   appendData() {
     let pv = this.restrictionForm.value.sendToPorts
     pv.map((ele) => { this.port.push(ele.portId) })
@@ -144,32 +146,52 @@ export class SelfStuffingComponent implements OnInit {
     ic.map((ele) => { this.icd.push(ele.icdId) })
   }
   
+  formateDate(val){
+    if (val.toString().split("").length === 1){
+      return '0'+val
+    }
+    return val
+  }
+  updateData(val) {
+    val.map( (ele) => {
+      if (ele.shippingBillDate) {
+        ele.shippingBillDate = ele.shippingBillDate.year + '-' + this.formateDate(ele.shippingBillDate.month) + '-' + this.formateDate(ele.shippingBillDate.day)
+      }
+    })
+    return val;
+  }
 
   submit() {
+    this.appendData() 
     let payload = {
       "vendorId": 2,
       "containerNo": this.restrictionForm.value.containerNo,
       "sealNo": this.generalForm.value.sealNo,
-      "sealingDate": this.restrictionForm.value.sealingDate,
-      "sealingTime": this.calculateTime(),
-      "sendToICDs": this.restrictionForm.value.sendToICDs.icdId,
-      "sendToPorts": this.restrictionForm.value.sendToPorts.portId,
-      "shippingBillDetails": [{
-        "ewayBillNo": this.restrictionForm.value.ewayBillNo,
-        "shippingBillDate": this.restrictionForm.value.shippingBillDate,
-        "shippingBilllNo": this.restrictionForm.value.shippingBilllNo,
-      }],
+      "sealingDate": this.restrictionForm.value.sealingDate.year + '-' + this.formateDate(this.restrictionForm.value.sealingDate.month) +'-' + this.formateDate(this.restrictionForm.value.sealingDate.day),
+      "sealingTime": this.restrictionForm.value.sealingTime +':00',
+      "sendToICDs": this.icd,
+      "sendToPorts": this.port,
+      "shippingBillDetails": this.updateData(this.restrictionForm.value.shippingBillDetails),
       "status": "Installed",
       "trailerNo": this.restrictionForm.value.trailerNo
     }
     this.service.saveSelfStuffing(payload).subscribe((res) => {
       if (res.status === status.SUCCESS) {
-        //TODO:pop-up
+        alert(res.statusText)
       }
      }, 
     (err) =>{
       console.log(err)
     })
   }
- 
+  
+
+  addMoreFeild(){
+    const add = this.restrictionForm.get('shippingBillDetails') as FormArray;
+    add.push(this.formBuilder.group({
+      shippingBillDate: [''],
+      shippingBillNo: [''],
+      ewayBillNo: ['']
+    }))
+  }
 }

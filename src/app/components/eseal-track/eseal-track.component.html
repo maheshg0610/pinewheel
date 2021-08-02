@@ -11,7 +11,7 @@
                             <div class="form-group">
                                 <label>eSeal Number  <span>*</span></label>
                                 <ng-template #rt let-r="result" let-t="term" class="form-control">
-                                    <ngb-highlight style="font-size: 12px;" [result]="r['3']" [term]="t"></ngb-highlight>
+                                    <ngb-highlight style="font-size: 12px;" [result]="r['name']" [term]="t"></ngb-highlight>
                                 </ng-template>
                                 <input #instance="ngbTypeahead" id="typeahead-template" type="text"
                                     placeholder="Select version" class="form-control search-properties" [ngbTypeahead]="search" [resultTemplate]="rt"
@@ -28,7 +28,7 @@
                             <ngx-datatable *ngIf="order && location" class="bootstrap" [rows]="order" [columnMode]="'force'" [headerHeight]="50"
                                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
                                 <ngx-datatable-column prop="sealNo"></ngx-datatable-column>
-                                <ngx-datatable-column prop="location"></ngx-datatable-column>
+                                <ngx-datatable-column prop="scanBy"></ngx-datatable-column>
                                 <ngx-datatable-column prop="scanTime"></ngx-datatable-column>
                                 <ngx-datatable-column prop="sealTime"></ngx-datatable-column>
                                 <ngx-datatable-column prop="ports">
@@ -41,6 +41,7 @@
                                         <span *ngFor="let key of row.icds, let i = index"> {{key|json}}</span>
                                     </ng-template>
                                 </ngx-datatable-column>
+                                <ngx-datatable-column prop="location"></ngx-datatable-column>
                                 <ngx-datatable-column prop="status"></ngx-datatable-column>
                             </ngx-datatable>
                         </div>

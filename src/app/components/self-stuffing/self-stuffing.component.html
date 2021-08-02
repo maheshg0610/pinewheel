@@ -41,7 +41,7 @@
                 <li [ngbNavItem] ="1" title="General">
                     <a ngbNavLink>General</a>
                     <ng-template ngbNavContent>
-                        <form [formGroup]="generalForm"  class="needs-validation" novalidate="">
+                        <form [formGroup]="generalForm"  class="needs-validation" novalidate>
                             <h4>Please Enter Seal Details</h4>
                             <div class="row">
                                 <div class="col-sm-12">
@@ -55,43 +55,45 @@
                                 </div>
                             </div>
                         </form>
-                    </ng-template>
-                </li>
-                <li [ngbNavItem]="2">
-                    <a ngbNavLink>Shipping Details</a>
-                    <ng-template ngbNavContent>
-                        <form [formGroup]="restrictionForm" class="needs-validation" novalidate="">
+                        <hr />
+                        <form [formGroup]="restrictionForm" class="needs-validation" novalidate>
                             <h4>Restriction</h4>
-                            <div class="form-group row">
-                                <label for="validationCustom3" class="col-xl-3 col-md-4">Shipping Bill No.                                </label>
-                                <input class="form-control col-md-7" formControlName="shippingBillNo" id="validationCustom3"
-                                    type="text" required="">
-                                <div class="valid-feedback">Please Provide a Bill No.</div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-xl-3 col-md-4">Shipping Bill Date</label>
-                                <div class="input-group col-md-7 input-grp-p">
-                                    <input class="datepicker-here form-control digits" ngbDatepicker
-                                        formControlName="shippingBillDate" #f="ngbDatepicker">
-                                    <div class="input-group-append">
-                                        <button class="btn calendar" (click)="f.toggle()" type="button"><i
-                                                class="fa fa-calendar"></i></button>
+                         <ng-container formArrayName="shippingBillDetails">
+                            <ng-container *ngFor="let billGroup of shippingBillDetails.controls; let i = index">
+                                <div [formGroup]="billGroup">
+                                    <div class="form-group row">
+                                        <label for="validationCustom3" class="col-xl-3 col-md-4">Shipping Bill No. </label>
+                                        <input class="form-control col-md-7" formControlName="shippingBillNo" id="validationCustom3" type="text"
+                                            required="">
+                                        <div class="valid-feedback">Please Provide a Bill No.</div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-md-4">Shipping Bill Date</label>
+                                        <div class="input-group col-md-7 input-grp-p">
+                                            <input class="datepicker-here form-control digits" ngbDatepicker formControlName="shippingBillDate"
+                                                #f="ngbDatepicker">
+                                            <div class="input-group-append">
+                                                <button class="btn calendar" (click)="f.toggle()" type="button"><i
+                                                        class="fa fa-calendar"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom4" class="col-xl-3 col-md-4">E-way Bill No.</label>
+                                        <input class="form-control col-md-7" formControlName="ewayBillNo" type="text" id="validationCustom4" />
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="validationCustom4" class="col-xl-3 col-md-4">E-way Bill No.</label>
-                                <input class="form-control col-md-7" formControlName="ewayBillNo" type="text" id="validationCustom4" />
-                            </div>
+                            </ng-container>
+                         </ng-container>
+                           <button type="button" class="btn btn-secondary" (click)="addMoreFeild()">Add more</button>
                             <hr />
                             <div class="form-group row">
                                 <label class="col-xl-3 col-md-4">Sealing Date</label>
                                 <div class="input-group col-md-7 input-grp-p">
-                                    <input class="datepicker-here form-control digits" ngbDatepicker
-                                        formControlName="sealingDate" #c="ngbDatepicker">
+                                    <input class="datepicker-here form-control digits" ngbDatepicker formControlName="sealingDate"
+                                        #c="ngbDatepicker">
                                     <div class="input-group-append">
-                                        <button class="btn calendar" (click)="c.toggle()" type="button"><i
-                                                class="fa fa-calendar"></i></button>
+                                        <button class="btn calendar" (click)="c.toggle()" type="button"><i class="fa fa-calendar"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -99,13 +101,13 @@
                                 <label for="validationCustom6" class="col-xl-3 col-md-4">Sealing Time</label>
                                 <div class="col-md-7 pr-0">
                                     <div class="row">
-                                    <div class="col-md-6 pl-0">
-                                        <input class="form-control " formControlName="min" id="validationCustom6" type="number">
+                                        <div class="col-md-12 pl-0">
+                                            <input class="form-control " formControlName="sealingTime" id="validationCustom6" type="time">
+                                        </div>
+                                        <!-- <div class="col-md-6 pl-0">
+                                            <input class="form-control" formControlName="max" id="validationCustom6" type="time">
+                                        </div> -->
                                     </div>
-                                    <div class="col-md-6 pl-0">
-                                        <input class="form-control" formControlName="max" id="validationCustom6" type="number">
-                                    </div>
-                                </div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -113,19 +115,19 @@
                                 <div class="col-md-7 pr-0">
                                     <div class="row">
                                         <div *ngIf="icdList" class="col-md-6 pl-0">
-                                            <!-- <ng-multiselect-dropdown formControlName="sendToPorts" placeholder="Select" [data]="icdList" [settings]="dropdownSettingICD">
-                                            </ng-multiselect-dropdown> -->
-                                            <select formControlName="sendToICDs" placeholder="Select" >
+                                            <ng-multiselect-dropdown formControlName="sendToICDs" placeholder="Select" [data]="icdList" [settings]="dropdownSettingICD">
+                                                                    </ng-multiselect-dropdown>
+                                            <!-- <select formControlName="sendToICDs" placeholder="Select">
                                                 <option *ngFor="let key of icdList" [ngValue]=key.portId> {{key.icdValue}}</option>
-                                            </select>
+                                            </select> -->
                                         </div>
-                                        <div *ngIf="portList"  class="col-md-6 pl-0" > 
-                                            <select formControlName="sendToPorts" placeholder="Select">
+                                        <div *ngIf="portList" class="col-md-6 pl-0">
+                                            <!-- <select formControlName="sendToPorts" placeholder="Select">
                                                 <option *ngFor="let key of portList" [ngValue]=key> {{key.portValue}}</option>
-                                            </select>
-                                            <!-- <ng-multiselect-dropdown formControlName="sendToPorts" placeholder="Select" [data]="portList"
-                                               [settings]="dropdownSettingPORT">
-                                            </ng-multiselect-dropdown> -->
+                                            </select> -->
+                                            <ng-multiselect-dropdown formControlName="sendToPorts" placeholder="Select" [data]="portList"
+                                                                       [settings]="dropdownSettingPORT">
+                                                                    </ng-multiselect-dropdown>
                                         </div>
                                     </div>
                                 </div>

@@ -118,7 +118,7 @@ export class PinwheelService {
   }
 
   searchEseal( searchVal){
-    return this.httpService.get(endPoints.searchEseal + this.user.userId +'&sealNo=Seal'+ searchVal)
+    return this.httpService.get(endPoints.searchEseal + this.user.vendorId +'&sealNo='+ searchVal)
       .pipe(map((response: any) => {
         return response;
       }));
@@ -139,7 +139,7 @@ export class PinwheelService {
   }
 
   updateNotificationDetails(notification) {
-    return this.httpService.get(endPoints.updateNotification + notification+"&userId="+ this.user.userId)
+    return this.httpService.put(endPoints.updateNotification + notification+"&userId="+ this.user.userId, {})
     .pipe(map((response: any) => {
       return response;
     }));

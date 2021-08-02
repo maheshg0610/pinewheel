@@ -31,20 +31,7 @@ export class InstallSealListComponent implements OnInit {
   getinstallSealList() {
     this.service.notificationDetails('all', 'all').subscribe((res) => {
       if (res) {
-      // this.order = res.data;
-          this.order = [{
-      "nitificationId": 4,
-      "viewedDate": null,
-      "latitude": null,
-      "longitude": null,
-      "sealStatus": "Tempered",
-      "viewStatus": "unseen",
-      "esealId": 3,
-      "eSealNumber": "Seal123333",
-      "viewerId": 0,
-      "vendorId": 6,
-      "vendorName": "Testxporter"
-    }]
+       this.order = res.data;
       } else {
         alert(res.statusText);
       }

@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
   updateStatus(val){
     this.service.updateNotificationDetails(val.nitificationId).subscribe((res) => {
       if (res) {
-
+        this.getnotificationdetails('Tempered', 'unseen')
       } else {
         alert(res.statusText);
       }
@@ -75,7 +75,6 @@ export class HeaderComponent implements OnInit {
         if (response) {
           this.location = true;
           ele['location'] = response.locality + ', ' + response.principalSubdivision + ', ' + response.countryName;
-          console.log(ele)
         } else {
 
         }
