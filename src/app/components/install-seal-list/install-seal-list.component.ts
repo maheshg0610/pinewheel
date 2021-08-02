@@ -29,7 +29,7 @@ export class InstallSealListComponent implements OnInit {
   }
 
   getinstallSealList() {
-    this.service.notificationDetails('installed', 'all').subscribe((res) => {
+    this.service.notificationDetails('all', 'all').subscribe((res) => {
       if (res) {
       // this.order = res.data;
           this.order = [{

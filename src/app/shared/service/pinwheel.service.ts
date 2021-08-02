@@ -132,7 +132,7 @@ export class PinwheelService {
   }
   
   notificationDetails(condition, status) {
-    return this.httpService.get(endPoints.notification + this.user.userId + '&sealStatus=' + condition +'&viewStatus='+ status)
+    return this.httpService.get(endPoints.notification + this.user.vendorId + '&sealStatus=' + condition +'&viewStatus='+ status)
       .pipe(map((response: any) => {
         return response;
       }));

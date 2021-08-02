@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
   public openNav: boolean = false;
   public isOpenMobile : boolean;
   details:any;
+  public location:boolean = false;
 
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
 
@@ -40,6 +41,7 @@ export class HeaderComponent implements OnInit {
     this.service.notificationDetails(val1,val2).subscribe((res) => {
       if (res) {
         this.details = res.data;
+        this.getGeoLocation();
       } else {
         alert(res.statusText);
       }
@@ -65,6 +67,20 @@ export class HeaderComponent implements OnInit {
 
   showAll() {
     this.getnotificationdetails('all','all')
+  }
+
+  getGeoLocation() {
+    this.details.map((ele) => {
+      this.service.getReveserCode(ele.latitude, ele.longitude).subscribe((response: any) => {
+        if (response) {
+          this.location = true;
+          ele['location'] = response.locality + ', ' + response.principalSubdivision + ', ' + response.countryName;
+          console.log(ele)
+        } else {
+
+        }
+      })
+    })
   }
 
 

@@ -26,15 +26,16 @@
                     <span class="badge badge-pill badge-primary pull-right notification-badge"  *ngIf="details && details.length">{{details.length}}</span>
                     <app-feather-icons [icon]="'bell'"></app-feather-icons><span class="dot"></span>
                     <ul class="notification-dropdown onhover-show-div">
-                        <li>Notification <span class="badge badge-pill badge-primary pull-right" *ngIf="details && details.length">{{details.length}}</span></li>
+                        <li>Notification <span class="badge badge-pill badge-primary pull-right" *ngIf="details && details.length && location">{{details.length}}</span></li>
                         <li *ngFor="let ele of details" (click)="updateStatus(ele)">
                             <div class="media">
                                 <div class="media-body">
                                     <h6 class="mt-0 txt-danger"><span>
                                             <app-feather-icons class="alert-color font-danger" [icon]="'alert-circle'">
                                             </app-feather-icons>
-                                        </span>{{details.vendorName}}</h6>
-                                    <p class="mb-0">{{details.eSealNumber}}</p>
+                                        </span>{{ele.vendorName}}</h6>
+                                    <p class="mb-0">{{ele.eSealNumber}}</p>
+                                    <p class="mb-0">{{ele.location}}</p>
                                 </div>
                             </div>
                         </li>
