@@ -21,6 +21,10 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'auth/login/admin',
+    component: LoginComponent
+  },
+  {
     path: 'auth/register-exporter-registration',
     component: RegisterExporterRegistrationComponent
   }

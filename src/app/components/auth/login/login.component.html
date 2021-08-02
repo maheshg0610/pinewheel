@@ -2,7 +2,7 @@
     <div class="authentication-box">
         <div class="container">
             <div class="row">
-                <div class="col-md-5 p-0 card-left">
+                <div *ngIf="!isAdmin" class="col-md-5 p-0 card-left">
                     <div class="card bg-primary">
                         <div class="svg-icon">
                             <img class="blur-up lazyloaded"
@@ -56,7 +56,7 @@
                                                 <div class="form-button">
                                                     <button class="btn btn-primary" type="submit" (click) ="onSubmit()"
                                                         >Login</button>
-                                                    <button class="btn btn-primary" type="button"
+                                                    <button  *ngIf="!isAdmin" class="btn btn-primary" type="button"
                                                         [routerLink]="'/register-exporter-registration'">Register as
                                                         Exporter /
                                                         Importer</button>
@@ -100,6 +100,25 @@
                                     </ng-template>
                                 </ngb-tab> -->
                             </ngb-tabset>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="isAdmin" class="col-md-5 p-0 card-left">
+                    <div class="card bg-primary">
+                        <div class="svg-icon">
+                            <img class="blur-up lazyloaded" src="https://snippettechnologies.com/demo/pinewheel/symbol-logo.png" alt="">
+                        </div>
+                        <div class="single-item">
+                            <owl-carousel-o [options]="owlcarouselOptions">
+                                <ng-container *ngFor="let data of owlcarousel">
+                                    <ng-template carouselSlide class="item">
+                                        <div>
+                                            <h3>{{data.title}}</h3>
+                                            <p>{{data.desc}}</p>
+                                        </div>
+                                    </ng-template>
+                                </ng-container>
+                            </owl-carousel-o>
                         </div>
                     </div>
                 </div>

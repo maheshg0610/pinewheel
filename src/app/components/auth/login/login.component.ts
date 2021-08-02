@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../auth.service';
@@ -12,11 +12,13 @@ import { status } from 'src/app/shared/config/endpoint.config';
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
   public registerForm: FormGroup;
+  public isAdmin =  false;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.createLoginForm();
     this.createRegisterForm();
@@ -57,7 +59,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.route.snapshot.routeConfig.path === "auth/login/admin"){
+      this.isAdmin=true;
+    }
+  }
 
   onSubmit() {
     if (

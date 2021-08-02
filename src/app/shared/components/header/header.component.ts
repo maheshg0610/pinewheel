@@ -14,6 +14,8 @@ export class HeaderComponent implements OnInit {
   public isOpenMobile : boolean;
   details:any;
   public location:boolean = false;
+  public user:any;
+  public routingPath:string;
 
   @Output() rightSidebarEvent = new EventEmitter<boolean>();
 
@@ -21,6 +23,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.getnotificationdetails('Tempered', 'unseen')
+    this.user = JSON.parse(localStorage.getItem('user'));
+    if (this.user.roleName === 'SuperAdmin') {
+      this.routingPath = '/auth/login/admin'
+    } else {
+      this.routingPath = '/auth/login'
+    }
   }
 
   collapseSidebar() {
@@ -81,6 +89,5 @@ export class HeaderComponent implements OnInit {
       })
     })
   }
-
 
 }

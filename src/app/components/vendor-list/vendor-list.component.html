@@ -16,7 +16,12 @@
                                 <ngx-datatable-column prop="mobileNumber"></ngx-datatable-column>
                                 <ngx-datatable-column prop="emailId"></ngx-datatable-column>
                                 <ngx-datatable-column prop="noOfSealRequired"></ngx-datatable-column>
-                                <ngx-datatable-column prop="distributor"></ngx-datatable-column>
+                                <ngx-datatable-column prop="distributor">
+                                    <ng-template ngx-datatable-cell-template let-row="row">
+                                        <span *ngIf="row.distributor === true">Yes</span>
+                                        <span *ngIf="row.distributor  === false">No</span>
+                                    </ng-template>
+                                </ngx-datatable-column>
                                 <ngx-datatable-column prop="iecNumber"></ngx-datatable-column>
                                 <ngx-datatable-column prop="portList">
                                     <ng-template ngx-datatable-cell-template let-row="row">

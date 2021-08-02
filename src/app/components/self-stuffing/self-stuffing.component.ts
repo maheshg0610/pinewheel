@@ -114,13 +114,7 @@ export class SelfStuffingComponent implements OnInit {
       sealingDate: [''],
       sealingTime: [''],
       containerNo: [''],
-      shippingBillDetails: this.formBuilder.array([
-      //   {
-      //   shippingBillDate: [''],
-      //   shippingBillNo: [''],
-      //   ewayBillNo: ['']
-      // }
-    ]),
+      shippingBillDetails: this.formBuilder.array([]),
       trailerNo: [''],
       sendToICDs:['',Validators.required],
       sendToPorts: ['',Validators.required]
