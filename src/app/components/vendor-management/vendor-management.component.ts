@@ -66,6 +66,7 @@ export class VendorManagementComponent implements OnInit {
     this.vendorMangementForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      userName: ['', Validators.required],
       mobileNumber: ['', Validators.required],
       emailId: ['', Validators.required],
       portIds: ['', Validators.required],
@@ -135,11 +136,12 @@ export class VendorManagementComponent implements OnInit {
     }
     if (this.vendorMangementForm.value.agree) {
       let payload = {
-        "userId": this.user.id, 
+        "userId": this.user.userId, 
         "vendorType": "Exporter",
         "companyName": this.vendorMangementForm.value.companyName,
         "iec": this.vendorMangementForm.value.iec,
         "firstName": this.vendorMangementForm.value.firstName,
+        "userName": this.vendorMangementForm.value.userName,
         "password": this.vendorMangementForm.value.password,
         "lastName": this.vendorMangementForm.value.lastName,
         "mobileNumber": this.vendorMangementForm.value.mobileNumber,

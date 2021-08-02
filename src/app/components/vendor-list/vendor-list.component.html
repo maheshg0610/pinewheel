@@ -18,8 +18,16 @@
                                 <ngx-datatable-column prop="noOfSealRequired"></ngx-datatable-column>
                                 <ngx-datatable-column prop="distributor"></ngx-datatable-column>
                                 <ngx-datatable-column prop="iecNumber"></ngx-datatable-column>
-                                <ngx-datatable-column prop="icdsList"></ngx-datatable-column>
-                                <ngx-datatable-column prop="portList "></ngx-datatable-column>
+                                <ngx-datatable-column prop="portList">
+                                    <ng-template ngx-datatable-cell-template let-row="row">
+                                        <span *ngFor="let key of row.portList"> {{key.portValue}}</span>
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column prop="icdsList">
+                                    <ng-template ngx-datatable-cell-template let-row="row">
+                                        <span *ngFor="let key of row.icdsList, let i = index"> {{key.icdValue}}</span>
+                                    </ng-template>
+                                </ngx-datatable-column>
                                 <ngx-datatable-column prop="registeredDate"></ngx-datatable-column>
                                 <ngx-datatable-column prop="status"></ngx-datatable-column>
                                 <ngx-datatable-column prop="Action"  (click)='openDetails($event)'>
