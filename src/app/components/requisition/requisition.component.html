@@ -30,7 +30,7 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">Confirm</button>
+                                        <button type="button" class="btn btn-primary" (click)="submit()">Confirm</button>
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal"
                                             (click)="modal.dismiss('Cross click')">Close</button>
                                     </div>
@@ -40,11 +40,27 @@
                                 (keyup)='updateFilter($event)' />
                             <ngx-datatable class="bootstrap" [rows]="order" [columnMode]="'force'" [headerHeight]="50"
                                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
-                                <ngx-datatable-column prop="Request Id"></ngx-datatable-column>
-                                <ngx-datatable-column prop="Quality"></ngx-datatable-column>
-                                <ngx-datatable-column prop="Request Date"></ngx-datatable-column>
-                                <ngx-datatable-column prop="Status"></ngx-datatable-column>
-                                <ngx-datatable-column prop="Action"></ngx-datatable-column>
+                                <ngx-datatable-column prop="vendorName"></ngx-datatable-column>
+                                <ngx-datatable-column prop="noOfEsealRequested"></ngx-datatable-column>
+                                <ngx-datatable-column prop="requestedDate"></ngx-datatable-column>
+                                <ngx-datatable-column prop="status">
+                                    <ng-template ngx-datatable-cell-template let-row="row">
+                                        <span *ngIf="row.status === 'new'" class="badge badge-warning">New</span>
+                                        <span *ngIf="row.status === 'accepted'" class="badge badge-danger">Accepted</span>
+                                        <span *ngIf="row.status === 'trasnsfer'" class="badge badge-success">No action required</span>
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column prop="Action">
+                                    <ng-template ngx-datatable-cell-template let-row="row">
+                                        <button *ngIf="row.status === 'new'" class="btn btn-primary btn-sm mr-1"
+                                            (click)="onAction(row, 'accepted')">Accept</button>
+                                        <button *ngIf="row.status === 'new'" class="btn btn-secondary btn-sm"
+                                            (click)="onAction(row, 'rejected')">Reject</button>
+                                        <button *ngIf="row.status === 'accepted'" class="btn btn-primary btn-sm"
+                                            (click)="onAction(row, 'transferred')">Transfer</button>
+                                        <span *ngIf="row.status === 'trasnsfer'">No action required</span>
+                                    </ng-template>
+                                </ngx-datatable-column>
                             </ngx-datatable>
                         </div>
                     </div>

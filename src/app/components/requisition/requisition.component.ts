@@ -3,6 +3,8 @@ import { categoryDB } from '../../shared/tables/category';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DatatableComponent } from "@swimlane/ngx-datatable";
 import { requisitionDB } from '../../shared/tables/requisition';
+import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
+import { status } from 'src/app/shared/config/endpoint.config';
 
 @Component({
   selector: 'app-requisition',
@@ -13,6 +15,7 @@ export class RequisitionComponent implements OnInit {
   public order = [];
   public temp = [];
   public closeResult:string;
+  public user:any;
 
 
   counter = 0;
@@ -28,7 +31,7 @@ export class RequisitionComponent implements OnInit {
 
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal, private service: PinwheelService) {
     this.order = requisitionDB.list_order;
   }
 
@@ -68,5 +71,57 @@ export class RequisitionComponent implements OnInit {
     this.table.offset = 0;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.getVendorList()
+  }
+
+
+  getVendorList() {
+    this.service.vendoeListForActivation(this.user.userId).subscribe((res) => {
+      if (res) {
+        this.order = res.data;
+      } else {
+        alert(res.statusText);
+      }
+    },
+      (err) => {
+        console.log(err)
+      })
+    }
+
+  onAction(row, type) {
+    console.log(row)
+    let payload = { "adminUserId": this.user.userId, "eSealRequestId": row['eSealRequestId'], "status": type }
+    this.service.adminAccept(payload).subscribe((res) => {
+      if (res.status == "success") {
+        this.getVendorList()
+        alert(res.statusText);
+      } else {
+        alert(res.statusText);
+      }
+    },
+      (err) => {
+        console.log(err)
+      })
+  }
+
+  submit() {
+    let payload = {
+      "vendorId": this.user.vendorId,
+      "noOfEsealRequested": this.counter
+    }
+    this.service.newRequisition(payload).subscribe((res) => {
+      if (res.status === status.SUCCESS) {
+        //TODO:pop-up
+        alert(res.statusText)
+      } else {
+        alert(res.statusText)
+      }
+    },
+      (err) => {
+        console.log(err)
+      })
+
+  }
 }

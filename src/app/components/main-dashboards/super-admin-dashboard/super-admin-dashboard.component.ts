@@ -42,10 +42,11 @@ export class SuperAdminDashboardComponent implements OnInit {
   }
 
   onAction(row, type) {
-    let payload = { "adminUserId": this.user.userId, "eSealRequestId": row['noOfEsealRequested'],"status" : type }
+    let payload = { "adminUserId": this.user.userId, "eSealRequestId": row['eSealRequestId'],"status" : type }
     this.service.adminAccept(payload).subscribe((res) => {
-      if (res.status =="sucess") {
+      if (res.status =="success") {
         this.getVendorList()
+        alert(res.statusText);
       } else {
         alert(res.statusText);
       }

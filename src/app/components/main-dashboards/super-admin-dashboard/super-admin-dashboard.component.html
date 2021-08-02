@@ -12,7 +12,7 @@
                         </div>
                         <div class="media-body col-8"><span class="m-0">New Vendor Request</span>
                             <h3 class="mb-0"><span class="counter" [CountTo]=details.newVendorsRequest [from]="0"
-                                    [duration]="2">{{details.newVendorsRequest}}</span></h3>
+                                    [duration]="2" *ngIf="details && details.newVendorsRequest">{{details.newVendorsRequest}}</span></h3>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         </div>
                         <div class="media-body col-8"><span class="m-0">Available Seals</span>
                             <h3 class="mb-0"><span class="counter" [CountTo]=details.availableSeals [from]="0"
-                                    [duration]="2">{{details.availableSeals}}</span></h3>
+                                    [duration]="2" *ngIf=" details &&  details.availableSeals">{{details.availableSeals}}</span></h3>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                         <div class="media-body col-8"><span class="m-0">Total Vendors</span>
-                            <h3 class="mb-0"><span class="counter" [CountTo]=details.totalVendors [from]="0" [duration]="2">{{details.totalVendors}}</span>
+                            <h3 class="mb-0"><span class="counter" [CountTo]=details.totalVendors [from]="0" [duration]="2" *ngIf="details && details.totalVendors">{{details.totalVendors}}</span>
                             </h3>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                                 <ng-template ngx-datatable-cell-template let-row="row">
                                     <button *ngIf="row.status === 'new'" class="btn btn-primary btn-sm mr-1" (click)="onAction(row, 'accepted')">Accept</button>
                                     <button *ngIf="row.status === 'new'" class="btn btn-secondary btn-sm" (click)="onAction(row, 'rejected')">Reject</button>
-                                    <button *ngIf="row.status === 'accepted'" class="btn btn-primary btn-sm" (click)="onAction(row, 'transfer')">Transfer</button>
+                                    <button *ngIf="row.status === 'accepted'" class="btn btn-primary btn-sm" (click)="onAction(row, 'transferred')">Transfer</button>
                                     <span  *ngIf="row.status === 'trasnsfer'">No action required</span>
                                 </ng-template>
                                 </ngx-datatable-column>
