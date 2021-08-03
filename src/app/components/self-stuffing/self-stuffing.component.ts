@@ -188,4 +188,9 @@ export class SelfStuffingComponent implements OnInit {
       ewayBillNo: ['']
     }))
   }
+
+  deleteRow(i:number) {
+    const add = this.restrictionForm.get('shippingBillDetails') as FormArray;
+    add.removeAt(i)
+  }
 }
