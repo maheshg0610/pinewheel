@@ -22,6 +22,6 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     SharedModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
-  exports: [SharedModule]
+  exports: []
 })
 export class AuthModule {}
