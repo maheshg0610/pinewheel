@@ -107,7 +107,7 @@ export class EsealTrackComponent implements OnInit {
     if(this.searchId !== "") {
       this.service.trackEseal(this.searchId).subscribe((response: any) => {
         if (response) {
-          this.order = response
+          this.order = response;
            
          this.getGeoLocation()
         } else {

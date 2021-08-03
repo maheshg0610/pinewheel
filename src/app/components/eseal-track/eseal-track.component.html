@@ -29,16 +29,28 @@
                                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
                                 <ngx-datatable-column prop="sealNo"></ngx-datatable-column>
                                 <ngx-datatable-column prop="scanBy"></ngx-datatable-column>
-                                <ngx-datatable-column prop="scanTime"></ngx-datatable-column>
-                                <ngx-datatable-column prop="sealTime"></ngx-datatable-column>
+                                <ngx-datatable-column prop="scanTime">
+                                    <ng-template ngx-datatable-cell-template let-row="row">
+                                            {{ row.scanTime | date: 'medium'}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column prop="sealTime">
+                                    <ng-template ngx-datatable-cell-template let-row="row">
+                                        {{ row.sealTime | date: 'medium'}}
+                                    </ng-template>
+                                </ngx-datatable-column>
                                 <ngx-datatable-column prop="ports">
                                     <ng-template ngx-datatable-cell-template let-row="row">
-                                       <span *ngFor="let key of row.ports"> {{key|json}}</span>
+                                       <span *ngFor="let key of row.ports, let i = index"> {{key.name}}
+                                            <span *ngIf="row.ports.length > 0 && i < row.ports.length -1">,</span>
+                                       </span>
                                     </ng-template>
                                 </ngx-datatable-column>
                                 <ngx-datatable-column prop="icds">
                                     <ng-template ngx-datatable-cell-template let-row="row">
-                                        <span *ngFor="let key of row.icds, let i = index"> {{key|json}}</span>
+                                        <span *ngFor="let key of row.icds, let i = index"> {{key.name}}
+                                            <span *ngIf="row.icds.length > 0 && i < row.icds.length -1">,</span>
+                                        </span>
                                     </ng-template>
                                 </ngx-datatable-column>
                                 <ngx-datatable-column prop="location"></ngx-datatable-column>
