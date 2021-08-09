@@ -28,7 +28,6 @@
                             <ngx-datatable *ngIf="order && location" class="bootstrap" [rows]="order" [columnMode]="'force'" [headerHeight]="50"
                                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
                                 <ngx-datatable-column prop="sealNo"></ngx-datatable-column>
-                                <ngx-datatable-column prop="scanBy"></ngx-datatable-column>
                                 <ngx-datatable-column prop="scanTime">
                                     <ng-template ngx-datatable-cell-template let-row="row">
                                             {{ row.scanTime | date: 'medium'}}

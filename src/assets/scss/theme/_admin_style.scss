@@ -2553,6 +2553,8 @@ $header-size: 80px;
       }
       .notification-dropdown{
         top: 57px;
+        max-height: 400px;
+        overflow: auto;
         .txt-success {
           svg {
              polyline {

@@ -16,7 +16,7 @@ export class SuperAdminDashboardComponent implements OnInit {
   public user:any;
   public details:any;
 
-  @ViewChild(DatatableComponent, { static: true }) table: DatatableComponent;
+  @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
   constructor(private service:PinwheelService) {
     this.order = orderDB.list_order;
   }

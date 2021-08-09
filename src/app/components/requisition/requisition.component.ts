@@ -113,7 +113,7 @@ export class RequisitionComponent implements OnInit {
     }
     this.service.newRequisition(payload).subscribe((res) => {
       if (res.status === status.SUCCESS) {
-        //TODO:pop-up
+        this.getVendorList()
         alert(res.statusText)
       } else {
         alert(res.statusText)

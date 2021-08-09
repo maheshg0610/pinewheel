@@ -107,13 +107,13 @@ export class NavService {
       type: 'link',
       active: false
     },
-    {
-      path: '/draft-seal/draftseal',
-      title: 'Draft Seal',
-      icon: 'box',
-      type: 'link',
-      active: false
-    },
+    // {
+    //   path: '/draft-seal/draftseal',
+    //   title: 'Draft Seal',
+    //   icon: 'box',
+    //   type: 'link',
+    //   active: false
+    // },
     {
       path: '/requisition/requisition',
       title: 'Requisition',
