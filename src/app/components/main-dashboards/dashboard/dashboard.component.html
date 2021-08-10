@@ -11,8 +11,7 @@
                             </div>
                         </div>
                         <div class="media-body col-8"><span class="m-0">Total Seal</span>
-                            <h3 *ngIf="details" class="mb-0"><span class="counter" [CountTo]=details.totalSeals [from]="0"
-                                    [duration]="2"> {{details.totalSeals}}</span></h3>
+                            <h3 *ngIf="details" class="mb-0"><span class="counter" > {{details.totalSeals}}</span></h3>
                         </div>
                     </div>
                 </div>
@@ -28,8 +27,7 @@
                             </div>
                         </div>
                         <div class="media-body col-8"><span class="m-0">Installed Seal</span>
-                            <h3 *ngIf="details" class="mb-0"><span class="counter" [CountTo]=details.installedSeals [from]="0"
-                                    [duration]="2">{{details.installedSeals}}</span></h3>
+                            <h3 *ngIf="details" class="mb-0"><span class="counter" >{{details.installedSeals}}</span></h3>
                         </div>
                     </div>
                 </div>
@@ -45,7 +43,7 @@
                             </div>
                         </div>
                         <div class="media-body col-8"><span class="m-0">Tampered Seal</span>
-                            <h3 *ngIf="details" class="mb-0"><span class="counter" [CountTo]=details.temperedSeals [from]="0" [duration]="2">{{details.temperedSeals}}</span></h3>
+                            <h3 *ngIf="details" class="mb-0"><span class="counter" >{{details.temperedSeals}}</span></h3>
                         </div>
                     </div>
                 </div>

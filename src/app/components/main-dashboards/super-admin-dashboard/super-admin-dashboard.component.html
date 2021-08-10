@@ -11,8 +11,7 @@
                             </div>
                         </div>
                         <div class="media-body col-8"><span class="m-0">New Vendor Request</span>
-                            <h3 class="mb-0"><span class="counter" [CountTo]=details.newVendorsRequest [from]="0"
-                                    [duration]="2" *ngIf="details && details.newVendorsRequest">{{details.newVendorsRequest}}</span></h3>
+                            <h3 class="mb-0"><span class="counter" *ngIf="details && details.newVendorsRequest">{{details.newVendorsRequest}}</span></h3>
                         </div>
                     </div>
                 </div>
@@ -28,8 +27,7 @@
                             </div>
                         </div>
                         <div class="media-body col-8"><span class="m-0">Available Seals</span>
-                            <h3 class="mb-0"><span class="counter" [CountTo]=details.availableSeals [from]="0"
-                                    [duration]="2" *ngIf=" details &&  details.availableSeals">{{details.availableSeals}}</span></h3>
+                            <h3 class="mb-0"><span class="counter" *ngIf=" details &&  details.availableSeals">{{details.availableSeals}}</span></h3>
                         </div>
                     </div>
                 </div>
@@ -45,7 +43,7 @@
                             </div>
                         </div>
                         <div class="media-body col-8"><span class="m-0">Total Vendors</span>
-                            <h3 class="mb-0"><span class="counter" [CountTo]=details.totalVendors [from]="0" [duration]="2" *ngIf="details && details.totalVendors">{{details.totalVendors}}</span>
+                            <h3 class="mb-0"><span class="counter" *ngIf="details && details.totalVendors">{{details.totalVendors}}</span>
                             </h3>
                         </div>
                     </div>

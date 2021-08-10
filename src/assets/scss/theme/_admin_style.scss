@@ -950,13 +950,13 @@ ng2-smart-table {
 }
 
 .chart-vertical-center{
-  display: flex;
+  display: flex-webkit-box-shadow;
   justify-content: center;
 }
 // product list
 .products-admin {
   .product-box {
-    pdding: 20px;
+    padding: 20px;
     .color-variant {
       padding-top: 15px;
     }
