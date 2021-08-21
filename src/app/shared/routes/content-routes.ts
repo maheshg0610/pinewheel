@@ -100,6 +100,36 @@ export const content: Routes = [
     }
   },
   {
+    path: 'eseal-repo',
+    loadChildren: () =>
+      import('../../components/eseal-repo/eseal-repo.module').then(
+        m => m.EsealrepoModule
+      ),
+    data: {
+      breadcrumb: 'Eseal Repo'
+    }
+  },
+  {
+    path: 'eseal-transfer',
+    loadChildren: () =>
+      import('../../components/eseal-transfer/eseal-transfer.module').then(
+        m => m.EsealTransferModule
+      ),
+    data: {
+      breadcrumb: 'Eseal Transfer'
+    }
+  },
+  {
+    path: 'eseal-list',
+    loadChildren: () =>
+      import('../../components/eseal-list/eseal-list.module').then(
+        m => m.EsealListModule
+      ),
+    data: {
+      breadcrumb: 'Eseal List'
+    }
+  },
+  {
     path: 'profile',
     loadChildren: () =>
       import('../../components/profile/profile.module').then(

@@ -20,6 +20,9 @@ import { VendorRegistrationModule } from './components/vendor-registration/vendo
 import { VendorListModule } from './components/vendor-list/vendor-list.module';
 import { TampedSealModule } from './components/tamped-seal/tamped-seal.module';
 import { EsealTrackModule } from './components/eseal-track/eseal-track.module';
+import { EsealrepoModule } from './components/eseal-repo/eseal-repo.module';
+import { EsealTransferModule } from './components/eseal-transfer/eseal-transfer.module';
+import { EsealListModule } from './components/eseal-list/eseal-list.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +39,9 @@ import { EsealTrackModule } from './components/eseal-track/eseal-track.module';
     InstallSealListModule,
     EsealTrackModule,
     TampedSealModule,
+    EsealrepoModule,
+    EsealTransferModule,
+    EsealListModule,
     AuthModule,
     SharedModule,
     RequisitionModule,

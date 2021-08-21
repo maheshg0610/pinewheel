@@ -80,6 +80,27 @@ export class NavService {
       active: false
     },
     {
+      path: '/eseal-repo/esealrepo',
+      title: 'Eseal Repo',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
+      path: '/eseal-transfer/esealtransfer',
+      title: 'Eseal Transfer',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
+      path: '/eseal-list/eseallist',
+      title: 'Eseal List',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
       path: '/install-seal/installseal',
       title: 'Install Seal',
       icon: 'box',
