@@ -8,15 +8,15 @@ import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@ang
   encapsulation: ViewEncapsulation.None
 })
 export class EsealrepoComponent {
-  values = [];
+  // values = [];
   constructor() {
   }
 
-  removevalue(i){
-    this.values.splice(i,1);
-  }
+  // removevalue(i){
+  //   this.values.splice(i,1);
+  // }
 
-  addvalue(){
-    this.values.push({value: ""});
-  }
+  // addvalue(){
+  //   this.values.push({value: ""});
+  // }
 }

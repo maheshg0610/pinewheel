@@ -26,39 +26,11 @@
                             </div>
                         </div>
                         <div class="mt-4 mb-4 text-center">
-                            <button (click)="addvalue()" class="btn btn-primary" >ADD</button>
+                            <button class="btn btn-primary" >ADD</button>
                         </div>
                     </div>
                     <div class="col-sm-3"></div>                    
                 </div>
-
-
-                <div class="row" style="align-items: center;" *ngFor="let value of values; let i = index">
-                    <div class="col-sm-9">
-                        <div class="col-sm-12">
-                            <div class="form-group row">
-                                <label for="" class="col-xl-2 col-md-4"><span>*</span>
-                                    No. of Seal</label>
-                                <input class="form-control col-xl-10 col-md-7" id="" type="text" required="">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group row">
-                                <label for="" class="col-xl-2 col-md-4"><span>*</span>
-                                    Start</label>
-                                <input class="form-control col-xl-4 col-md-8" id="" type="text" required="">
-                                    <label for="" class="col-xl-2 col-md-4 text-right"><span>*</span>
-                                        End</label>
-                                <input class="form-control col-xl-4 col-md-8" id="" type="text" required="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <button (click)="removevalue(i)" class="btn btn-danger">Remove</button>
-                    </div>
-                </div>
-
-
             </form>
         </div>
     </div>
