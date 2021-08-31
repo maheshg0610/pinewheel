@@ -87,13 +87,6 @@ export class NavService {
       active: false
     },
     {
-      path: '/eseal-transfer/esealtransfer',
-      title: 'Eseal Transfer',
-      icon: 'box',
-      type: 'link',
-      active: false
-    },
-    {
       path: '/eseal-list/eseallist',
       title: 'Eseal List',
       icon: 'box',

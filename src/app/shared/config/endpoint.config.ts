@@ -21,10 +21,14 @@ export const endPoints = {
     notification: baseUrl + "/api/notifications?userId=",
     updateNotification: baseUrl + "/api/update-notification?notificationId=",
     trackSeal: baseUrl+ "/api/track-eseal?sealId=",
-    geoloc:'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude='
+    geoloc:'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=',
+    inventory: baseUrl +"/api/addeseal-inventory",
+    validateEseal: baseUrl + "/api/validate-sealnumber?sealNumber=",
+    esealList: baseUrl + "/api/available-seals?adminId="
 }
 
 export const status = {
     "SUCCESS" : "SUCCESS",
+    "success":"success",
     "FAILED":"FAILED"
 }

@@ -4,6 +4,7 @@ import { doughnutData, pieData } from '../../../shared/data/chart';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { orderDB } from '../../../shared/tables/vendor-eseal-request-list';
 import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-super-admin-dashboard',
@@ -17,7 +18,7 @@ export class SuperAdminDashboardComponent implements OnInit {
   public details:any;
 
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
-  constructor(private service:PinwheelService) {
+  constructor(private service: PinwheelService, private router: Router) {
     this.order = orderDB.list_order;
   }
 
@@ -55,6 +56,11 @@ export class SuperAdminDashboardComponent implements OnInit {
       (err) => {
         console.log(err)
       })
+  }
+
+  onTransfer(row) {
+    this.service.rowDataTransfer = row;
+    this.router.navigate(['eseal-transfer/esealtransfer']);
   }
 
   getVendorList() {

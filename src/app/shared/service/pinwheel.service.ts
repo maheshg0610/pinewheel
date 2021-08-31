@@ -10,6 +10,7 @@ import { BehaviorSubject, Subject, Observable } from 'rxjs';
 export class PinwheelService {
   public updateSearchResults: BehaviorSubject<any>;
   public updateSearchResults$: Observable<any>
+  public rowDataTransfer:any;
   public user:any;
 
   constructor(private httpService: HttpClient) { 
@@ -147,6 +148,13 @@ export class PinwheelService {
 
   getReveserCode(lat, long){
     return this.httpService.get(endPoints.geoloc +lat+'&longitude='+long+'&localityLanguage=en')
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+
+  getEsealList(param) {
+    return this.httpService.get(endPoints.esealList + this.user.userId +'&noOfSeals='+param)
       .pipe(map((response: any) => {
         return response;
       }));

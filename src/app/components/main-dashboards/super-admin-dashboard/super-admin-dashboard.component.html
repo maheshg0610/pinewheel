@@ -81,7 +81,7 @@
                                 <ng-template ngx-datatable-cell-template let-row="row">
                                     <button *ngIf="row.status === 'new'" class="btn btn-primary btn-sm mr-1" (click)="onAction(row, 'accepted')">Accept</button>
                                     <button *ngIf="row.status === 'new'" class="btn btn-secondary btn-sm" (click)="onAction(row, 'rejected')">Reject</button>
-                                    <button *ngIf="row.status === 'accepted'" class="btn btn-primary btn-sm" (click)="onAction(row, 'transferred')">Transfer</button>
+                                    <button  class="btn btn-primary btn-sm" (click)="onTransfer(row)">Transfer</button>
                                     <span  *ngIf="row.status === 'trasnsfer'">No action required</span>
                                 </ng-template>
                                 </ngx-datatable-column>
