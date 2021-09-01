@@ -38,9 +38,9 @@ export class EsealTransferComponent {
         })
     }
   }
-//this.service.rowDataTransfer.noOfEsealRequested
+
   getSealList() {
-    this.service.getEsealList(10).subscribe((res) => {
+    this.service.getEsealList(this.service.rowDataTransfer.noOfEsealRequested).subscribe((res) => {
       if (res.status === status.success) {
         this.esealList = res.data;
       } else {

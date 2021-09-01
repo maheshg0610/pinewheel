@@ -5,24 +5,32 @@
             <h5>Please Enter Seal Details</h5>
         </div>
         <div class="card-body">
-            <form class="needs-validation">
+            <form class="needs-validation" [formGroup]="repoForm" (ngSubmit)="onSubmit()" novalidate>
                 <div class="row">
                     <div class="col-sm-9">
                         <div class="col-sm-12">
                             <div class="form-group row">
                                 <label for="" class="col-xl-2 col-md-4"><span>*</span>
                                     No. of Seal</label>
-                                <input class="form-control col-xl-10 col-md-7" id="" type="text" required="">
+                                <input class="form-control col-xl-10 col-md-7"  formControlName="noOfSeals" id="" type="text" required="">
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group row">
                                 <label for="" class="col-xl-2 col-md-4"><span>*</span>
                                     Start</label>
-                                <input class="form-control col-xl-4 col-md-8" id="" type="text" required="">
+                                <div class="col-4 p-0">
+                                    <ng-multiselect-dropdown formControlName="stratSealRange" placeholder="Select" [data]="esealList"
+                                        [settings]="dropdownSetting">
+                                    </ng-multiselect-dropdown>
+                                </div>
                                     <label for="" class="col-xl-2 col-md-4 text-right"><span>*</span>
                                         End</label>
-                                <input class="form-control col-xl-4 col-md-8" id="" type="text" required="">
+                                <div class="col-4 p-0">
+                                    <ng-multiselect-dropdown formControlName="endSealRange" placeholder="Select" [data]="esealList"
+                                        [settings]="dropdownSetting">
+                                    </ng-multiselect-dropdown>
+                                </div>
                             </div>
                         </div>
                         <div class="mt-4 mb-4 text-center">

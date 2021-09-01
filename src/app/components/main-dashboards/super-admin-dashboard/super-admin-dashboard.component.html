@@ -63,8 +63,25 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <div class="custom-datatable">
-                            <input type='text' class="filter-ngx form-control" placeholder='Search...'
-                                (keyup)='updateFilter($event)' />
+                        <div class="row">
+                            <div class="col-9">
+                                <input type='text' class="filter-ngx form-control" placeholder='Search...' (keyup)='updateFilter($event)' />
+                            </div>
+                            <div class="col-3 drop-down">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                        aria-expanded="false" (click)="toggle()">
+                                        <img src="../../../../assets/images/filter.png">
+                                       Filter
+                                    </button>
+                                    <ul *ngIf="showDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#" (click)="action('vendor')">Filter by Vendor</a></li>
+                                        <li><a class="dropdown-item" href="#" (click)="action('health')">Filter by Vendor</a></li>
+                                        <li><a class="dropdown-item" href="#" (click)="action('installed')">Filter by Vendor</a></li>
+                                    </ul>
+                                </div> 
+                            </div>
+                        </div>
                             <ngx-datatable class="bootstrap" [rows]="order" [columnMode]="'force'" [headerHeight]="50"
                                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
                                 <ngx-datatable-column prop="vendorName"></ngx-datatable-column>

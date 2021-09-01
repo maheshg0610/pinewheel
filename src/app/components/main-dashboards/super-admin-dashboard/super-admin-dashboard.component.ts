@@ -16,6 +16,7 @@ export class SuperAdminDashboardComponent implements OnInit {
   public temp = [];
   public user:any;
   public details:any;
+  showDropdown: boolean = false;
 
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
   constructor(private service: PinwheelService, private router: Router) {
@@ -87,5 +88,23 @@ export class SuperAdminDashboardComponent implements OnInit {
       (err) => {
         console.log(err)
       })
+  }
+
+  toggle() {
+    this.showDropdown = !this.showDropdown;
+  }
+
+  action(val) {
+    this.toggle() 
+    if (val === 'installed') {
+    //  this.this.order 
+    }
+    if (val === 'vendor') {
+
+    }
+    if (val === 'health') {
+
+    }
+
   }
 }

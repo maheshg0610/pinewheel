@@ -159,4 +159,18 @@ export class PinwheelService {
         return response;
       }));
   }
+
+  addInventory(payload) {
+    return this.httpService.post(endPoints.inventory, payload)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+
+  validateEsealRange(param) {
+    return this.httpService.get(endPoints.validateEseal + param)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
 }
