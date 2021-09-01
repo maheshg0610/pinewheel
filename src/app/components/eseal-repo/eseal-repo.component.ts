@@ -16,6 +16,7 @@ export class EsealrepoComponent {
   esealList: string[] = [];
   startSeal: string[] = [];
   endSeal: string[] = [];
+  isEseal:boolean = false;
   constructor(private service: PinwheelService, private formBuilder: FormBuilder) {
   }
   dropdownSetting: IDropdownSettings = {
@@ -29,7 +30,6 @@ export class EsealrepoComponent {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
-    this.getSealList() 
     this.repoForm = this.formBuilder.group({
       noOfSeals: ['', Validators.required],
       stratSealRange: ['', Validators.required],
@@ -47,7 +47,7 @@ export class EsealrepoComponent {
   }
 
   getSealList() {
-    this.service.getEsealList(this.service.rowDataTransfer.noOfEsealRequested).subscribe((res) => {
+    this.service.getEsealList(this.repoForm.controls['noOfSeals'].value).subscribe((res) => {
       if (res.status === status.success) {
         this.esealList = res.data;
       } else {
@@ -80,6 +80,13 @@ export class EsealrepoComponent {
         alert(res.statusText);
       }
     },(err) => { console.log(err) })
+  }
+
+  onKey(event) {
+    this.isEseal = true;
+    if (this.repoForm.controls['noOfSeals'].value !== "") { 
+      this.getSealList()
+    }
   }
 
 }

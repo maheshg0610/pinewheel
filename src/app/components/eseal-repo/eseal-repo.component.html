@@ -12,10 +12,10 @@
                             <div class="form-group row">
                                 <label for="" class="col-xl-2 col-md-4"><span>*</span>
                                     No. of Seal</label>
-                                <input class="form-control col-xl-10 col-md-7"  formControlName="noOfSeals" id="" type="text" required="">
+                                <input class="form-control col-xl-10 col-md-7" (change)="onKey($event)" formControlName="noOfSeals" id="" type="text" required="">
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12" *ngIf="isEseal">
                             <div class="form-group row">
                                 <label for="" class="col-xl-2 col-md-4"><span>*</span>
                                     Start</label>
