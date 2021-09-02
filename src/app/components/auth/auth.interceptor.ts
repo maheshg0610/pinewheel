@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Get the auth token from the service.
     this.currentUser = JSON.parse(localStorage.getItem('user'));
-    if (req.url.indexOf('/auth/') > -1 || req.url.indexOf('/assets/') > -1 || req.url.indexOf('/forgot_password') > -1 || req.url.indexOf('/reset_password') > -1) {
+    if (req.url.indexOf('/api/login') > -1 || req.url.indexOf('/assets/') > -1 || req.url.indexOf('/forgot_password') > -1 || req.url.indexOf('/reset_password') > -1) {
       return next.handle(req);
     }
 

@@ -9,4 +9,13 @@ h4{ font-weight: bold;}
         border: 1px solid #ced4da;
         background: transparent;
     }
+
 }
+ .display-flex {
+    display: flex;
+ }
+ .error-msg{
+    position: absolute;
+    left: 50%;
+    top: 90%;
+ }

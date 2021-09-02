@@ -12,24 +12,34 @@
                             <div class="form-group row">
                                 <label for="" class="col-xl-2 col-md-4"><span>*</span>
                                     No. of Seal</label>
-                                <input class="form-control col-xl-10 col-md-7" (change)="onKey($event)" formControlName="noOfSeals" id="" type="text" required="">
+                                <input class="form-control col-xl-10 col-md-7" formControlName="noOfSeals" id="" type="number" required="">
                             </div>
                         </div>
-                        <div class="col-sm-12" *ngIf="isEseal">
-                            <div class="form-group row">
-                                <label for="" class="col-xl-2 col-md-4"><span>*</span>
-                                    Start</label>
-                                <div class="col-4 p-0">
-                                    <ng-multiselect-dropdown formControlName="stratSealRange" placeholder="Select" [data]="esealList"
-                                        [settings]="dropdownSetting">
-                                    </ng-multiselect-dropdown>
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="form-group col-6 p-0 display-flex">
+                                    <label for="" class="col-4"><span>*</span>
+                                        Start</label>
+                                    <input class="form-control col-8 p-0" (change)="onKey()" formControlName="stratSealRange" id="" type="text" required=""
+                                        pattern="^[a-zA-Z]{3}[0-9]$">
+                                    <div class="error-msg" *ngIf="repoForm.get('stratSealRange').invalid && repoForm.get('stratSealRange').errors && 
+                                                                    (repoForm.get('stratSealRange').dirty || repoForm.get('stratSealRange').touched)">
+                                        <small class="text-danger" *ngIf="repoForm.get('stratSealRange').hasError('required')">
+                                            This field is required.
+                                        </small>
+                                    </div>
                                 </div>
-                                    <label for="" class="col-xl-2 col-md-4 text-right"><span>*</span>
+                                <div class="form-group col-6 p-0 display-flex">
+                                    <label for="" class="col-4"><span>*</span>
                                         End</label>
-                                <div class="col-4 p-0">
-                                    <ng-multiselect-dropdown formControlName="endSealRange" placeholder="Select" [data]="esealList"
-                                        [settings]="dropdownSetting">
-                                    </ng-multiselect-dropdown>
+                                    <input class="form-control col-8 p-0" formControlName="endSealRange" id="" type="text" required="" disabled>
+                                    <div class="error-msg"
+                                        *ngIf="repoForm.get('endSealRange').invalid && repoForm.get('endSealRange').errors && 
+                                                                                                        (repoForm.get('endSealRange').dirty || repoForm.get('endSealRange').touched)">
+                                        <small class="text-danger" *ngIf="repoForm.get('endSealRange').hasError('required')">
+                                            This field is required.
+                                        </small>
+                                    </div>
                                 </div>
                             </div>
                         </div>

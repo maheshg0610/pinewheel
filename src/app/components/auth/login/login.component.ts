@@ -82,11 +82,11 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/dashboard/default']);
           }
         } else {
-          //TODO:pop-up
+          alert(response.StatusText)
         }
       },
       error => {
-        //TODO:pop-up
+        alert(error.message)
       }
     );
   }

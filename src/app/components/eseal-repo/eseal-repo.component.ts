@@ -13,20 +13,7 @@ import { status } from 'src/app/shared/config/endpoint.config';
 export class EsealrepoComponent {
   user: any;
   repoForm:FormGroup;
-  esealList: string[] = [];
-  startSeal: string[] = [];
-  endSeal: string[] = [];
-  isEseal:boolean = false;
-  constructor(private service: PinwheelService, private formBuilder: FormBuilder) {
-  }
-  dropdownSetting: IDropdownSettings = {
-    singleSelection: false,
-    idField: 'esealId',
-    textField: 'esealNumber',
-    itemsShowLimit: 4,
-    enableCheckAll: false,
-    searchPlaceholderText: 'Select',
-  };
+  constructor(private service: PinwheelService, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -37,41 +24,20 @@ export class EsealrepoComponent {
     })
   }
 
-  appendData() {
-    let seal = this.repoForm.controls['stratSealRange'].value
-    seal.map((ele) => { this.startSeal.push(ele.esealId) })
-    this.validateRange(this.startSeal)
-    let eseal = this.repoForm.controls['endSealRange'].value
-    eseal.map((ele) => { this.endSeal.push(ele.esealId) })
-    this.validateRange(this.endSeal)
-  }
-
-  getSealList() {
-    this.service.getEsealList(this.repoForm.controls['noOfSeals'].value).subscribe((res) => {
-      if (res.status === status.success) {
-        this.esealList = res.data;
-      } else {
-        alert(res.statusText)
-      }
-    }, (err) => { console.log(err) })
-  }
-
   validateRange(val) {
     this.service.validateEsealRange(val).subscribe((res) => {
       if (res.status === status.success) {
         //continue..
       } else {
         alert(res.statusText)
-        return;
       }
     }, (err) => { console.log(err) })
   }
 
   onSubmit() {
-    this.appendData()
     let payload = {
       "adminId": this.user.userId, "noOfSeals": this.repoForm.controls['noOfSeals'].value,
-      "stratSealRange": this.startSeal, "endSealRange": this.endSeal
+      "stratSealRange": this.repoForm.controls['stratSealRange'].value, "endSealRange": this.repoForm.controls['endSealRange'].value, 
     }
     this.service.addInventory(payload).subscribe((res) => {
       if (res.status === status.success) {
@@ -82,10 +48,14 @@ export class EsealrepoComponent {
     },(err) => { console.log(err) })
   }
 
-  onKey(event) {
-    this.isEseal = true;
-    if (this.repoForm.controls['noOfSeals'].value !== "") { 
-      this.getSealList()
+  onKey() {
+    if (this.repoForm.controls['stratSealRange'].value !== "") { 
+      this.validateRange(this.repoForm.controls['stratSealRange'].value)
+      let value = this.repoForm.controls['stratSealRange'].value ;
+      let str = value.slice(0,2);
+      let num = value.slice(2);
+      value = value + this.repoForm.controls['noOfSeals'].value;
+      this.repoForm.controls['endSealRange'].setValue(value)
     }
   }
 
