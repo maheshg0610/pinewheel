@@ -24,15 +24,6 @@ export class EsealrepoComponent {
     })
   }
 
-  validateRange(val) {
-    this.service.validateEsealRange(val).subscribe((res) => {
-      if (res.status === status.success) {
-        //continue..
-      } else {
-        alert(res.statusText)
-      }
-    }, (err) => { console.log(err) })
-  }
 
   onSubmit() {
     let payload = {
@@ -50,12 +41,19 @@ export class EsealrepoComponent {
 
   onKey() {
     if (this.repoForm.controls['stratSealRange'].value !== "") { 
-      this.validateRange(this.repoForm.controls['stratSealRange'].value)
-      let value = this.repoForm.controls['stratSealRange'].value ;
-      let str = value.slice(0,2);
-      let num = value.slice(2);
-      value = value + this.repoForm.controls['noOfSeals'].value;
-      this.repoForm.controls['endSealRange'].setValue(value)
+      this.service.validateEsealRange(this.repoForm.controls['stratSealRange'].value).subscribe((res) => {
+        if (res.status === status.success) {
+          let value = this.repoForm.controls['stratSealRange'].value;
+          let str = value.slice(0, 3);
+          let num = this.repoForm.controls['noOfSeals'].value + parseInt(value.slice(3));
+          value = str + num;
+          this.repoForm.controls['endSealRange'].setValue(value)
+        } else {
+          alert(res.statusText)
+        }
+      }, (err) =>
+        { console.log(err), 
+          alert(err.error.statusText) })
     }
   }
 

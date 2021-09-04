@@ -21,11 +21,15 @@
                                     <label for="" class="col-4"><span>*</span>
                                         Start</label>
                                     <input class="form-control col-8 p-0" (change)="onKey()" formControlName="stratSealRange" id="" type="text" required=""
-                                        pattern="^[a-zA-Z]{3}[0-9]$">
+                                        pattern="^[a-zA-Z]{3}[0-9]">
                                     <div class="error-msg" *ngIf="repoForm.get('stratSealRange').invalid && repoForm.get('stratSealRange').errors && 
                                                                     (repoForm.get('stratSealRange').dirty || repoForm.get('stratSealRange').touched)">
                                         <small class="text-danger" *ngIf="repoForm.get('stratSealRange').hasError('required')">
                                             This field is required.
+                                        </small>
+                                        <small class="text-danger"
+                                            *ngIf="repoForm.get('stratSealRange').hasError('pattern')">
+                                            Please enter the seal no in proper format i.e abc123..
                                         </small>
                                     </div>
                                 </div>
