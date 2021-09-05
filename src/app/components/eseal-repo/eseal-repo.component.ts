@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@ang
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
 import { status } from 'src/app/shared/config/endpoint.config';
+import { ThisReceiver, ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-esealrepo',
@@ -26,21 +27,25 @@ export class EsealrepoComponent {
 
 
   onSubmit() {
-    let payload = {
-      "adminId": this.user.userId, "noOfSeals": this.repoForm.controls['noOfSeals'].value,
-      "stratSealRange": this.repoForm.controls['stratSealRange'].value, "endSealRange": this.repoForm.controls['endSealRange'].value, 
-    }
-    this.service.addInventory(payload).subscribe((res) => {
-      if (res.status === status.success) {
-        alert(res.statusText);
-      } else {
-        alert(res.statusText);
+    if(this.repoForm.valid){
+      let payload = {
+        "adminId": this.user.userId, "noOfSeals": this.repoForm.controls['noOfSeals'].value,
+        "stratSealRange": this.repoForm.controls['stratSealRange'].value, "endSealRange": this.repoForm.controls['endSealRange'].value,
       }
-    },(err) => { console.log(err) })
+      this.service.addInventory(payload).subscribe((res) => {
+        if (res.status === status.success) {
+          alert(res.statusText);
+        } else {
+          alert(res.statusText);
+        }
+      }, (err) => { console.log(err) })
+    } else {
+      this.repoForm.markAllAsTouched();
+    }
   }
 
   onKey() {
-    if (this.repoForm.controls['stratSealRange'].value !== "") { 
+    if (this.repoForm.controls['stratSealRange'].value !== "" && this.repoForm.controls['noOfSeals'].value !== "") { 
       this.service.validateEsealRange(this.repoForm.controls['stratSealRange'].value).subscribe((res) => {
         if (res.status === status.success) {
           let value = this.repoForm.controls['stratSealRange'].value;
@@ -54,6 +59,8 @@ export class EsealrepoComponent {
       }, (err) =>
         { console.log(err), 
           alert(err.error.statusText) })
+    } else {
+      this.repoForm.markAllAsTouched();
     }
   }
 
