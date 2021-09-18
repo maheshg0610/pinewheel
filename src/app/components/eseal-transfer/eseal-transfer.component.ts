@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@ang
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
 import { status } from 'src/app/shared/config/endpoint.config';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-esealtransfer',
@@ -16,14 +17,14 @@ export class EsealTransferComponent {
   user: any;
   esealList: string[] = [];
   eSeal: string[] = [];
-  constructor(private service: PinwheelService, private formBuilder:FormBuilder) {
+  constructor(private service: PinwheelService, private formBuilder:FormBuilder, private _router:Router) {
   }
   dropdownSetting: IDropdownSettings = {
     singleSelection: false,
     idField: 'esealId',
     textField: 'esealNumber',
     itemsShowLimit: 4,
-    enableCheckAll: false,
+    enableCheckAll: true,
     searchPlaceholderText: 'Select',
   };
   
@@ -63,6 +64,7 @@ export class EsealTransferComponent {
     this.service.adminAccept(payload).subscribe((res) => {
       if (res.status === status.success) {
         alert(res.statusText);
+        this._router['/dashboard/superadmin']
       } else {
         alert(res.statusText);
       }

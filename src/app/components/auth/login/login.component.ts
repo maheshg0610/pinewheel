@@ -78,7 +78,10 @@ export class LoginComponent implements OnInit {
         if (response.StatusText === status.SUCCESS) {
           if (response.roleName === 'SuperAdmin') {
             this.router.navigate(['/dashboard/superadmin']);
-          } else {
+          } else if (response.roleName === 'Custome Office') {
+            this.router.navigate(['auth/login']);
+          }
+          else {
             this.router.navigate(['/dashboard/default']);
           }
         } else {

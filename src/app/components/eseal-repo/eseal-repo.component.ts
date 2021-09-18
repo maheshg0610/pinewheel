@@ -44,14 +44,14 @@ export class EsealrepoComponent {
     }
   }
 
-  onKey() {
+  onKeyChange() {
     if (this.repoForm.controls['stratSealRange'].value !== "" && this.repoForm.controls['noOfSeals'].value !== "") { 
       this.service.validateEsealRange(this.repoForm.controls['stratSealRange'].value).subscribe((res) => {
         if (res.status === status.success) {
           let value = this.repoForm.controls['stratSealRange'].value;
           let str = value.slice(0, 3);
           let num = this.repoForm.controls['noOfSeals'].value + parseInt(value.slice(3));
-          value = str + num;
+          value = str + (num -1);
           this.repoForm.controls['endSealRange'].setValue(value)
         } else {
           alert(res.statusText)
