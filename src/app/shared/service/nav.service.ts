@@ -59,6 +59,13 @@ export class NavService {
       active: false
     },
     {
+      path: '/user-management/usermanagement',
+      title: 'User Management',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
       path: '/vendor-registration/vendorregistration',
       title: 'Vendor Registration',
       icon: 'box',

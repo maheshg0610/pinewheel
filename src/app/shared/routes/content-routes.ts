@@ -16,6 +16,13 @@ export const content: Routes = [
       ).then(m => m.VendorManagementModule)
   },
   {
+    path: 'user-management',
+    loadChildren: () =>
+      import(
+        '../../components/user-management/user-management.module'
+      ).then(m => m.UserManagementModule)
+  },
+  {
     path: 'vendor-registration',
     loadChildren: () =>
       import(

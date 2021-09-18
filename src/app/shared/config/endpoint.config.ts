@@ -24,7 +24,8 @@ export const endPoints = {
     geoloc:'https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=',
     inventory: baseUrl +"/api/addeseal-inventory",
     validateEseal: baseUrl + "/api/validate-sealnumber?sealNumber=",
-    esealList: baseUrl + "/api/available-seals?adminId="
+    esealList: baseUrl + "/api/available-seals?adminId=",
+    userMangement: baseUrl + "/api/user-registration"
 }
 
 export const status = {

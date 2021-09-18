@@ -173,4 +173,11 @@ export class PinwheelService {
         return response;
       }));
   }
+
+  saveUser(payload) {
+    return this.httpService.post(endPoints.userMangement, payload)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
 }
