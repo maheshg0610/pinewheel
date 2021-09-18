@@ -180,4 +180,11 @@ export class PinwheelService {
         return response;
       }));
   }
+
+  esealList() {
+    return this.httpService.get(endPoints.esaelList + this.user.vendorId+'&sealStatus=New&healthStatus=NonTempered&pageNo=0&size=2&sort=desc')
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
 }

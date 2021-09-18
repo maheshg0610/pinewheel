@@ -29,9 +29,9 @@ export class EsealListComponent implements OnInit {
   }
 
   getinstallSealList() {
-    this.service.notificationDetails('all', 'all').subscribe((res) => {
+    this.service.esealList().subscribe((res) => {
       if (res) {
-       this.order = res.data;
+        this.order = res.seaList;
       } else {
         alert(res.statusText);
       }

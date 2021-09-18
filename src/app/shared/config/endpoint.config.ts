@@ -25,7 +25,8 @@ export const endPoints = {
     inventory: baseUrl +"/api/addeseal-inventory",
     validateEseal: baseUrl + "/api/validate-sealnumber?sealNumber=",
     esealList: baseUrl + "/api/available-seals?adminId=",
-    userMangement: baseUrl + "/api/user-registration"
+    userMangement: baseUrl + "/api/user-registration",
+    esaelList: baseUrl + '/api/eseal-list?vendorId='
 }
 
 export const status = {
