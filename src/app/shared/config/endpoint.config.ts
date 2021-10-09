@@ -9,7 +9,7 @@ export const endPoints = {
     CHA_LIST: baseUrl + '/api/cha-list',
     CFS_LIST: baseUrl + '/api/cfs-list',
     ESEAL_REGISTER: baseUrl + '/api/eseal-registration',
-    vendor_LIST: baseUrl + '/api/vendorlist',
+    vendor_LIST: baseUrl + '/api/vendorlist?status=',
     activate: baseUrl + '/api/activate-vendor',
     health_status: baseUrl + '/api/eseal-healthstatus-update',
     VENDOR_REQUEST: baseUrl +'/api/vendor-eseal-request' ,
@@ -27,7 +27,7 @@ export const endPoints = {
     esealList: baseUrl + "/api/available-seals?adminId=",
     userMangement: baseUrl + "/api/user-registration",
     esaelList: baseUrl + '/api/eseal-list?vendorId=',
-    userDashboardList: baseUrl +"/api/users?status=ALL&roleName=ALL&pageNo=0&size=5&sort=emailId,desc",
+    userDashboardList: baseUrl +"/api/users?status=ALL&roleName=ALL&pageNo=0&size=30&sort=emailId,desc",
     updateUserData: baseUrl + "/api/user-update"
 }
 

@@ -62,8 +62,8 @@ export class PinwheelService {
       }));
   }
 
-  vendorList() {
-    return this.httpService.get(endPoints.vendor_LIST)
+  vendorList(param) {
+    return this.httpService.get(endPoints.vendor_LIST+param)
       .pipe(map((response: any) => {
         return response;
       }));

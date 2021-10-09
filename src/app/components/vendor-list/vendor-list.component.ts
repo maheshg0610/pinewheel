@@ -29,7 +29,7 @@ export class VendorListComponent implements OnInit {
   }
 
   getVendorList() {
-    this.service.vendorList().subscribe((res) => {
+    this.service.vendorList('InActive').subscribe((res) => {
       if (res) {
        this.order = res.data;
       } else {

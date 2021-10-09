@@ -29,7 +29,7 @@ export class VendorDataListComponent implements OnInit {
   }
 
   geUserList() {
-    this.service.vendorList().subscribe((res) => {
+    this.service.vendorList('Active').subscribe((res) => {
       if (res) {
         this.order = res.data;
       } else {
