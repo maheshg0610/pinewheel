@@ -46,7 +46,7 @@ export class SidebarComponent {
         x.title !== 'Tampered Seal List' && x.title !== 'Draft Seal' && x.title !== 'Requisition' && x.title !==  'Vendor Registration')
     } else {
       this.menuItems = this.menuItems.filter(x => x.title !== 'Super Admin Dashboard' && x.title !== 'Vendor Registration' && x.title !=='Vendor Management'
-        && x.title !== 'Vendor Requested List' && x.title !== 'Install Seal' && x.title !=='Eseal Repo')
+        && x.title !== 'Vendor Requested List' && x.title !== 'Install Seal' && x.title !== 'Eseal Repo' && x.title !== 'User List' && x.title !== 'User Management' && x.title !== 'Vendor List' )
     }
   }
 

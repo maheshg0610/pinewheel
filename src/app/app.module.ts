@@ -24,6 +24,8 @@ import { EsealTrackModule } from './components/eseal-track/eseal-track.module';
 import { EsealrepoModule } from './components/eseal-repo/eseal-repo.module';
 import { EsealTransferModule } from './components/eseal-transfer/eseal-transfer.module';
 import { EsealListModule } from './components/eseal-list/eseal-list.module';
+import { UserListModule } from './components/user-list/user-list.module';
+import { VendorDataListModule } from './components/vendordata-list/vendordata-list.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,6 +37,8 @@ import { EsealListModule } from './components/eseal-list/eseal-list.module';
     VendorManagementModule,
     VendorRegistrationModule,
     VendorListModule,
+    UserListModule,
+    VendorDataListModule,
     ProfileModule,
     InstallSealModule,
     InstallSealListModule,

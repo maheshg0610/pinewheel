@@ -66,6 +66,13 @@ export class NavService {
       active: false
     },
     {
+      path: '/user-list/userlist',
+      title: 'User List',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
       path: '/vendor-registration/vendorregistration',
       title: 'Vendor Registration',
       icon: 'box',
@@ -74,6 +81,13 @@ export class NavService {
     },
     {
       path: '/vendor-list/vendorlist',
+      title: 'Vendor List',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
+      path: '/vendor-Requested-list/vendorrequestedlist',
       title: 'Vendor Requested List',
       icon: 'box',
       type: 'link',

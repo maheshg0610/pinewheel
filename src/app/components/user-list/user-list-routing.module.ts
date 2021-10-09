@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { VendorListComponent } from './vendor-list.component';
+import { UserListComponent } from './user-list.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
       {
-        path: 'vendorrequestedlist',
-        component: VendorListComponent,
+        path: 'userlist',
+        component: UserListComponent,
         data: {
-          title: 'Vendor Requested List',
+          title: 'User List',
           breadcrumb: ''
         }
       }
@@ -22,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class VendorListRoutingModule {}
+export class UserListRoutingModule {}

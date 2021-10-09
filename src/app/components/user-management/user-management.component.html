@@ -45,6 +45,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label>Icd <span>*</span></label>
+                                    <div class="col-9 pr-0">
+                                        <ng-multiselect-dropdown formControlName="icdIds" placeholder="Select" [data]="icdList" [settings]="dropdownSettingICD">
+                                        </ng-multiselect-dropdown>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label>Role Name <span>*</span></label>
                                   <div class="col-9 pr-0 roleName">
                                         <select formControlName="roleName">

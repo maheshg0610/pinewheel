@@ -12,12 +12,22 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 export class UserMangementComponent implements OnInit {
   public userManagementForm: FormGroup;
   portList: string[] = [];
+  icdList: string[] = [];
   user:any;
 
   dropdownSettingPORT: IDropdownSettings = {
     singleSelection: true,
     idField: 'portId',
     textField: 'portValue',
+    itemsShowLimit: 4,
+    enableCheckAll: false,
+    searchPlaceholderText: 'Select',
+  };
+
+  dropdownSettingICD: IDropdownSettings = {
+    singleSelection: true,
+    idField: 'icdId',
+    textField: 'icdValue',
     itemsShowLimit: 4,
     enableCheckAll: false,
     searchPlaceholderText: 'Select',
@@ -39,6 +49,7 @@ export class UserMangementComponent implements OnInit {
       phoneNo: ['', Validators.required],
       emailId: ['', Validators.required],
       portId: ['', Validators.required],
+      icdIds: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
       roleName: ['', Validators.required]
@@ -49,6 +60,12 @@ export class UserMangementComponent implements OnInit {
     this.service.getPORTList().subscribe((res) => {
       if (res) {
         this.portList = res;
+      }
+    }, (err) => { console.log(err) })
+
+    this.service.getIDCList().subscribe((res) => {
+      if (res) {
+        this.icdList = res;
       }
     }, (err) => { console.log(err) })
   }
@@ -74,7 +91,7 @@ export class UserMangementComponent implements OnInit {
         "password": this.userManagementForm.value.password,
         "lastName": this.userManagementForm.value.lastName,
         "phoneNo": this.userManagementForm.value.phoneNo,
-        "emailId": this.userManagementForm.value.emailId,
+        "emailId": this.userManagementForm.value.emailId,      
         "portId": this.userManagementForm.value.portId[0].portId
       }
       this.service.saveUser(payload).subscribe((res) => {

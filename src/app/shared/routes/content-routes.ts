@@ -33,8 +33,22 @@ export const content: Routes = [
     path: 'vendor-list',
     loadChildren: () =>
       import(
+        '../../components/vendordata-list/vendordata-list.module'
+      ).then(m => m.VendorDataListModule)
+  },
+  {
+    path: 'vendor-Requested-list',
+    loadChildren: () =>
+      import(
         '../../components/vendor-list/vendor-list.module'
       ).then(m => m.VendorListModule)
+  },
+  {
+    path: 'user-list',
+    loadChildren: () =>
+      import(
+        '../../components/user-list/user-list.module'
+      ).then(m => m.UserListModule)
   },
   {
     path: 'requisition',

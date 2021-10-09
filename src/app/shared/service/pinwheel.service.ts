@@ -187,4 +187,18 @@ export class PinwheelService {
         return response;
       }));
   }
+
+  getUserList() {
+    return this.httpService.get(endPoints.userDashboardList)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+
+  upadteUserdata(payload) {
+    return this.httpService.put(endPoints.updateUserData, payload)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
 }

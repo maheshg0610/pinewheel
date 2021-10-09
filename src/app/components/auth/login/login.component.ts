@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
         }
       },
       error => {
-        alert(error.message)
+        alert(error.StatusText)
       }
     );
   }
