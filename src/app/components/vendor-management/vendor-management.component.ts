@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, FormControl, FormsModule, Validators} from '@ang
 import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
 import { status } from 'src/app/shared/config/endpoint.config';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vendor-management',
@@ -54,7 +55,8 @@ export class VendorManagementComponent implements OnInit {
   };
 
 
-  constructor(private formBuilder: FormBuilder, private service:PinwheelService) {}
+  constructor(private formBuilder: FormBuilder, private service:PinwheelService,
+    private router :Router) {}
 
   ngOnInit() {
     this.getDropdownList()
@@ -155,8 +157,8 @@ export class VendorManagementComponent implements OnInit {
       }
       this.service.registerEseal(payload).subscribe((res) => {
         if (res.status === status.SUCCESS) {
-          //TODO:pop-up
           alert(res.statusText)
+          this.router.navigateByUrl('vendor-list/vendorlist')
         } else {
           alert(res.statusText)
         }
