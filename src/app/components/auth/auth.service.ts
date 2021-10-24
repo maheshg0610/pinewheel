@@ -15,7 +15,7 @@ export class AuthService {
 
 
   login(user_obj: any) {
-    const headers = new HttpHeaders().set('content-type', 'application/json').set("Access-Control-Allow-Origin", "*");
+    const headers = new HttpHeaders().set('content-type', 'application/json');
     return this.httpService.post(endPoints.auth_user, user_obj, {headers: headers})
       .pipe(map((data: any) => {
         let user = data;
