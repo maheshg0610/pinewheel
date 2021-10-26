@@ -30,6 +30,7 @@ export class SelfStuffingComponent implements OnInit {
   portList: string[] = [];
   icd: string[] = [];
   port: string[] = [];
+  isLoading: boolean = false;
   dropdownSettingPORT: IDropdownSettings = {
     singleSelection: false,
     idField: 'portId',
@@ -165,6 +166,7 @@ export class SelfStuffingComponent implements OnInit {
   }
 
   submit() {
+    this.isLoading  = true;
     this.appendData() 
     let payload = {
       "vendorId": this.user.vendorId,
@@ -179,11 +181,15 @@ export class SelfStuffingComponent implements OnInit {
       "trailerNo": this.restrictionForm.value.trailerNo
     }
     this.service.saveSelfStuffing(payload).subscribe((res) => {
-      if (res.status === status.SUCCESS) {
-        alert(res.statusText)
-      }
+      this.isLoading = false;
+      alert(res.statusText)
+      this.port = [];
+      this.icd = [];
+      this.restrictionForm.reset();
+      this.generalForm.reset()
      }, 
     (err) =>{
+      this.isLoading = false;
       alert(err.error.statusText)
     })
   }
