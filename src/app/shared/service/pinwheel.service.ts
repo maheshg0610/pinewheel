@@ -182,7 +182,8 @@ export class PinwheelService {
   }
 
   esealList() {
-    return this.httpService.get(endPoints.esaelList + this.user.vendorId+'&sealStatus=New&healthStatus=NonTempered&pageNo=0&size=2&sort=desc')
+    let id = this.user.roleName === "SuperAdmin" ? 0 : this.user.vendorId
+      return this.httpService.get(endPoints.esaelList + id +'&sealStatus=New&healthStatus=NonTempered&pageNo=0&size=2&sort=desc')
       .pipe(map((response: any) => {
         return response;
       }));
