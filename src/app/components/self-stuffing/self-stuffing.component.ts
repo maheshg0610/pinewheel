@@ -15,6 +15,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
   encapsulation: ViewEncapsulation.None
 })
 export class SelfStuffingComponent implements OnInit {
+  user: any;
   @ViewChild('nav', { static: false }) set content(content: NgbNav) {
    // this.tabSet = content;
   }
@@ -55,6 +56,7 @@ export class SelfStuffingComponent implements OnInit {
     this.createGeneralForm();
     this.createRestrictionForm();
     this.createUsageForm();
+    this.user = JSON.parse(localStorage.getItem('user'));
    }
 
    getDropdownList() {
@@ -134,6 +136,8 @@ export class SelfStuffingComponent implements OnInit {
   }
 
   appendData() {
+    this.port = [];
+    this.icd = [];
     let pv = this.restrictionForm.value.sendToPorts
     pv.map((ele) => { this.port.push(ele.portId) })
     let ic = this.restrictionForm.value.sendToICDs
@@ -141,24 +145,29 @@ export class SelfStuffingComponent implements OnInit {
   }
   
   formateDate(val){
-    if (val.toString().split("").length === 1){
+    if (val && val.toString().split("").length === 1){
       return '0'+val
     }
     return val
   }
   updateData(val) {
-    val.map( (ele) => {
-      if (ele.shippingBillDate) {
-        ele.shippingBillDate = ele.shippingBillDate.year + '-' + this.formateDate(ele.shippingBillDate.month) + '-' + this.formateDate(ele.shippingBillDate.day)
-      }
-    })
-    return val;
+    if(val) {
+      val.map((ele) => {
+        if (ele.shippingBillDate) {
+          ele.shippingBillDate = ele.shippingBillDate.year + '-' + this.formateDate(ele.shippingBillDate.month) + '-' + this.formateDate(ele.shippingBillDate.day)
+        }
+      })
+      return val;
+    } else {
+      return val;
+    }
+
   }
 
   submit() {
     this.appendData() 
     let payload = {
-      "vendorId": 2,
+      "vendorId": this.user.vendorId,
       "containerNo": this.restrictionForm.value.containerNo,
       "sealNo": this.generalForm.value.sealNo,
       "sealingDate": this.restrictionForm.value.sealingDate.year + '-' + this.formateDate(this.restrictionForm.value.sealingDate.month) +'-' + this.formateDate(this.restrictionForm.value.sealingDate.day),
@@ -175,7 +184,7 @@ export class SelfStuffingComponent implements OnInit {
       }
      }, 
     (err) =>{
-      console.log(err)
+      alert(err.error.statusText)
     })
   }
   
