@@ -8,7 +8,13 @@
                         <div class="custom-datatable">
                             <input type='text' class="filter-ngx form-control" placeholder='Search...'
                                 (keyup)='updateFilter($event)' />
-                            <ngx-datatable *ngIf="order" class="bootstrap" [rows]="order" [columnMode]="'force'" [headerHeight]="50"
+                            <ngx-datatable *ngIf="order" class="bootstrap" [rows]="order" [columnMode]="'force'" 
+                                [externalPaging]="true"
+                                [count]="page.totalElements"
+                                [offset]="page.pageNumber"
+                                [limit]="page.size"
+                                (page)="setPage($event)"
+                                [headerHeight]="50"
                                 [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
                                 <ngx-datatable-column prop="sealno"></ngx-datatable-column>
                                 <ngx-datatable-column prop="sealStatus"></ngx-datatable-column>

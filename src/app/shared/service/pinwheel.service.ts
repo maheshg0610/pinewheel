@@ -181,9 +181,9 @@ export class PinwheelService {
       }));
   }
 
-  esealList() {
+  esealList(size) {
     let id = this.user.roleName === "SuperAdmin" ? 0 : this.user.vendorId
-      return this.httpService.get(endPoints.esaelList + id +'&sealStatus=New&healthStatus=NonTempered&pageNo=0&size=2&sort=desc')
+      return this.httpService.get(endPoints.esaelList + id +'&sealStatus=New&healthStatus=NonTempered&pageNo=0&size='+size+'&sort=desc')
       .pipe(map((response: any) => {
         return response;
       }));

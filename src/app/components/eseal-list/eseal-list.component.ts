@@ -5,7 +5,16 @@ import { DatatableComponent } from "@swimlane/ngx-datatable";
 import { vendorlistDB } from '../../shared/tables/vendor-list';
 import { Router } from '@angular/router';
 import { PinwheelService } from 'src/app/shared/service/pinwheel.service';
-
+export class Page {
+  // The number of elements in the page
+  size: number = 0;
+  // The total number of elements
+  totalElements: number = 0;
+  // The total number of pages
+  totalPages: number = 0;
+  // The current page number
+  pageNumber: number = 0;
+}
 @Component({
   selector: 'app-eseal-list',
   templateUrl: './eseal-list.component.html',
@@ -18,20 +27,24 @@ export class EsealListComponent implements OnInit {
 
 
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
-
+  page = new Page();
   constructor(private modalService: NgbModal, private router: Router, private service:PinwheelService) {
-    //this.order = vendorlistDB.list_order;
+    this.page.pageNumber = 0;
+    this.page.size = 10;
   }
   
 
   ngOnInit() {
-    this.getinstallSealList()
+    this.getinstallSealList(10)
+    this.setPage({ offset: 0 });
   }
 
-  getinstallSealList() {
-    this.service.esealList().subscribe((res) => {
+  getinstallSealList(size) {
+    this.service.esealList(size).subscribe((res) => {
       if (res) {
         this.order = res.seaList;
+        this.page.totalElements = res.seaList.length;
+        this.page.totalPages = (res.seaList.length / 5)
       } else {
         alert(res.statusText);
       }
@@ -82,5 +95,22 @@ export class EsealListComponent implements OnInit {
     this.router.navigate(['/vendor-registration/vendorregistration']);
   }
 
+  setPage(pageInfo) {
+   this.page.pageNumber = pageInfo.offset;
+    this.page.totalElements = this.page.totalElements +5;
+    this.service.esealList(this.page.totalElements).subscribe((res) => {
+      if (res) {
+        this.page.totalElements = res.seaList.length ;
+        this.page.totalPages = (res.seaList.length/5)
+        this.order = [];
+        this.order = res.seaList;
+      } else {
+        alert(res.statusText);
+      }
+    },
+      (err) => {
+        console.log(err)
+      })
+  }
 
 }
