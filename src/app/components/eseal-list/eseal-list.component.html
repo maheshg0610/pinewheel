@@ -15,7 +15,9 @@
                                 [limit]="page.size"
                                 (page)="setPage($event)"
                                 [headerHeight]="50"
-                                [footerHeight]="50" [rowHeight]="'auto'" [limit]="5">
+                                [footerHeight]="50" 
+                                [rowHeight]="'auto'"
+                                [limit]="page.size">
                                 <ngx-datatable-column prop="sealno"></ngx-datatable-column>
                                 <ngx-datatable-column prop="sealStatus"></ngx-datatable-column>
                             </ngx-datatable>

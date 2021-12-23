@@ -30,23 +30,21 @@ export class EsealListComponent implements OnInit {
   page = new Page();
   constructor(private modalService: NgbModal, private router: Router, private service:PinwheelService) {
     this.page.pageNumber = 0;
-    this.page.size = 10;
+    this.page.size = 6;
   }
   
 
   ngOnInit() {
-    this.getinstallSealList(10)
+    this.getinstallSealList(this.page.pageNumber, this.page.size)
     this.setPage({ offset: 0 });
   }
 
-  getinstallSealList(size) {
-    this.service.esealList(size).subscribe((res) => {
+  getinstallSealList(pageNo, size) {
+    this.service.esealList(pageNo,size).subscribe((res) => {
       if (res) {
         this.order = res.seaList;
-        this.page.totalElements = res.seaList.length;
-        this.page.totalPages = (res.seaList.length / 5)
-      } else {
-        alert(res.statusText);
+        this.page.totalPages = res.totalPages;
+        this.page.totalElements = res.totalItems;
       }
     },
       (err) => {
@@ -96,21 +94,8 @@ export class EsealListComponent implements OnInit {
   }
 
   setPage(pageInfo) {
-   this.page.pageNumber = pageInfo.offset;
-    this.page.totalElements = this.page.totalElements +5;
-    this.service.esealList(this.page.totalElements).subscribe((res) => {
-      if (res) {
-        this.page.totalElements = res.seaList.length ;
-        this.page.totalPages = (res.seaList.length/5)
-        this.order = [];
-        this.order = res.seaList;
-      } else {
-        alert(res.statusText);
-      }
-    },
-      (err) => {
-        console.log(err)
-      })
+    this.page.pageNumber = pageInfo.offset;
+    this.getinstallSealList(this.page.pageNumber, this.page.size)
   }
 
 }
