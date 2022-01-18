@@ -82,6 +82,30 @@
                                         <label for="validationCustom4" class="col-xl-3 col-md-4">E-way Bill No.</label>
                                         <input class="form-control col-md-7" formControlName="ewayBillNo" type="text" id="validationCustom4" />
                                     </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom4" class="col-xl-3 col-md-4">Country</label>
+                                        <div *ngIf="icdList" class="col-md-7 pl-0">
+                                        <ng-multiselect-dropdown formControlName="countryId" placeholder="Select" [data]="countryList"
+                                            [settings]="dropdownSettingcountry" (onSelect)="onCountrySelect($event)">
+                                        </ng-multiselect-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom4" class="col-xl-3 col-md-4">State</label>
+                                        <div *ngIf="icdList" class="col-md-7 pl-0">
+                                         <ng-multiselect-dropdown formControlName="stateId" placeholder="Select" [data]="stateList"
+                                          [settings]="dropdownSettingstate" (onSelect)="onStateSelect($event)">
+                                         </ng-multiselect-dropdown>  
+                                         </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom4" class="col-xl-3 col-md-4">City</label>
+                                    <div *ngIf="icdList" class="col-md-7 pl-0">
+                                        <ng-multiselect-dropdown formControlName="cityId" placeholder="Select" [data]="cityList"
+                                            [settings]="dropdownSettingcity">
+                                        </ng-multiselect-dropdown>
+                                    </div>
+                                    </div>
                                 </div>
                                 <button type="button" *ngIf="i === shippingBillDetails.controls.length - 1" class="btn btn-secondary mr-2" (click)="addMoreFeild()">Add more</button>
                                 <button type="button" *ngIf="i !== 0" class="btn btn-secondary"

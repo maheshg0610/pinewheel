@@ -31,6 +31,9 @@ export class SelfStuffingComponent implements OnInit {
   icd: string[] = [];
   port: string[] = [];
   isLoading: boolean = false;
+  stateList: string[] = [];
+  countryList: string[] = [];
+  cityList: string[] = []
   dropdownSettingPORT: IDropdownSettings = {
     singleSelection: false,
     idField: 'portId',
@@ -43,6 +46,32 @@ export class SelfStuffingComponent implements OnInit {
     singleSelection: false,
     idField: 'icdId',
     textField: 'icdValue',
+    itemsShowLimit: 4,
+    enableCheckAll: false,
+    searchPlaceholderText: 'Select',
+  };
+
+  dropdownSettingcountry: IDropdownSettings = {
+    singleSelection: true,
+    idField: 'id',
+    textField: 'name',
+    itemsShowLimit: 4,
+    enableCheckAll: false,
+    searchPlaceholderText: 'Select',
+  };
+
+  dropdownSettingstate: IDropdownSettings = {
+    singleSelection: true,
+    idField: 'id',
+    textField: 'name',
+    itemsShowLimit: 4,
+    enableCheckAll: false,
+    searchPlaceholderText: 'Select',
+  };
+  dropdownSettingcity: IDropdownSettings = {
+    singleSelection: true,
+    idField: 'id',
+    textField: 'name',
     itemsShowLimit: 4,
     enableCheckAll: false,
     searchPlaceholderText: 'Select',
@@ -77,7 +106,17 @@ export class SelfStuffingComponent implements OnInit {
      },
        (err) => {
          console.log(err)
+    })
+
+     this.service.getCountryId().subscribe((res) => {
+       if (res) {
+         this.countryList = res;
+       }
+     },
+       (err) => {
+         console.log(err)
        })
+
    }
 
   open(content) {
@@ -157,6 +196,15 @@ export class SelfStuffingComponent implements OnInit {
         if (ele.shippingBillDate) {
           ele.shippingBillDate = ele.shippingBillDate.year + '-' + this.formateDate(ele.shippingBillDate.month) + '-' + this.formateDate(ele.shippingBillDate.day)
         }
+        if (ele.cityId) {
+          ele.cityId = ele.cityId[0].id;
+        }
+        if (ele.stateId) {
+          ele.stateId = ele.stateId[0].id;
+        }
+        if (ele.countryId) {
+          ele.countryId = ele.countryId[0].id;
+        }
       })
       return val;
     } else {
@@ -200,12 +248,37 @@ export class SelfStuffingComponent implements OnInit {
     add.push(this.formBuilder.group({
       shippingBillDate: [''],
       shippingBillNo: [''],
-      ewayBillNo: ['']
+      ewayBillNo: [''],
+      cityId: [''],
+      stateId: [''],
+      countryId: ['']
     }))
   }
 
   deleteRow(i:number) {
     const add = this.restrictionForm.get('shippingBillDetails') as FormArray;
     add.removeAt(i)
+  }
+
+  onCountrySelect(event) {
+    this.service.getStateID(event.id).subscribe((res) => {
+      if (res) {
+        this.stateList = res;
+      }
+    },
+      (err) => {
+        console.log(err)
+      })
+  }
+
+  onStateSelect(event) {
+    this.service.getCityID(event.id).subscribe((res) => {
+      if (res) {
+        this.cityList = res;
+      }
+    },
+      (err) => {
+        console.log(err)
+      })
   }
 }

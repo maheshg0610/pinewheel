@@ -28,7 +28,10 @@ export const endPoints = {
     userMangement: baseUrl + "/api/user-registration",
     esaelList: baseUrl + '/api/eseal-list?vendorId=',
     userDashboardList: baseUrl +"/api/users?status=ALL&roleName=ALL&pageNo=0&size=30&sort=emailId,desc",
-    updateUserData: baseUrl + "/api/user-update"
+    updateUserData: baseUrl + "/api/user-update",
+    cityList: baseUrl +"/api/cities?stateId=",
+    stateList: baseUrl +'/api/states?countryId=',
+    countryList: baseUrl +'/api/countries'
 }
 
 export const status = {

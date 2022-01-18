@@ -202,4 +202,26 @@ export class PinwheelService {
         return response;
       }));
   }
+
+
+  getCityID(param) {
+    return this.httpService.get(endPoints.cityList+param)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+
+  getStateID(param) {
+    return this.httpService.get(endPoints.stateList + param)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
+
+  getCountryId() {
+    return this.httpService.get(endPoints.countryList)
+      .pipe(map((response: any) => {
+        return response;
+      }));
+  }
 }
