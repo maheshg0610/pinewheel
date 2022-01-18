@@ -14,29 +14,29 @@ export class VendorManagementComponent implements OnInit {
   public vendorMangementForm: FormGroup;
   icdList: string[] = [];
   portList: string[] = [];
-  chaList: string[] = [];
-  cfsList: string[] = [];
+  // chaList: string[] = [];
+  // cfsList: string[] = [];
   icd: string[] = [];
   port: string[] = [];
-  cha: string[] = [];
-  cfs: string[] = [];
+  // cha: string[] = [];
+  // cfs: string[] = [];
   user:any;
-  dropdownSettingCha: IDropdownSettings = {
-    singleSelection: false,
-    idField: 'chaId',
-    textField: 'name',
-    itemsShowLimit: 4,
-    enableCheckAll: false,
-    searchPlaceholderText: 'Select',
-  };
-  dropdownSettingCfs: IDropdownSettings = {
-    singleSelection: false,
-    idField: 'cfsId',
-    textField: 'name',
-    itemsShowLimit: 4,
-    enableCheckAll: false,
-    searchPlaceholderText: 'Select',
-  };
+  // dropdownSettingCha: IDropdownSettings = {
+  //   singleSelection: false,
+  //   idField: 'chaId',
+  //   textField: 'name',
+  //   itemsShowLimit: 4,
+  //   enableCheckAll: false,
+  //   searchPlaceholderText: 'Select',
+  // };
+  // dropdownSettingCfs: IDropdownSettings = {
+  //   singleSelection: false,
+  //   idField: 'cfsId',
+  //   textField: 'name',
+  //   itemsShowLimit: 4,
+  //   enableCheckAll: false,
+  //   searchPlaceholderText: 'Select',
+  // };
   dropdownSettingPORT: IDropdownSettings = {
     singleSelection: false,
     idField: 'portId',
@@ -78,8 +78,7 @@ export class VendorManagementComponent implements OnInit {
       confirmPassword: ['', Validators.required],
       companyName: ['', Validators.required],
       iec: ['', Validators.required],
-      chaIds: ['', Validators.required],
-      cfsIds: ['', Validators.required],
+      chaorCfa: ['', Validators.required],
       agree: [false, Validators.required],
       isDistributer: []
     });
@@ -98,17 +97,17 @@ export class VendorManagementComponent implements OnInit {
       }
     }, (err) => { console.log(err) })
 
-    this.service.getCHAList().subscribe((res) => {
-      if (res) {
-        this.chaList = res;
-      }
-    }, (err) => { console.log(err) })
+    // this.service.getCHAList().subscribe((res) => {
+    //   if (res) {
+    //     this.chaList = res;
+    //   }
+    // }, (err) => { console.log(err) })
 
-    this.service.getCFSList().subscribe((res) => {
-      if (res) {
-        this.cfsList = res;
-      }
-    }, (err) => { console.log(err) })
+    // this.service.getCFSList().subscribe((res) => {
+    //   if (res) {
+    //     this.cfsList = res;
+    //   }
+    // }, (err) => { console.log(err) })
   }
 
   get f() {
@@ -120,10 +119,10 @@ export class VendorManagementComponent implements OnInit {
     pv.map((ele) => { this.port.push(ele.portId) })
     let ic = this.vendorMangementForm.value.icdIds
     ic.map((ele) => { this.icd.push(ele.icdId) })
-    let ch = this.vendorMangementForm.value.chaIds
-    ch.map((ele) => { this.cha.push(ele.chaId) })
-    let cf = this.vendorMangementForm.value.cfsIds
-    cf.map((ele) => { this.cfs.push(ele.cfsId) })
+    // let ch = this.vendorMangementForm.value.chaIds
+    // ch.map((ele) => { this.cha.push(ele.chaId) })
+    // let cf = this.vendorMangementForm.value.cfsIds
+    // cf.map((ele) => { this.cfs.push(ele.cfsId) })
   }
 
   onSubmit() {
@@ -152,8 +151,9 @@ export class VendorManagementComponent implements OnInit {
         "icdIds": this.icd,
         "isDistributer": this.vendorMangementForm.value.isDistributer,
         "noOfSeal": this.vendorMangementForm.value.noOfSeal,
-        "chaIds": this.cha,
-        "cfsIds": this.cfs
+        "isCha": this.vendorMangementForm.value.chaorCfa === "true" ? true :false,
+        "isCfs": this.vendorMangementForm.value.chaorCfa === "false" ? true : false
+
       }
       this.service.registerEseal(payload).subscribe((res) => {
         if (res.status === status.SUCCESS) {
