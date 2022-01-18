@@ -22,9 +22,7 @@
                                             <div class="form">
                                                 <h4>Enter Seal Quantity</h4>
                                                 <div class="form-group">
-                                                    <button class="up-arrow" (click)="increment()"></button>
-                                                    <input class="form-control" type="text" value="{{counter}}">
-                                                    <button class="down-arrow" (click)="decrement()"></button>
+                                                    <input name="" type="number" class="form-control" [(ngModel)]="counter" placeholder="" [ngModelOptions]="{standalone: true}" />
                                                 </div>
                                             </div>
                                         </form>

@@ -18,25 +18,20 @@ export class RequisitionComponent implements OnInit {
   public user:any;
 
 
-  counter = 0;
-  increment() {
-    this.counter++;
-  }
-  decrement() {
-    this.counter--;
-  }
+  counter:number;
 
 
 
 
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
+  modalRef: Promise<void>;
 
   constructor(private modalService: NgbModal, private service: PinwheelService) {
     this.order = requisitionDB.list_order;
   }
 
   open(content) {
-    this.modalService
+     this.modalService
       .open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then(
         result => {
@@ -47,7 +42,7 @@ export class RequisitionComponent implements OnInit {
         }
       );
   }
-  private getDismissReason(reason: any): string {
+  getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -107,14 +102,19 @@ export class RequisitionComponent implements OnInit {
   }
 
   submit() {
+    if (this.counter < 0){
+      alert('Please enter a valid number');
+      return;
+    }
     let payload = {
       "vendorId": this.user.vendorId,
       "noOfEsealRequested": this.counter
     }
     this.service.newRequisition(payload).subscribe((res) => {
-      if (res.status === status.SUCCESS) {
+      if (res.status === status.success) {
         this.getVendorList()
         alert(res.statusText)
+        this.modalService.dismissAll()
       } else {
         alert(res.statusText)
       }

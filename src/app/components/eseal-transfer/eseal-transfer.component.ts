@@ -84,7 +84,15 @@ export class EsealTransferComponent {
     let payload = { "adminUserId": this.user.userId, "noOfSeals": this.vendorForm.value.noOfEsealRequested,
       "esealIds": this.eSeal, "status": 'transferred' }
     if (this.service.rowDataTransfer) {
-      payload["eSealRequestId"]= this.service?.rowDataTransfer['eSealRequestId']
+      payload["eSealRequestId"]= this.service.rowDataTransfer['eSealRequestId']
+    } else {
+      let eSealRequestId;
+      this.vendorList.map( (ele) => {
+        if (ele.vendorId == this.vendorForm.controls['vendorName'].value[0].vendorId) {
+          eSealRequestId = ele.eSealRequestId;
+        }
+      })
+      payload["eSealRequestId"] = eSealRequestId
     }
     this.service.adminAccept(payload).subscribe((res) => {
       if (res.status === status.success) {
