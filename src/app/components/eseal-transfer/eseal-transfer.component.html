@@ -12,14 +12,20 @@
                             <div class="form-group row">
                                 <label for="" class="col-xl-3 col-md-4"><span>*</span>
                                     Vendor Name</label>
-                                <input class="form-control col-xl-9 col-md-7"  formControlName="vendorName"  id="" type="text" required="">
+                                <input *ngIf="service.rowDataTransfer" class="form-control col-xl-9 col-md-7"  formControlName="vendorName"  id="" type="text" required="">
+                                <div *ngIf="!service.rowDataTransfer" class="col-xl-9 col-md-7 p-0">
+                                    <ng-multiselect-dropdown formControlName="vendorName" placeholder="Select" [data]="vendorList"
+                                        [settings]="vdropdownSetting">
+                                    </ng-multiselect-dropdown>
+                                </div>
                             </div>
+                            
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group row">
                                 <label for="" class="col-xl-3 col-md-4"><span>*</span>
                                     No. of Seal requested</label>
-                                <input class="form-control col-xl-9 col-md-7"  formControlName="noOfEsealRequested" id="" type="text" required="">
+                                <input class="form-control col-xl-9 col-md-7" (change)="callApi()"  formControlName="noOfEsealRequested" id="" type="text" required="">
                             </div>
                         </div>
                           <div class="col-sm-12">

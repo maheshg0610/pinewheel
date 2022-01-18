@@ -17,27 +17,38 @@ export class EsealTransferComponent {
   user: any;
   esealList: string[] = [];
   eSeal: string[] = [];
-  constructor(private service: PinwheelService, private formBuilder:FormBuilder, private _router:Router) {
+  vendorList: any;
+  constructor(public service: PinwheelService, private formBuilder:FormBuilder, private _router:Router) {
   }
   dropdownSetting: IDropdownSettings = {
     singleSelection: false,
     idField: 'esealId',
     textField: 'esealNumber',
     itemsShowLimit: 4,
-    enableCheckAll: true,
+    enableCheckAll: false,
+    searchPlaceholderText: 'Select',
+  };
+
+  vdropdownSetting: IDropdownSettings = {
+    singleSelection: true,
+    idField: 'vendorId',
+    textField: 'vendorName',
+    itemsShowLimit: 4,
+    enableCheckAll: false,
     searchPlaceholderText: 'Select',
   };
   
   ngOnInit() { 
     this.user = JSON.parse(localStorage.getItem('user'));
-    this.getSealList()
     if (this.service.rowDataTransfer){
+      this.getSealList(this.service.rowDataTransfer.noOfEsealRequested)
         this.vendorForm = this.formBuilder.group({
           esealIds: [{ value: this.service.rowDataTransfer.eSealRequestId, disabled: true }],
           vendorName: [{value:this.service.rowDataTransfer.vendorName, disabled: true}],
           noOfEsealRequested: [{ value: this.service.rowDataTransfer.noOfEsealRequested, disabled: true}] 
         })
     } else {
+      this.getVendorList()
       this.vendorForm = this.formBuilder.group({
         esealIds: [''],
         vendorName: [''],
@@ -46,8 +57,8 @@ export class EsealTransferComponent {
     }
   }
 
-  getSealList() {
-    this.service.getEsealList(this.service.rowDataTransfer.noOfEsealRequested).subscribe((res) => {
+  getSealList(num) {
+    this.service.getEsealList(num).subscribe((res) => {
       if (res.status === status.success) {
         this.esealList = res.data;
       } else {
@@ -58,15 +69,23 @@ export class EsealTransferComponent {
         console.log(err)
       })
   }
+
+  get f() {
+    return this.vendorForm.controls;
+  }
   appendData() {
+    this.eSeal = [];
     let seal = this.vendorForm.controls['esealIds'].value
     seal.map((ele) => { this.eSeal.push(ele.esealId) })
   }
 
   onSubmit() {
     this.appendData()
-    let payload = { "adminUserId": this.user.userId, "eSealRequestId": this.service.rowDataTransfer['eSealRequestId'], "noOfSeals": this.service.rowDataTransfer.noOfEsealRequested,
+    let payload = { "adminUserId": this.user.userId, "noOfSeals": this.vendorForm.value.noOfEsealRequested,
       "esealIds": this.eSeal, "status": 'transferred' }
+    if (this.service.rowDataTransfer) {
+      payload["eSealRequestId"]= this.service?.rowDataTransfer['eSealRequestId']
+    }
     this.service.adminAccept(payload).subscribe((res) => {
       if (res.status === status.success) {
         alert(res.statusText);
@@ -80,9 +99,26 @@ export class EsealTransferComponent {
       })
   }
 
+  callApi() {
+    this.getSealList(this.vendorForm.value.noOfEsealRequested)
+  }
+
+  getVendorList() {
+    this.service.vendoeListForActivation(this.user.userId).subscribe((res) => {
+      if (res) {
+        this.vendorList = res.data;
+      } else {
+        alert(res.statusText);
+      }
+    },
+      (err) => {
+        console.log(err)
+      })
+  }
+
   ngOnDestroy() {
     this.vendorForm.reset()
-    this.service.rowDataTransfer = {};
+    this.service.rowDataTransfer = '';
    }
   
 }
