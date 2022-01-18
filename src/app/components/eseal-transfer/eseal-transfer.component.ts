@@ -30,13 +30,19 @@ export class EsealTransferComponent {
   
   ngOnInit() { 
     this.user = JSON.parse(localStorage.getItem('user'));
+    this.getSealList()
     if (this.service.rowDataTransfer){
-      this.getSealList()
         this.vendorForm = this.formBuilder.group({
           esealIds: [{ value: this.service.rowDataTransfer.eSealRequestId, disabled: true }],
           vendorName: [{value:this.service.rowDataTransfer.vendorName, disabled: true}],
           noOfEsealRequested: [{ value: this.service.rowDataTransfer.noOfEsealRequested, disabled: true}] 
         })
+    } else {
+      this.vendorForm = this.formBuilder.group({
+        esealIds: [''],
+        vendorName: [''],
+        noOfEsealRequested: ['']
+      })
     }
   }
 
@@ -74,5 +80,9 @@ export class EsealTransferComponent {
       })
   }
 
+  ngOnDestroy() {
+    this.vendorForm.reset()
+    this.service.rowDataTransfer = {};
+   }
   
 }

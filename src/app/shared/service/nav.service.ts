@@ -157,6 +157,13 @@ export class NavService {
       active: false
     },
     {
+      path: '/eseal-transfer/esealtransfer',
+      title: 'ESEAL TRANSFER',
+      icon: 'box',
+      type: 'link',
+      active: false
+    },
+    {
       path: '/profile/profile',
       title: 'Profile',
       icon: 'settings',
