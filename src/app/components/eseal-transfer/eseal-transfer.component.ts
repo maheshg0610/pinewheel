@@ -92,7 +92,7 @@ export class EsealTransferComponent {
           eSealRequestId = ele.eSealRequestId;
         }
       })
-      payload["eSealRequestId"] = eSealRequestId
+      payload["eSealRequestId"] = eSealRequestId;
     }
     this.service.adminAccept(payload).subscribe((res) => {
       if (res.status === status.success) {

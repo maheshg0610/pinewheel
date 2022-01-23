@@ -17,24 +17,24 @@ export class VendorRegistrationComponent implements OnInit {
 
   icdList: string[] = [];
   portList: string[] = [];
-  chaList: string[] = [];
-  cfsList: string[] = [];
-  dropdownSettingCha: IDropdownSettings = {
-    singleSelection: false,
-    idField: 'chaId',
-    textField: 'name',
-    itemsShowLimit: 4,
-    enableCheckAll: false,
-    searchPlaceholderText: 'Select',
-  };
-  dropdownSettingCfs: IDropdownSettings = {
-    singleSelection: false,
-    idField: 'cfsId',
-    textField: 'name',
-    itemsShowLimit: 4,
-    enableCheckAll: false,
-    searchPlaceholderText: 'Select',
-  };
+  //chaList: string[] = [];
+  //cfsList: string[] = [];
+  // dropdownSettingCha: IDropdownSettings = {
+  //   singleSelection: false,
+  //   idField: 'chaId',
+  //   textField: 'name',
+  //   itemsShowLimit: 4,
+  //   enableCheckAll: false,
+  //   searchPlaceholderText: 'Select',
+  // };
+  // dropdownSettingCfs: IDropdownSettings = {
+  //   singleSelection: false,
+  //   idField: 'cfsId',
+  //   textField: 'name',
+  //   itemsShowLimit: 4,
+  //   enableCheckAll: false,
+  //   searchPlaceholderText: 'Select',
+  // };
   dropdownSettingPORT: IDropdownSettings = {
     singleSelection: false,
     idField: 'portId',
@@ -87,8 +87,9 @@ export class VendorRegistrationComponent implements OnInit {
       status: [this.formData.status ? this.formData.status : ''],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-      chaIds: [this.formData.chaIds ? this.formData.chaIds : ''],
-      cfsIds: [this.formData.chaIds ? this.formData.chaIds : '']
+      chaorCfa: [this.formData.isCha === true ? "true" : "false"]
+      // chaIds: [this.formData.chaIds ? this.formData.chaIds : ''],
+      // cfsIds: [this.formData.chaIds ? this.formData.chaIds : '']
     })
   }
 
@@ -125,17 +126,17 @@ export class VendorRegistrationComponent implements OnInit {
       }
     }, (err) => { console.log(err) })
 
-    this.service.getCHAList().subscribe((res) => {
-      if (res) {
-        this.chaList = res;
-      }
-    }, (err) => { console.log(err) })
+    // this.service.getCHAList().subscribe((res) => {
+    //   if (res) {
+    //     this.chaList = res;
+    //   }
+    // }, (err) => { console.log(err) })
 
-    this.service.getCFSList().subscribe((res) => {
-      if (res) {
-        this.cfsList = res;
-      }
-    }, (err) => { console.log(err) })
+    // this.service.getCFSList().subscribe((res) => {
+    //   if (res) {
+    //     this.cfsList = res;
+    //   }
+    // }, (err) => { console.log(err) })
   }
 
 }
