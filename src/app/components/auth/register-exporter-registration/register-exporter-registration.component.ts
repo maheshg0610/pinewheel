@@ -153,7 +153,7 @@ export class RegisterExporterRegistrationComponent implements OnInit {
         }
       },
       (err) => {
-        console.log(err)
+        alert(err.error.statusText);
       })
     } else {
       alert('Please agree to terms and condition')
